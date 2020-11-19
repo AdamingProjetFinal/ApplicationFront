@@ -1,3 +1,4 @@
+import { ListMedecinComponent } from './views/Medecin/list-medecin/list-medecin.component';
 import { FormsMedecinComponent } from './views/Medecin/forms-medecin/forms-medecin.component';
 import { MedecinComponent } from './views/Medecin/Medecin.component';
 import { NgModule } from '@angular/core';
@@ -36,6 +37,12 @@ export const routes: Routes = [
           {
             path: 'update/:id', component: FormsMedecinComponent, data: {title: 'Mise à jour'}
           },
+          {
+            path: 'update', component: FormsMedecinComponent, data: {title: 'Mise à jour'}
+          },
+          {
+            path: 'list', component: ListMedecinComponent, data: {title: 'Liste des médecins'}
+          }
         ]
       },
       {

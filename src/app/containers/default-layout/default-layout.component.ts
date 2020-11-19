@@ -9,19 +9,43 @@ import { navItems } from '../../_nav';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
+  public isUserLoggedIn : boolean;
   public navItems = navItems;
-
   constructor(private router: Router,
     private authentificationService :AuthentificationService){}
-ngOnInit(){}
+
+ngOnInit(){
+  this.getLoggedIn()
+}
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
+
+  // Verifier si un utilisateur est connecté
+  getLoggedIn() {
+    this.isUserLoggedIn = this.authentificationService.isUserLoggedIn()
+  }
+
+  // TODO a supprimer permet de se connecter en un clic
+  fackloginMedecin(){
+    this.authentificationService.authentification("string", "string", "medecin")
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['']);
+    });
+  }
+
+  fackloginPatient(){
+    this.authentificationService.authentification("string", "string", "patient")
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['']);
+    });
+  }
+  // permet de se déconnecter depuis le service d'authentification
   logout(){
-    console.log(sessionStorage);
-    
     this.authentificationService.logOut()
-    console.log(sessionStorage);
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['']);
+    });
   }
 }

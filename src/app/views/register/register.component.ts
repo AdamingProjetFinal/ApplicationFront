@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-dashboard',
   templateUrl: 'register.component.html'
 })
+
 export class RegisterComponent {
 
   constructor() { }

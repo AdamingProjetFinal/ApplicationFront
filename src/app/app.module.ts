@@ -1,3 +1,4 @@
+import { ListMedecinComponent } from './views/Medecin/list-medecin/list-medecin.component';
 import { FormsMedecinComponent } from './views/Medecin/forms-medecin/forms-medecin.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -70,7 +71,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     MedecinComponent,
-    FormsMedecinComponent
+    FormsMedecinComponent,
+    ListMedecinComponent
   ],
   providers: [{
     provide: LocationStrategy,

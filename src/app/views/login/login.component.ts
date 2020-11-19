@@ -1,37 +1,29 @@
-import { Medecin } from './../../model/Medecin';
-import { MedecinService } from './../../service/medecin/medecin.service';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-dashboard',
   templateUrl: 'login.component.html'
 })
 export class LoginComponent { 
-  email="sqddsqsqd";
-  password="sqsqdsqd";
+  email:string;
+  password:string;
+
   invalidLogin = false;
-  constructor(private router: Router,
-              private authentificationService :AuthentificationService,
-              private medecinService : MedecinService){}
+
+  constructor(private authentificationService :AuthentificationService){}
 ngOnInit(){}
 
-checkLogin(){
-  var resp : Medecin = new Medecin()
-  resp = this.authentificationService.authenticate(this.email, this.password) 
-  // (
-  //   resp => {
-      if (resp.password === this.password){
-        sessionStorage.setItem('email',this.email);
-        this.router.navigate([''])
-        console.log(sessionStorage);
-        
-      } else {
-        this.invalidLogin = true;
-      }
-  //   }
-  // )
+// Se connecter en cherchant l'association email/password dans la table Medecin
+loginMedecin(){
+  let resp = this.authentificationService.authentification(this.email, this.password, "medecin")
+  console.log("connexion : " + resp);
+    }
+    
+// Se connecter en cherchant l'association email/password dans la table Patient
+loginPatient(){
+  let resp = this.authentificationService.authentification(this.email, this.password, "patient")
+  console.log("connexion : " + resp);
 }
 
 }

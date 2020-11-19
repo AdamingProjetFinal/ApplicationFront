@@ -9,14 +9,8 @@ import { Medecin } from '../../model/Medecin';
 })
 export class MedecinComponent implements OnInit {
 
-  medecin :Medecin = new Medecin()
   constructor(private medecinService :MedecinService) { }
 
-  ngOnInit() {
-    this.getMedecin()
-  }
+  ngOnInit() {}
 
-  getMedecin():void{
-    this.medecin = this.medecinService.getMedecin()
-  }
 }

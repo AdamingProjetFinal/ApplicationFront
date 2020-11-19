@@ -1,0 +1,22 @@
+
+<div class="container">
+  <h2>Liste des Médecins</h2>
+  <table class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Email</th>
+        <th>Pseudo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medecin of listMedecin">
+        <td>{{medecin.nom}}</td>
+        <td>{{medecin.prenom}}</td>
+        <td>{{medecin.email}}</td>
+        <td>{{medecin.username}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
