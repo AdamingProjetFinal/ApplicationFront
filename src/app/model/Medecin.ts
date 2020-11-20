@@ -1,3 +1,4 @@
+import { Specialite } from './Specialite';
 export class Medecin {
     id:number;
     username:string;

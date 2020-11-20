@@ -1,3 +1,4 @@
+import { FormActeComponent } from './views/Acte/form-acte/form-acte.component';
 import { NouvelleSpecialiteComponent } from './views/Specialite/Nouvelle-specialite/Nouvelle-specialite.component';
 import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
 import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';
@@ -82,7 +83,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     PatientComponent,
     ListPatientComponent,
     FormsPatientComponent,
-    NouvelleSpecialiteComponent
+    NouvelleSpecialiteComponent,
+    FormActeComponent
   ],
   providers: [{
     provide: LocationStrategy,
