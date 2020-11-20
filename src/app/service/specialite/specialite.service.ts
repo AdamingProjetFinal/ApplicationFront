@@ -29,17 +29,15 @@ constructor(private http: HttpClient) { }
 
 // Récupère une specialite avec son id 
   // TODO remplacer par l'appel au back
-  getPatient(id:number){
+  getSpecialite(id:number){
     return this.listeSpecialite[id]
   }
   
   // Récupère la liste des specialites  
   // TODO remplacer par l'appel au back
-  getPatients(){
+  getSpecialites(){
     return this.listeSpecialite
   }
 
    // rajouter les autres appel au back
-}
-
 }
