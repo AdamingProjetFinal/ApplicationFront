@@ -2,8 +2,6 @@ import { DefaultLayoutComponent } from './../../containers/default-layout/defaul
 import { Router } from '@angular/router';
 import { MedecinService } from './../medecin/medecin.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Medecin } from '../../model/Medecin';
 
 @Injectable({
   providedIn: 'root'
