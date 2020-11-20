@@ -1,3 +1,6 @@
+import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
+import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';
+import { PatientComponent } from './views/Patient/Patient.component';
 import { ListMedecinComponent } from './views/Medecin/list-medecin/list-medecin.component';
 import { FormsMedecinComponent } from './views/Medecin/forms-medecin/forms-medecin.component';
 import { FormsModule } from '@angular/forms';
@@ -72,7 +75,10 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     MedecinComponent,
     FormsMedecinComponent,
-    ListMedecinComponent
+    ListMedecinComponent,
+    PatientComponent,
+    ListPatientComponent,
+    FormsPatientComponent
   ],
   providers: [{
     provide: LocationStrategy,

@@ -19,17 +19,33 @@ export const navItems: INavData[] = [
   {
     name: 'Medecin',
     url: '/medecin',
-    icon: 'icon-drop',
+    icon: 'fa fa-user-md',
   children: [
     {
       name: 'Mise à jour',
       url: '/medecin/update/1',
-      icon: 'icon-cursor'
+      icon: 'fa fa-user-md'
     },
     {
       name: 'Liste des Médecins',
       url: '/medecin/list',
-      icon: 'icon-cursor'
+      icon: 'icon-list'
+    }]
+  },
+  {
+    name: 'Patient',
+    url: '/patient',
+    icon: 'fa fa-user',
+  children: [
+    {
+      name: 'Mise à jour',
+      url: '/patient/update/1',
+      icon: 'fa fa-user'
+    },
+    {
+      name: 'Liste des Patients',
+      url: '/patient/list',
+      icon: 'icon-list'
     }]
   }
 ];

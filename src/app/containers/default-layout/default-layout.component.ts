@@ -10,16 +10,24 @@ import { navItems } from '../../_nav';
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public isUserLoggedIn : boolean;
+  public profil:string
   public navItems = navItems;
   constructor(private router: Router,
     private authentificationService :AuthentificationService){}
 
 ngOnInit(){
   this.getLoggedIn()
+  this.getProfilUrl()
+
 }
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
+  }
+
+  // instancie l'url du profil de l'utilisateur
+  getProfilUrl(){
+    this.profil = "#/" + this.authentificationService.getType() + "/update"
   }
 
   // Verifier si un utilisateur est connecté

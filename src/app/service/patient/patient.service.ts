@@ -1,76 +1,76 @@
-import { Medecin } from './../../model/Medecin';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Patient } from './../../model/Patient';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MedecinService {
+export class PatientService {
   URL = 'http://localhost:'; // TODO mettre la bonne url
-  medecina : Medecin = {
+  patienta : Patient = {
     id:0,
-    username:"medecin0",
+    username:"patient0",
     nom:"string0",
     prenom:"string",
     email:"string",
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
-    codePublic: "sqdsqdsq"
+    numeroSecu: "321",
+    medecinTraitant: 1
 
   };
-  medecinb : Medecin = {
+  patientb : Patient = {
     id:1,
-    username:"medecin1",
+    username:"patient1",
     nom:"string1",
     prenom:"string",
     email:"string",
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
-    codePublic: "sqdsqdsq"
+    numeroSecu: "321",
+    medecinTraitant: 1
   };
-  medecinc : Medecin = {
+  patientc : Patient = {
     id:2,
-    username:"medecin2",
+    username:"patient2",
     nom:"string2",
     prenom:"string",
     email:"string",
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
-    codePublic: "sqdsqdsq"
+    numeroSecu: "321",
+    medecinTraitant: 1
   };
-  medecind : Medecin = {
+  patientd : Patient = {
     id:3,
-    username:"medecin3",
+    username:"patient3",
     nom:"string3",
     prenom:"string",
     email:"string",
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
-    codePublic: "sqdsqdsq"
+    numeroSecu: "321",
+    medecinTraitant: 1
   };
-  listeMedecin : Medecin[] = [this.medecina,this.medecinb,this.medecinc,this.medecind];
+  listepatient : Patient[] = [this.patienta,this.patientb,this.patientc,this.patientd];
 
 constructor(private http: HttpClient) { }
 
-  // Récupère un medecin avec son id 
+// Récupère un patient avec son id 
   // TODO remplacer par l'appel au back
-  getMedecin(id:number){
-    return this.listeMedecin[id]
+  getPatient(id:number){
+    return this.listepatient[id]
   }
   
-  // Récupère la liste des medecins  
+  // Récupère la liste des patients  
   // TODO remplacer par l'appel au back
-  getMedecins(){
-    return this.listeMedecin
+  getPatients(){
+    return this.listepatient
   }
-  
-  // rajouter les autres appel au back 
+
+   // rajouter les autres appel au back
 }

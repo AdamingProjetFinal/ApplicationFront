@@ -1,3 +1,6 @@
+import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
+import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';
+import { PatientComponent } from './views/Patient/Patient.component';
 import { ListMedecinComponent } from './views/Medecin/list-medecin/list-medecin.component';
 import { FormsMedecinComponent } from './views/Medecin/forms-medecin/forms-medecin.component';
 import { MedecinComponent } from './views/Medecin/Medecin.component';
@@ -42,6 +45,20 @@ export const routes: Routes = [
           },
           {
             path: 'list', component: ListMedecinComponent, data: {title: 'Liste des médecins'}
+          }
+        ]
+      },
+      {
+        path: "patient", component: PatientComponent, data: { title: "Patient" },
+        children: [
+          {
+            path: 'update/:id', component: FormsPatientComponent, data: {title: 'Mise à jour'}
+          },
+          {
+            path: 'update', component: FormsPatientComponent, data: {title: 'Mise à jour'}
+          },
+          {
+            path: 'list', component: ListPatientComponent, data: {title: 'Liste des patients'}
           }
         ]
       },

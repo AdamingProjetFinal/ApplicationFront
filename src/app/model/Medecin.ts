@@ -7,6 +7,9 @@ export class Medecin {
     password:string;
     dateNaissance:Date;
     telephone:string;
+    specialite: number;
+    codePublic: string;
+
 
     // TODO finir les champs
 }

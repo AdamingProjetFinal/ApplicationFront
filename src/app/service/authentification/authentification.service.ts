@@ -8,17 +8,17 @@ import { Medecin } from '../../model/Medecin';
   providedIn: 'root'
 })
 export class AuthentificationService {
-
-constructor(private medecinService : MedecinService,
-            private router: Router) { }
-
-// Vérification du mot de passe
-authentification(email: string, password: string, type: string): boolean {
-  switch (type) {
-    case "medecin": {
-      console.log("Connexion en tant que medecin");
-      let medecin = this.medecinService.getMedecin(1) // TODO remplacer par la recherche par email
-      if (medecin.password === password){
+  
+  constructor(private medecinService : MedecinService,
+    private router: Router) { }
+    
+    // Vérification du mot de passe
+    authentification(email: string, password: string, type: string): boolean {
+      switch (type) {
+        case "medecin": {
+          console.log("Connexion en tant que medecin");
+          let medecin = this.medecinService.getMedecin(1) // TODO remplacer par la recherche par email
+          if (medecin.password === password){
         sessionStorage.setItem('email',email);
         sessionStorage.setItem('id', medecin.id.toString());
         sessionStorage.setItem('type', "medecin");
@@ -65,5 +65,8 @@ logOut() {
   
   sessionStorage.removeItem('email');  
   this.router.navigate([''])
+}
+getType() {
+  return sessionStorage.getItem('type')
 }
 }
