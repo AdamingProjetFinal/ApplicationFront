@@ -1,3 +1,4 @@
+import { DefaultLayoutComponent } from './../../containers/default-layout/default-layout.component';
 import { Router } from '@angular/router';
 import { MedecinService } from './../medecin/medecin.service';
 import { Injectable } from '@angular/core';

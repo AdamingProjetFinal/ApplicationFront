@@ -36,8 +36,16 @@ constructor(private http: HttpClient) { }
   // Récupère la liste des specialites  
   // TODO remplacer par l'appel au back
   getSpecialites(){
+    console.log("hello from specialite service");
     return this.listeSpecialite
   }
 
+  // Enregistrer une nouvelle spécialité
+  // TODO appel au back 
+  save(spe:Specialite) {
+    // Verifier si le spécialite existe déjà ou pas 
+    // TODO if ...
+    console.log(spe);
+  }
    // rajouter les autres appel au back
 }

@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MedecinService {
   URL = 'http://localhost:'; // TODO mettre la bonne url
+
+  // TODO à supprimer 
   medecina : Medecin = {
     id:0,
     username:"medecin0",
@@ -16,7 +18,7 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
+    specialite: 0,
     codePublic: "sqdsqdsq"
 
   };
@@ -29,7 +31,7 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
+    specialite: 1,
     codePublic: "sqdsqdsq"
   };
   medecinc : Medecin = {
@@ -41,7 +43,7 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
+    specialite: 2,
     codePublic: "sqdsqdsq"
   };
   medecind : Medecin = {
@@ -53,11 +55,11 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 321,
+    specialite: 3,
     codePublic: "sqdsqdsq"
   };
   listeMedecin : Medecin[] = [this.medecina,this.medecinb,this.medecinc,this.medecind];
-
+// TODO fin à supprimer
 constructor(private http: HttpClient) { }
 
   // Récupère un medecin avec son id 
@@ -72,5 +74,15 @@ constructor(private http: HttpClient) { }
     return this.listeMedecin
   }
   
+  // Sauvegarde un medecin en base 
+  // TODO remplacer par l'appel au back
+  save(medecin : Medecin) {
+    console.log("hello from medecin service save methode");
+    
+    console.log(medecin);
+     
+  }
+
+
   // rajouter les autres appel au back 
 }

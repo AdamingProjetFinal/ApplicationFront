@@ -1,3 +1,4 @@
+import { NouvelleSpecialiteComponent } from './views/Specialite/Nouvelle-specialite/Nouvelle-specialite.component';
 import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
 import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';
 import { PatientComponent } from './views/Patient/Patient.component';
@@ -48,6 +49,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { MedecinComponent } from './views/Medecin/Medecin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   imports: [
@@ -64,7 +66,8 @@ import { HttpClientModule } from '@angular/common/http';
     TabsModule.forRoot(),
     ChartsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AlertModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -78,7 +81,8 @@ import { HttpClientModule } from '@angular/common/http';
     ListMedecinComponent,
     PatientComponent,
     ListPatientComponent,
-    FormsPatientComponent
+    FormsPatientComponent,
+    NouvelleSpecialiteComponent
   ],
   providers: [{
     provide: LocationStrategy,

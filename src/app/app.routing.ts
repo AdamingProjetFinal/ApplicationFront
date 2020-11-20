@@ -1,6 +1,7 @@
-import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
 import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';
+import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
 import { PatientComponent } from './views/Patient/Patient.component';
+import { NouvelleSpecialiteComponent } from './views/Specialite/Nouvelle-specialite/Nouvelle-specialite.component';
 import { ListMedecinComponent } from './views/Medecin/list-medecin/list-medecin.component';
 import { FormsMedecinComponent } from './views/Medecin/forms-medecin/forms-medecin.component';
 import { MedecinComponent } from './views/Medecin/Medecin.component';
@@ -34,6 +35,9 @@ export const routes: Routes = [
   {
     path: '', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
+      {
+        path: "specialite/new", component: NouvelleSpecialiteComponent, data: { title: "Nouvelle Spécialité" }
+      },
       {
         path: "medecin", component: MedecinComponent, data: { title: "Medecin" },
         children: [
