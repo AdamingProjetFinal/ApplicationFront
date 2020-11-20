@@ -1,4 +1,4 @@
-export class Patient {
+export class Specialite {
     // attributs utilisateur
     id:number;
     nomSpe:string;
