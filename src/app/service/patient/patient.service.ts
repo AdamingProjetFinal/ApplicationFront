@@ -72,5 +72,13 @@ constructor(private http: HttpClient) { }
     return this.listepatient
   }
 
+  // Sauvegarde un patient en base 
+  // TODO remplacer par l'appel au back
+  save(patient : Patient) {
+    console.log("hello from patient service save methode");
+    
+    console.log(patient);
+     
+  }
    // rajouter les autres appel au back
 }
