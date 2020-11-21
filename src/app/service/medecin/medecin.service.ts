@@ -1,14 +1,33 @@
+import { Specialite } from './../../model/Specialite';
 import { Medecin } from './../../model/Medecin';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedecinService {
-  URL = 'http://localhost:'; // TODO mettre la bonne url
+  URL = 'http://localhost:5050/gestion-rdv-microservice/medecin'; // TODO mettre la bonne url
 
   // TODO à supprimer 
+  specialite0 : Specialite = {
+    id:0,
+    nomSpe:"medecin traitant"
+  }
+  specialite1 : Specialite = {
+    id:1,
+    nomSpe:"dentiste"
+  }
+  specialite2 : Specialite = {
+    id:2,
+    nomSpe:"Orthophoniste"
+  }
+  specialite3 : Specialite = {
+    id:3,
+    nomSpe:"chirurgien"
+  }
+
   medecina : Medecin = {
     id:0,
     username:"medecin0",
@@ -18,8 +37,12 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 0,
-    codePublic: "sqdsqdsq"
+    specialite: null,
+    codePublic: "sqdsqdsq",
+    activated:false,
+    adresse:"",
+    patients:null,
+    consultations:null
 
   };
   medecinb : Medecin = {
@@ -31,8 +54,12 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 1,
-    codePublic: "sqdsqdsq"
+    specialite: this.specialite3,
+    codePublic: "sqdsqdsq",
+    activated:false,
+    adresse:"",
+    patients:null,
+    consultations:null
   };
   medecinc : Medecin = {
     id:2,
@@ -43,8 +70,12 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 2,
-    codePublic: "sqdsqdsq"
+    specialite: this.specialite2,
+    codePublic: "sqdsqdsq",
+    activated:false,
+    adresse:"",
+    patients:null,
+    consultations:null
   };
   medecind : Medecin = {
     id:3,
@@ -55,11 +86,16 @@ export class MedecinService {
     password:"string",
     dateNaissance: new Date(),
     telephone:"string",
-    specialite: 3,
-    codePublic: "sqdsqdsq"
+    specialite: this.specialite3,
+    codePublic: "sqdsqdsq",
+    activated:false,
+    adresse:"",
+    patients:null,
+    consultations:null
   };
   listeMedecin : Medecin[] = [this.medecina,this.medecinb,this.medecinc,this.medecind];
 // TODO fin à supprimer
+  medecins : Medecin[] = []
 constructor(private http: HttpClient) { }
 
   // Récupère un medecin avec son id 
@@ -69,9 +105,10 @@ constructor(private http: HttpClient) { }
   }
   
   // Récupère la liste des medecins  
-  // TODO remplacer par l'appel au back
   getMedecins(){
-    return this.listeMedecin
+    return this.http
+          .get<any[]>(this.URL + '/all')
+          .pipe(map(value => this.medecins = value));
   }
   
   // Sauvegarde un medecin en base 

@@ -52,6 +52,7 @@ export class FormsMedecinComponent implements OnInit {
   }
 
   save() : void{
+    
     this.medecinService.save(this.medecin)
     this.medecin = new Medecin()
   }

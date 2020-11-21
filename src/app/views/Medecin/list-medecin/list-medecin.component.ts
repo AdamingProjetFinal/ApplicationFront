@@ -17,6 +17,8 @@ export class ListMedecinComponent implements OnInit {
 
   // Récupère la liste des medecins via le service Medecin
   getList(){
-    this.listMedecin = this.medecinService.getMedecins()
+    this.medecinService.getMedecins().subscribe((value: any[]) => {
+      this.listMedecin = value;
+    });
   }
 }
