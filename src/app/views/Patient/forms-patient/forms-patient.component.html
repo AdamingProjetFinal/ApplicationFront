@@ -30,6 +30,8 @@
         <label for="Telephone">Telephone</label>
         <input type="text" class="form-control" id="postal-code" placeholder="{{patient.telephone}}" [(ngModel)]="patient.telephone">
       </div>
+      <button type="button" class="btn btn-success" (click)=update()>Enregistrer</button>
+      <button type="button" class="btn btn-danger" (click)=delete()>Supprimer mon compte</button>
     </div>
   </div>
 </div><!--/.col-->

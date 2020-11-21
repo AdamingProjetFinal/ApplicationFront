@@ -48,7 +48,6 @@ export class FormsMedecinComponent implements OnInit {
       }
       
       this.medecinService.getMedecin(this.id).subscribe((value: any) => {
-        
        this.medecin = value.data;
       })
     })

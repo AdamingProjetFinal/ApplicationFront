@@ -1,3 +1,4 @@
+import { AlerteService } from './../../../service/alerte/alerte.service';
 import { AuthentificationService } from './../../../service/authentification/authentification.service';
 import { Patient } from './../../../model/Patient';
 import { PatientService } from '../../../service/patient/patient.service';
@@ -11,13 +12,14 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./forms-patient.component.scss']
 })
 export class FormsPatientComponent implements OnInit {
-  id:number
-  patient:Patient
+  id:string
+  patient:Patient = new Patient
 
   constructor(private patientService : PatientService,
               private activatedRoute : ActivatedRoute, 
               private authentificationService : AuthentificationService,
-              private router : Router) { }
+              private router : Router,
+              private alerteService: AlerteService) { }
 
 
   ngOnInit() {
@@ -30,15 +32,39 @@ export class FormsPatientComponent implements OnInit {
     this.activatedRoute.params.subscribe((param: Params) => {
       if (param['id'] == null) {
         if (this.authentificationService.isUserLoggedIn()) {
-          this.id = +this.authentificationService.getUserId() // "+" pour convertir un string en number
+          this.id = this.authentificationService.getUserId() // "+" pour convertir un string en number
         }else {
           this.router.navigate([''])
         }
       } else {
         this.id = param['id'];
       }
-      this.patient = this.patientService.getPatient(this.id)
+      this.patientService.getPatient(this.id).subscribe((value: any) => {
+        this.patient = value.data;
+       })
     })
+  }
+
+  update() : void{
+    this.patientService.update(this.patient).subscribe(response => {
+      if (response.status == 200) {
+        this.alerteService.success("Le profil a bien été mis a jour")
+      } else {
+        this.alerteService.error("Le profil n'a pas pu être mis a jour")
+      }
+    
+    });
+  }
+
+  delete(){
+    this.patientService.delete(this.patient.id).subscribe((response : any)=> {
+      if (response.status == "OK") {
+        this.alerteService.error("Le profil a bien été supprimé")
+        this.router.navigate([''])
+      } else {
+        this.alerteService.error("Erreur lors de la suppression du compte")
+      }
+    });
   }
 
     

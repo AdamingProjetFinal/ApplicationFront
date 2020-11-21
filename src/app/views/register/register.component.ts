@@ -59,8 +59,8 @@ export class RegisterComponent implements OnInit{
   savePatient() : void{
     console.log(this.patient);
     if (this.patient.password == this.checkPassword) {
-      this.patientService.save(this.patient)
-      this.router.navigate([''])
+      this.patientService.save(this.patient).subscribe(response => response.body);
+      this.authentificationService.authentification(this.patient.email,this.patient.password,'patient')
     } else {
       this.alerteService.error("Les mots de passe doivent être identiques")
     }

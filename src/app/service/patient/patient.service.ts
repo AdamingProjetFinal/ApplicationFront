@@ -1,84 +1,44 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Patient } from './../../model/Patient';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
-  URL = 'http://localhost:'; // TODO mettre la bonne url
-  patienta : Patient = {
-    id:0,
-    username:"patient0",
-    nom:"string0",
-    prenom:"string",
-    email:"string",
-    password:"string",
-    dateNaissance: new Date(),
-    telephone:"string",
-    numeroSecu: "321",
-    medecinTraitant: 1
-
-  };
-  patientb : Patient = {
-    id:1,
-    username:"patient1",
-    nom:"string1",
-    prenom:"string",
-    email:"string",
-    password:"string",
-    dateNaissance: new Date(),
-    telephone:"string",
-    numeroSecu: "321",
-    medecinTraitant: 1
-  };
-  patientc : Patient = {
-    id:2,
-    username:"patient2",
-    nom:"string2",
-    prenom:"string",
-    email:"string",
-    password:"string",
-    dateNaissance: new Date(),
-    telephone:"string",
-    numeroSecu: "321",
-    medecinTraitant: 1
-  };
-  patientd : Patient = {
-    id:3,
-    username:"patient3",
-    nom:"string3",
-    prenom:"string",
-    email:"string",
-    password:"string",
-    dateNaissance: new Date(),
-    telephone:"string",
-    numeroSecu: "321",
-    medecinTraitant: 1
-  };
-  listepatient : Patient[] = [this.patienta,this.patientb,this.patientc,this.patientd];
-
+  URL = 'http://localhost:5050/gestion-rdv-microservice/patient'; // TODO mettre la bonne url
+  patients :Patient[] = []
+  patient :Patient = new Patient
+  headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
-// Récupère un patient avec son id 
-  // TODO remplacer par l'appel au back
-  getPatient(id:number){
-    return this.listepatient[id]
+  // Récupère un medecin avec son id 
+  getPatient(id:string){
+    return this.http
+    .get<Patient>(this.URL + '/' + id);
   }
   
   // Récupère la liste des patients  
-  // TODO remplacer par l'appel au back
   getPatients(){
-    return this.listepatient
+    return this.http
+          .get<any[]>(this.URL + '/all')
+          .pipe(map(value => this.patients = value));
+  }
+  
+  // Sauvegarde un medecin en base 
+  save(patient : Patient) {
+    return this.http.post(this.URL , patient, { headers: this.headers, observe: 'response' }).pipe()
   }
 
-  // Sauvegarde un patient en base 
-  // TODO remplacer par l'appel au back
-  save(patient : Patient) {
-    console.log("hello from patient service save methode");
-    
-    console.log(patient);
-     
+  // Mise à jour d'un medecin en base 
+  update(patient: Patient) {
+    return this.http.put(this.URL, patient, { observe: 'response' });
+  }
+
+  // Suppression d'un medecin en base
+  delete(id: any) {
+    return this.http.delete(this.URL + '/' + id);
   }
    // rajouter les autres appel au back
 }
