@@ -14,8 +14,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./forms-medecin.component.scss']
 })
 export class FormsMedecinComponent implements OnInit {
-  id:number
-  medecin:Medecin
+  id:string
+  medecin:Medecin = new Medecin
   listSpecialites : Specialite[]
   constructor(private medecinService : MedecinService,
               private activatedRoute : ActivatedRoute, 
@@ -39,20 +39,36 @@ export class FormsMedecinComponent implements OnInit {
     this.activatedRoute.params.subscribe((param: Params) => {
       if (param['id'] == null) {
         if (this.authentificationService.isUserLoggedIn()) {
-          this.id = +this.authentificationService.getUserId() // "+" pour convertir un string en number
+          this.id = this.authentificationService.getUserId() // "+" pour convertir un string en number
         }else {
           this.router.navigate([''])
         }
       } else {
         this.id = param['id'];
       }
-      this.medecin = this.medecinService.getMedecin(this.id)
+      
+      this.medecinService.getMedecin(this.id).subscribe((value: any) => {
+        
+       this.medecin = value.data;
+      })
     })
   }
+ 
 
-  save() : void{
-    this.medecinService.save(this.medecin).subscribe(response => response.body);
+  update() : void{
+    console.log(this.medecin);
+    
+    this.medecinService.update(this.medecin).subscribe(response => {
+      if (response.status == 200) {
+        this.alerteService.success("Le profil a bien été mis a jour")
+      } else {
+        this.alerteService.error("Le profil n'a pas pu être mis a jour")
+      }
+    
+    });
   }
+
+  
 
     
 

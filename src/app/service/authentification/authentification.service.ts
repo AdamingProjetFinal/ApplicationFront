@@ -9,65 +9,65 @@ import { AlerteService } from '../alerte/alerte.service';
   providedIn: 'root'
 })
 export class AuthentificationService {
-  
+  medecin : Medecin = new Medecin
+  bool: boolean
   constructor(private medecinService : MedecinService,
     private alerteService : AlerteService,
     private router: Router) { }
     
-    // Vérification du mot de passe
-    authentification(email: string, password: string, type: string): boolean {
-      switch (type) {
-        case "medecin": {
-          console.log("Connexion en tant que medecin");
-          let medecin = this.medecinService.getMedecin(1) // TODO remplacer par la recherche par email
-          if (medecin.password === password){
-        sessionStorage.setItem('email',email);
-        sessionStorage.setItem('id', medecin.id.toString());
-        sessionStorage.setItem('type', "medecin");
-        // sessionStorage.setItem('user', JSON.stringify(medecin))
-        // let user : Medecin = JSON.parse(sessionStorage.getItem('user'))
-        this.router.navigate([''])
-        // console.log(user);
-        return true;
-      } else {
-        return false
+  // Vérification du mot de passe
+  authentification(email: string, password: string, type: string): boolean {
+    switch (type) {
+      case "medecin": {
+        console.log("Connexion en tant que medecin");
+        
+        this.medecinService.getMedecin("1").subscribe((value: any) => { // TODO remplacer par la recherche par email
+          this.medecin = value.data
+        })
+            if (this.medecin.password === password){
+              sessionStorage.setItem('type', "medecin");
+              sessionStorage.setItem('user', JSON.stringify(this.medecin))
+              this.router.navigate([''])
+              this.bool = true;
+            } else {
+              this.bool = false
+            }
+        return this.bool
       }
-    }
-    case "patient": {
-      console.log("Connexion en tant que patient");
-      let medecin = this.medecinService.getMedecin(1) // TODO remplacer par le service de patient et la recherche par email
-      if (medecin.password === password){
-        sessionStorage.setItem('email',email);
-        sessionStorage.setItem('id', medecin.id.toString()); // TODO remplacer par le patient
-        sessionStorage.setItem('type', "patient");
-        this.router.navigate([''])
-        console.log(sessionStorage);
-        return true;
-      } else {
-        return false
+      case "medecin": {
+        console.log("Connexion en tant que medecin");
+        
+        this.medecinService.getMedecin("1").subscribe((value: any) => { // TODO remplacer par la recherche par email et par patient
+          this.medecin = value.data
+        })
+            if (this.medecin.password === password){
+              sessionStorage.setItem('user', JSON.stringify(this.medecin))// TODO remplacer par la recherche par email et par patient
+              sessionStorage.setItem('type', "patient");
+              this.bool = true;
+            } else {
+              this.bool = false
+            }
+        return this.bool
       }
     }
   }
-}
 
 // Vérifie si un utilisateur est connecté
 isUserLoggedIn() {
-  const email = sessionStorage.getItem('email');
-  return !(email === null);
+  return !(sessionStorage.getItem('user') == null);
 }
 
 // Récupère l'Id de l'utilisateur
 getUserId(){
-  console.log(+sessionStorage.getItem('id'));
+  let user = JSON.parse(sessionStorage.getItem('user'))
   
-  return sessionStorage.getItem('id')
+  return user.id
 }
 
 // Méthode permettant de se déconnecter
 logOut() {
-  console.log("déconnexion");
-  this.alerteService.error("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh",true)
-  sessionStorage.removeItem('email');  
+  sessionStorage.removeItem('user');  
+  sessionStorage.removeItem('type');  
   this.router.navigate([''])
 }
 getType() {

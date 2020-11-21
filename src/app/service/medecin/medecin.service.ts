@@ -96,14 +96,16 @@ export class MedecinService {
   listeMedecin : Medecin[] = [this.medecina,this.medecinb,this.medecinc,this.medecind];
 // TODO fin à supprimer
   medecins : Medecin[] = []
-  medecin: Medecin
+  medecin: Medecin = new Medecin
   headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
   // Récupère un medecin avec son id 
   // TODO remplacer par l'appel au back
-  getMedecin(id:number){
-    return this.listeMedecin[id]
+  getMedecin(id:string){
+    return this.http
+    .get<Medecin>(this.URL + '/' + id);
+    // return this.listeMedecin[id]
   }
   
   // Récupère la liste des medecins  
@@ -116,7 +118,11 @@ constructor(private http: HttpClient) { }
   // Sauvegarde un medecin en base 
   save(medecin : Medecin) {
     return this.http.post(this.URL , medecin, { headers: this.headers, observe: 'response' }).pipe()
-     
+  }
+
+  // Mise à jour d'un medecin en base 
+  update(medecin: Medecin) {
+    return this.http.put(this.URL, medecin, { observe: 'response' });
   }
 
 

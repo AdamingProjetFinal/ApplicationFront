@@ -14,7 +14,6 @@ export class AlerteService {
       // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
       this.router.events.subscribe(event => {
           if (event instanceof NavigationStart) {
-              console.log("TODO hello from alerte service")
               if (this.keepAfterRouteChange) {
                   // only keep for a single route change
                   this.keepAfterRouteChange = false;
@@ -41,7 +40,6 @@ export class AlerteService {
       
       this.keepAfterRouteChange = keepAfterRouteChange;
       this.subject.next({ type: 'error', text: message });
-      console.log('from alerte service error');
   }
 
   clear() {

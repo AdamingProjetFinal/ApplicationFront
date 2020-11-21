@@ -44,10 +44,10 @@ ngOnInit(){
     this.isUserLoggedIn = this.authentificationService.isUserLoggedIn()
   }
 
-  // TODO a supprimer permet de se connecter en un clic
+  // TODO a supprimer permet de se connecter en un clic essayer de comprendre pourquoi il y a un probleme de synchronisation
   fackloginMedecin(){
     this.authentificationService.authentification("string", "string", "medecin")
-      this.getLoggedIn()
+    this.getLoggedIn()
   }
   
   // TODO a supprimer permet de se connecter en un clic
