@@ -1,7 +1,7 @@
 import { Specialite } from './../../model/Specialite';
 import { Medecin } from './../../model/Medecin';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -96,6 +96,8 @@ export class MedecinService {
   listeMedecin : Medecin[] = [this.medecina,this.medecinb,this.medecinc,this.medecind];
 // TODO fin à supprimer
   medecins : Medecin[] = []
+  medecin: Medecin
+  headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
   // Récupère un medecin avec son id 
@@ -112,11 +114,8 @@ constructor(private http: HttpClient) { }
   }
   
   // Sauvegarde un medecin en base 
-  // TODO remplacer par l'appel au back
   save(medecin : Medecin) {
-    console.log("hello from medecin service save methode");
-    
-    console.log(medecin);
+    return this.http.post(this.URL , medecin, { headers: this.headers, observe: 'response' }).pipe()
      
   }
 

@@ -28,7 +28,6 @@ export class FormsMedecinComponent implements OnInit {
   ngOnInit() {
     this.getSepcialites()
     this.recuperationMedecin()
-    this.alerteService.error("aaaaaaaaaaaaaaaaa")
   }
 
   // Permet de recuperer la liste des spécialités pour le menu déroulant 
@@ -52,9 +51,7 @@ export class FormsMedecinComponent implements OnInit {
   }
 
   save() : void{
-    
-    this.medecinService.save(this.medecin)
-    this.medecin = new Medecin()
+    this.medecinService.save(this.medecin).subscribe(response => response.body);
   }
 
     

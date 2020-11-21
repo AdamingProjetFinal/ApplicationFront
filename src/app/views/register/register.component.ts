@@ -47,9 +47,8 @@ export class RegisterComponent implements OnInit{
   // sauvegarde d'un medecin
   saveMedecin() : void{
     if (this.medecin.password == this.checkPassword) {
-      // Md5.init(this.medecin.password); // TODO décommenter pour chiffrer les mots de passes en base
-      this.medecinService.save(this.medecin)
-      this.alerteService.success("Bienvenue nouveau medecin",true)
+      // this.medecin.password = Md5.init(this.medecin.password); // TODO décommenter pour chiffrer les mots de passes en base
+      this.medecinService.save(this.medecin).subscribe(response => response.body);
       this.authentificationService.authentification(this.medecin.email,this.medecin.password,'medecin')
     } else {
       this.alerteService.error("Les mots de passe doivent être identiques")
