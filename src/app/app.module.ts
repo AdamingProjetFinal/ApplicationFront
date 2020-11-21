@@ -77,6 +77,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     P500Component,
     LoginComponent,
     RegisterComponent,
+    // TODO Supprimer dessous
     MedecinComponent,
     FormsMedecinComponent,
     ListMedecinComponent,
