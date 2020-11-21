@@ -5,6 +5,11 @@ import { SpecialiteService } from './../../service/specialite/specialite.service
 import { Medecin } from './../../model/Medecin';
 import { Patient } from './../../model/Patient';
 import { Component, OnInit } from '@angular/core';
+import { AlertConfig } from 'ngx-bootstrap/alert';
+
+export function getAlertConfig(): AlertConfig {
+  return Object.assign(new AlertConfig(), { type: 'success' });
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +19,9 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit{
   medecin : Medecin = new Medecin
   patient : Patient = new Patient
+  checkPassword : string
+  alertHtmlMedecin: any = [];
+  alertHtmlPatient: any = [];
   listSpecialites: Specialite[];
   constructor(private specialiteService : SpecialiteService,
     private medecinService: MedecinService,
@@ -31,13 +39,40 @@ export class RegisterComponent implements OnInit{
 
   // sauvegarde d'un medecin
   saveMedecin() : void{
-    this.medecinService.save(this.medecin)
+    if (this.medecin.password == this.checkPassword) {
+      this.medecinService.save(this.medecin)
+    } else {
+      this.addAlert("danger","Les mots de passe doivent être identiques","medecin")
+    }
   }
 
   // sauvegarde d'un patient
   savePatient() : void{
     console.log(this.patient);
     
-    this.patientService.save(this.patient)
+    if (this.patient.password == this.checkPassword) {
+      this.patientService.save(this.patient)
+    } else {
+      this.addAlert("danger","Les mots de passe doivent être identiques","patient")
+    }
+  }
+
+  addAlert(typeAlert:string,msgAlert:string,user:string): void {
+    switch (user) {
+      case "patient":
+        this.alertHtmlPatient = {
+          type: typeAlert,
+          msg: msgAlert
+        };
+        break;
+        case "medecin":
+          this.alertHtmlMedecin = {
+            type: typeAlert,
+            msg: msgAlert
+          };
+          break;
+      default:
+        break;
+    }
   }
 }
