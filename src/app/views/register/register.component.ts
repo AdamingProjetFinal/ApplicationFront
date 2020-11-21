@@ -1,3 +1,5 @@
+import { AuthentificationService } from './../../service/authentification/authentification.service';
+import {Md5} from "md5-typescript";
 import { PatientService } from './../../service/patient/patient.service';
 import { MedecinService } from './../../service/medecin/medecin.service';
 import { Specialite } from './../../model/Specialite';
@@ -25,7 +27,8 @@ export class RegisterComponent implements OnInit{
   listSpecialites: Specialite[];
   constructor(private specialiteService : SpecialiteService,
     private medecinService: MedecinService,
-    private patientService: PatientService) { }
+    private patientService: PatientService,
+    private authentificationService : AuthentificationService) { }
 
   ngOnInit() {
     this.getSepcialites()
@@ -40,7 +43,9 @@ export class RegisterComponent implements OnInit{
   // sauvegarde d'un medecin
   saveMedecin() : void{
     if (this.medecin.password == this.checkPassword) {
+      // Md5.init(this.medecin.password); // TODO décommenter pour chiffrer les mots de passes en base
       this.medecinService.save(this.medecin)
+      this.authentificationService.authentification(this.medecin.email,this.medecin.password,'medecin')
     } else {
       this.addAlert("danger","Les mots de passe doivent être identiques","medecin")
     }
