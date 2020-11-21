@@ -47,11 +47,7 @@
     </cui-breadcrumb>
     <div class="container-fluid">
       <!-- Message erreur-->
-      <div class="card-body">
-        <div *ngFor="let alert of alertsDismiss">
-          <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-        </div>
-      </div>
+      <app-Alerte></app-Alerte>
       <!-- Fin Message erreur-->
       <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->

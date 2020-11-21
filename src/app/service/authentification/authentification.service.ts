@@ -2,6 +2,7 @@ import { DefaultLayoutComponent } from './../../containers/default-layout/defaul
 import { Router } from '@angular/router';
 import { MedecinService } from './../medecin/medecin.service';
 import { Injectable } from '@angular/core';
+import { AlerteService } from '../alerte/alerte.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Injectable } from '@angular/core';
 export class AuthentificationService {
   
   constructor(private medecinService : MedecinService,
+    private alerteService : AlerteService,
     private router: Router) { }
     
     // Vérification du mot de passe
@@ -61,7 +63,7 @@ getUserId(){
 // Méthode permettant de se déconnecter
 logOut() {
   console.log("déconnexion");
-  
+  this.alerteService.error("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh",true)
   sessionStorage.removeItem('email');  
   this.router.navigate([''])
 }
