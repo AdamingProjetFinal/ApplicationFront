@@ -1,3 +1,4 @@
+import { Medecin } from './../../model/Medecin';
 import { DefaultLayoutComponent } from './../../containers/default-layout/default-layout.component';
 import { Router } from '@angular/router';
 import { MedecinService } from './../medecin/medecin.service';
@@ -23,8 +24,10 @@ export class AuthentificationService {
         sessionStorage.setItem('email',email);
         sessionStorage.setItem('id', medecin.id.toString());
         sessionStorage.setItem('type', "medecin");
+        // sessionStorage.setItem('user', JSON.stringify(medecin))
+        // let user : Medecin = JSON.parse(sessionStorage.getItem('user'))
         this.router.navigate([''])
-        console.log(sessionStorage);
+        // console.log(user);
         return true;
       } else {
         return false

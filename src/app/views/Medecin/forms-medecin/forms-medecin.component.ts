@@ -1,3 +1,4 @@
+import { AlerteService } from './../../../service/alerte/alerte.service';
 import { Specialite } from './../../../model/Specialite';
 import { SpecialiteService } from './../../../service/specialite/specialite.service';
 import { AuthentificationService } from './../../../service/authentification/authentification.service';
@@ -20,12 +21,14 @@ export class FormsMedecinComponent implements OnInit {
               private activatedRoute : ActivatedRoute, 
               private authentificationService : AuthentificationService,
               private specialiteService : SpecialiteService,
-              private router : Router) { }
+              private router : Router,
+              private alerteService: AlerteService) { }
 
 
   ngOnInit() {
     this.getSepcialites()
     this.recuperationMedecin()
+    this.alerteService.error("aaaaaaaaaaaaaaaaa")
   }
 
   // Permet de recuperer la liste des spécialités pour le menu déroulant 

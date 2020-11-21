@@ -1,3 +1,4 @@
+import { AlerteComponent } from './../alerte/alerte.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +9,8 @@ import { RegisterRoutingModule } from './register-routing.module';
     imports: [
       TabsModule
     ],
-    declarations: [ RegisterComponent ]
+    declarations: [ RegisterComponent,
+      AlerteComponent ]
   })
   export class RegisterModule { }
   

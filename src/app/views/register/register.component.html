@@ -6,9 +6,6 @@
           <div class="">
             <div class="">
               <div class="card-body">
-                <div *ngFor="let alert of alertsDismiss">
-                  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-                </div>
               </div>
               
               <tabset>
@@ -51,7 +48,7 @@
                       </div>
                       <div class="form-group">
                         <label for="Password">Mot de passe</label>
-                        <alert *ngIf="alertHtmlMedecin.type" [type]="alertHtmlMedecin.type"><span [innerHtml]="alertHtmlMedecin.msg"></span></alert>
+                        <app-Alerte></app-Alerte>
                         <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="medecin.password">
                       </div>
                       <div class="form-group">
@@ -94,7 +91,7 @@
                     </div>
                     <div class="form-group">
                       <label for="Password">Mot de passe</label>
-                      <alert *ngIf="alertHtmlPatient.type" [type]="alertHtmlPatient.type"><span [innerHtml]="alertHtmlPatient.msg"></span></alert>
+                      <app-Alerte></app-Alerte>
                       <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="patient.password">
                     </div>
                     <div class="form-group">

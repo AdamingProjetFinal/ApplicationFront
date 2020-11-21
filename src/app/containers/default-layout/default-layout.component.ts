@@ -1,3 +1,4 @@
+import { AlerteService } from './../../service/alerte/alerte.service';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { Router } from '@angular/router';
 import {Component} from '@angular/core';
@@ -20,12 +21,12 @@ export class DefaultLayoutComponent {
   alertsDismiss: any = [];
   public navItems = navItems;
   constructor(private router: Router,
-    private authentificationService :AuthentificationService){}
+    private authentificationService :AuthentificationService,
+    private alerteService: AlerteService){}
 
 ngOnInit(){
   this.getLoggedIn()
   this.getProfilUrl()
-  this.addAlert("success","Bienvenue sur le site")
 
 }
 
@@ -46,32 +47,19 @@ ngOnInit(){
   // TODO a supprimer permet de se connecter en un clic
   fackloginMedecin(){
     this.authentificationService.authentification("string", "string", "medecin")
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['']);
-    });
+      this.getLoggedIn()
   }
   
   // TODO a supprimer permet de se connecter en un clic
   fackloginPatient(){
     this.authentificationService.authentification("string", "string", "patient")
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['']);
-    });
+    this.getLoggedIn()
   }
   // permet de se déconnecter depuis le service d'authentification
   logout(){
     this.authentificationService.logOut()
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['']);
-    });
-  }
-
-  addAlert(typeAlert:string,msgAlert:string): void {
-    this.alertsDismiss.push({
-      type: typeAlert,
-      msg: msgAlert,
-      timeout: 5000
-    });
+    this.getLoggedIn()
+    this.alerteService.error("Déconnexion")
   }
 
 }

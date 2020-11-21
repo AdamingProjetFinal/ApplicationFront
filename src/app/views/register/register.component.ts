@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AlerteService } from './../../service/alerte/alerte.service';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import {Md5} from "md5-typescript";
 import { PatientService } from './../../service/patient/patient.service';
@@ -28,7 +30,9 @@ export class RegisterComponent implements OnInit{
   constructor(private specialiteService : SpecialiteService,
     private medecinService: MedecinService,
     private patientService: PatientService,
-    private authentificationService : AuthentificationService) { }
+    private router: Router,
+    private authentificationService : AuthentificationService,
+    private alerteService: AlerteService) { }
 
   ngOnInit() {
     this.getSepcialites()
@@ -45,20 +49,21 @@ export class RegisterComponent implements OnInit{
     if (this.medecin.password == this.checkPassword) {
       // Md5.init(this.medecin.password); // TODO décommenter pour chiffrer les mots de passes en base
       this.medecinService.save(this.medecin)
+      this.alerteService.success("Bienvenue nouveau medecin",true)
       this.authentificationService.authentification(this.medecin.email,this.medecin.password,'medecin')
     } else {
-      this.addAlert("danger","Les mots de passe doivent être identiques","medecin")
+      this.alerteService.error("Les mots de passe doivent être identiques")
     }
   }
 
   // sauvegarde d'un patient
   savePatient() : void{
     console.log(this.patient);
-    
     if (this.patient.password == this.checkPassword) {
       this.patientService.save(this.patient)
+      this.router.navigate([''])
     } else {
-      this.addAlert("danger","Les mots de passe doivent être identiques","patient")
+      this.alerteService.error("Les mots de passe doivent être identiques")
     }
   }
 

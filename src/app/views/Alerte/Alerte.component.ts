@@ -8,18 +8,16 @@ import { AlerteService } from '../../service/alerte/alerte.service';
   styleUrls: ['./Alerte.component.scss']
 })
 export class AlerteComponent implements OnInit, OnDestroy {
-
-  private subscription: Subscription;
+    private subscription: Subscription;
     message: any;
 
-    constructor(private alertService: AlerteService) { }
+    constructor(private alerteService: AlerteService) { }
 
     ngOnInit() {
-        
-        this.subscription = this.alertService.getAlert()
-        .subscribe(message => {
-            switch (message && message.type) {
-                case 'success':
+        this.subscription = this.alerteService.getAlert()
+            .subscribe(message => {
+                switch (message && message.type) {
+                    case 'success':
                         message.cssClass = 'alert alert-success';
                         break;
                     case 'error':
@@ -34,5 +32,4 @@ export class AlerteComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
-
 }
