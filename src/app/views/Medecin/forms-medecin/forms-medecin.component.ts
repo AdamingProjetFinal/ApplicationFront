@@ -68,6 +68,17 @@ export class FormsMedecinComponent implements OnInit {
     });
   }
 
+  delete(){
+    this.medecinService.delete(this.medecin.id).subscribe((response : any)=> {
+      if (response.status == "OK") {
+        this.alerteService.error("Le profil a bien été supprimé")
+        this.router.navigate([''])
+      } else {
+        this.alerteService.error("Erreur lors de la suppression du compte")
+      }
+    });
+  }
+
   
 
     

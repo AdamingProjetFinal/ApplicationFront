@@ -125,6 +125,10 @@ constructor(private http: HttpClient) { }
     return this.http.put(this.URL, medecin, { observe: 'response' });
   }
 
+  // Suppression d'un medecin en base
+  delete(id: any) {
+    return this.http.delete(this.URL + '/' + id);
+}
 
   // rajouter les autres appel au back 
 }
