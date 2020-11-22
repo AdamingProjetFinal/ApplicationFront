@@ -1,5 +1,5 @@
 export class Acte {
-    // attributs utilisateur
+    // attributs Acte
     id:number;
     nom:string;
     prix:number;

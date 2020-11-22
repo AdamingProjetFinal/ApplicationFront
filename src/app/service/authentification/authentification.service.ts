@@ -24,7 +24,6 @@ export class AuthentificationService {
     switch (type) {
       case "medecin": {
         console.log("Connexion en tant que medecin");
-        
         this.medecinService.getMedecin("1").subscribe((value: any) => { // TODO remplacer par la recherche par email
           this.medecin = value.data
         })
@@ -40,28 +39,17 @@ export class AuthentificationService {
           }
           case "patient": {
             console.log("Connexion en tant que patient");
-            
-            this.patientService.getPatient("1").subscribe((value: any) => { // TODO remplacer par la recherche par email et par patient
-              console.log("depuis get patient")
-              console.log(this.patient = value.data)
-              console.log("password")
-              console.log(password)
-              console.log("this.patient.password")
-              console.log(this.patient.password)
-              console.log("this.patient.password == password" )
-              console.log(this.patient.password == password)
+            this.patientService.getPatientByEmail("aze").subscribe((value: any) => {
+              this.patient = value.data
               if (this.patient.password === password){
-                sessionStorage.setItem('user', JSON.stringify(this.patient))// TODO remplacer par la recherche par email et par patient
+                sessionStorage.setItem('user', JSON.stringify(this.patient))
                 sessionStorage.setItem('type', "patient");
                 this.router.navigate(['/'])
-            this.bool = true;
+                return this.bool = true;
           } else {
-            this.bool = false
+            this.alerteService.error("Echec de la connexion")
           }
         })
-
-            
-        return this.bool
       }
     }
   }
@@ -71,7 +59,7 @@ isUserLoggedIn() {
   return !(sessionStorage.getItem('user') == null);
 }
 
-// Récupère l'Id de l'utilisateur
+// Récupère l'Id de l'utilisateur  //TODO à supprimer ?
 getUserId(){
   let user = JSON.parse(sessionStorage.getItem('user'))
   
