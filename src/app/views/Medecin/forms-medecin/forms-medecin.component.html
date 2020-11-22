@@ -6,20 +6,20 @@
     <div class="card-body">
       <div class="form-group">
         <label for="Pseudo">Pseudo</label>
-        <input type="text" class="form-control" id="company" placeholder="{{medecin.username}}" [(ngModel)]="medecin.username">
+        <input type="text" class="form-control" id="company"  [(ngModel)]="medecin.username">
       </div>
       <div class="form-group">
         <label for="Nom">Nom</label>
-        <input type="text" class="form-control" id="name" placeholder="{{medecin.nom}}" [(ngModel)]="medecin.nom">
+        <input type="text" class="form-control" id="name" [(ngModel)]="medecin.nom">
       </div>
       <div class="form-group">
         <label for="Prenom">Prenom</label>
-        <input type="text" class="form-control" id="firstname" placeholder="{{medecin.prenom}}" [(ngModel)]="medecin.prenom">
+        <input type="text" class="form-control" id="firstname" [(ngModel)]="medecin.prenom">
       </div>
       <div class="form-group">
         <label for="specialite">Spécialité</label>
-        <select class="form-control" id="specialite" placeholder="Specialite" [(ngModel)]="medecin.specialite"><!-- TODO remplacer les champs placeholder et ngmodel -->
-          <option *ngFor="let specialite of listSpecialites" value="{{specialite}}">{{specialite.nom}}</option>
+        <select class="form-control" id="specialite" [(ngModel)]="specialiteId"><!-- TODO remplacer les champs placeholder et ngmodel -->
+          <option *ngFor="let specialite of listSpecialites" value="{{specialite.idSpecialite}}">{{specialite.nom}}</option>
         </select>
       </div>
       <div class="row">
