@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -52,6 +53,9 @@ import { ChartsModule } from 'ng2-charts';
 import { MedecinComponent } from './views/Medecin/Medecin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -70,7 +74,11 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     HttpClientModule,
     FormsModule,
     AlertModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSliderModule
   ],
   declarations: [
     AppComponent,

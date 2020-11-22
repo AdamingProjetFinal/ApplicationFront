@@ -5,9 +5,11 @@ import { SpecialiteService } from './../../../service/specialite/specialite.serv
 import { AuthentificationService } from './../../../service/authentification/authentification.service';
 import { Medecin } from './../../../model/Medecin';
 import { MedecinService } from '../../../service/medecin/medecin.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal'
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-forms-medecin',
@@ -15,6 +17,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./forms-medecin.component.scss']
 })
 export class FormsMedecinComponent implements OnInit {
+  @ViewChild('myModal') public myModal: ModalDirective;
   id:string
   medecin:Medecin = new Medecin
   listSpecialites : Specialite[]
@@ -82,6 +85,11 @@ export class FormsMedecinComponent implements OnInit {
         this.alerteService.error("Erreur lors de la suppression du compte")
       }
     });
+  }
+
+  validationModal(){
+    this.getSepcialites()
+    this.myModal.hide()
   }
 
   
