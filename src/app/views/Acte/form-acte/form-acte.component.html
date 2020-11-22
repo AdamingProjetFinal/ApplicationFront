@@ -6,11 +6,11 @@
     <div class="card-body">
       <div class="form-group">
         <label for="Nom">Nom de l'acte</label>
-        <input type="text" class="form-control" id="name" placeholder="Nom de l'acte" [(ngModel)]="acte.nom">
+        <input type="text" class="form-control" placeholder="Nom de l'acte" [(ngModel)]="acte.nom">
       </div>
       <div class="form-group">
         <label for="Nom">Prix</label>
-        <input type="text" class="form-control" id="name" placeholder="00.00€" [(ngModel)]="acte.prix">
+        <input type="text" class="form-control" placeholder="00.00€" [(ngModel)]="acte.prix">
       </div>
       <button type="button" class="btn btn-success" (click)=save()>Enregistrer</button>
     </div>

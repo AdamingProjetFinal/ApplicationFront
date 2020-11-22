@@ -11,7 +11,7 @@ export class MedecinService {
   URL = 'http://localhost:5050/gestion-rdv-microservice/medecin'; // TODO mettre la bonne url
 
   medecins : Medecin[] = []
-  medecin: Medecin = new Medecin
+  
   headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 

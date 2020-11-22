@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FicheMedicale } from '../../model/FicheMedicale';
@@ -8,28 +8,28 @@ import { FicheMedicale } from '../../model/FicheMedicale';
 })
 export class FicheMedicaleService {
 
-  URL = 'http://localhost:'; // TODO mettre la bonne url
-
+  URL = 'http://localhost:5050/gestion-rdv-microservice/ficheMedicale'; // TODO mettre la bonne url
+  headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
-save(ficheMedicale: FicheMedicale): Observable<FicheMedicale> {
-  return this.http.post<FicheMedicale>(URL + "/", ficheMedicale);
+save(ficheMedicale: FicheMedicale): Observable<HttpResponse<Object>> {
+  return this.http.post<FicheMedicale>(this.URL, ficheMedicale, { headers: this.headers, observe: 'response' });
 }
 
-getByID(id: number): Observable<FicheMedicale> {
-  return this.http.get<FicheMedicale>(URL + "/" + id);
+getFiche(id: number): Observable<FicheMedicale> {
+  return this.http.get<FicheMedicale>(this.URL + "/" + id);
 }
 
-getAll(): Observable<FicheMedicale> {
-  return this.http.get<FicheMedicale>(URL + "/all");
+getFiches(): Observable<FicheMedicale> {
+  return this.http.get<FicheMedicale>(this.URL + "/all");
 }
 
-update(ficheMedicale: FicheMedicale): Observable<FicheMedicale> {
-  return this.http.put<FicheMedicale>(URL + "/", ficheMedicale);
+update(ficheMedicale: FicheMedicale): Observable<HttpResponse<Object>> {
+  return this.http.put<FicheMedicale>(this.URL + "/", ficheMedicale, {observe: "response"});
 }
 
 delete(id: number) {
-  return this.http.delete(URL + "/", {observe: "response"});
+  return this.http.delete(this.URL, {observe: "response"});
 }
 
 

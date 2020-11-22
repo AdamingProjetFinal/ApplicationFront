@@ -1,36 +1,35 @@
 import { Observable } from 'rxjs';
 import { Consultation } from './../../model/Consultation';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 
-// TODO 
 export class ConsultationService {
-  URL = 'http://localhost:5050/gestion-rdv-microservice'; // TODO mettre la bonne url
-
+  URL = 'http://localhost:5050/gestion-rdv-microservice/consultation';
+  headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
-save(consultation: Consultation): Observable<Consultation> {
-  return this.http.post<Consultation>(URL + "/", consultation);
+save(consultation: Consultation): Observable<HttpResponse<Object>>{
+  return this.http.post(this.URL, consultation, { headers: this.headers, observe: 'response' });
 }
 
-getByID(id: number): Observable<Consultation> {
-  return this.http.get<Consultation>(URL + "/" + id);
+getConsultation(id: number): Observable<Consultation> {
+  return this.http.get<Consultation>(this.URL + "/" + id);
 }
 
-getAll(): Observable<Consultation> {
-  return this.http.get<Consultation>(URL + "/all");
+getConsultations(): Observable<Consultation> {
+  return this.http.get<Consultation>(this.URL + "/all");
 }
 
-update(consultation: Consultation): Observable<Consultation> {
-  return this.http.put<Consultation>(URL + "/", consultation);
+update(consultation: Consultation): Observable<HttpResponse<Object>>{
+  return this.http.put<Consultation>(this.URL, consultation, {observe: "response"});
 }
 
 delete(id: number) {
-  return this.http.delete(URL + "/", {observe: "response"});
+  return this.http.delete(this.URL + '/' + id, {observe: "response"});
 }
 
 }
