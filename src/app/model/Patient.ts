@@ -1,3 +1,4 @@
+import { Medecin } from './Medecin';
 export class Patient {
     // attributs utilisateur
     id:number;
@@ -11,8 +12,9 @@ export class Patient {
 
     // attributs patient
     numeroSecu: string;
-    medecinTraitant: number;
+    medecin: Medecin;
 
 
     // TODO vérifier les champs
 }
+
