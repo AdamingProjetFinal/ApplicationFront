@@ -9,7 +9,7 @@
       </div>
       <div class="form-group col-sm-4">
         <select class="form-control" placeholder="Specialite" [formControl]="filterSpe"><!-- TODO remplacer les champs placeholder et ngmodel -->
-          <option *ngFor="let specialite of listSpecialites$ | async" value="{{specialite.nom}}">{{specialite.idSpecialite}}</option>
+          <option *ngFor="let specialite of listSpecialites$ | async" value="{{specialite.nom}}">{{specialite.nom}}</option>
         </select>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <td>{{medecin.prenom}}</td>
         <td>{{medecin.email}}</td>
         <td>{{medecin.username}}</td>
-        <td >{{medecin.specialite.nom}}</td>
+        <td>{{medecin.specialite.nom}}</td>
       </tr>
     </tbody>
   </table>
