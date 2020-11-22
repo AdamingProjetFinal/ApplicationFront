@@ -91,9 +91,4 @@ export class FormsMedecinComponent implements OnInit {
     this.getSepcialites()
     this.myModal.hide()
   }
-
-  
-
-    
-
 }

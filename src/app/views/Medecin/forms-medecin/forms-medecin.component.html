@@ -19,7 +19,7 @@
       <div class="row">
         <div class="form-group col-sm-8">
           <label for="specialite">Spécialité</label>
-          <select class="form-control" id="specialite" [(ngModel)]="specialiteId"><!-- TODO remplacer les champs placeholder et ngmodel -->
+          <select class="form-control" id="specialite" [(ngModel)]="specialiteId">
             <option *ngFor="let specialite of listSpecialites" value="{{specialite.idSpecialite}}">{{specialite.nom}}</option>
           </select>
         </div>
@@ -50,6 +50,7 @@
   </div>
 </div><!--/.col-->
 
+<!-- modal ajout specialité -->
 <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-primary" role="document">
     <div class="modal-content">
@@ -70,6 +71,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- modal validation avant suppression -->
 <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-danger" role="document">
     <div class="modal-content">

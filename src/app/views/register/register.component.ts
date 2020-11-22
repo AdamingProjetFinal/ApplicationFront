@@ -9,8 +9,9 @@ import { Specialite } from './../../model/Specialite';
 import { SpecialiteService } from './../../service/specialite/specialite.service';
 import { Medecin } from './../../model/Medecin';
 import { Patient } from './../../model/Patient';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertConfig } from 'ngx-bootstrap/alert';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
@@ -22,6 +23,7 @@ export function getAlertConfig(): AlertConfig {
 })
 
 export class RegisterComponent implements OnInit{
+  @ViewChild('myModal') public myModal: ModalDirective
   medecin : Medecin = new Medecin
   patient : Patient = new Patient
   checkPassword : string
@@ -90,5 +92,11 @@ export class RegisterComponent implements OnInit{
       default:
         break;
     }
+  }
+
+  // validation de la modal
+  validationModal(){
+    this.getSepcialites()
+    this.myModal.hide()
   }
 }
