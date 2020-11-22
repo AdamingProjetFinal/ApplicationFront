@@ -1,7 +1,7 @@
 export class Specialite {
     // attributs utilisateur
-    id:number;
-    nomSpe:string;
+    idSpecialite:number;
+    nom:string;
 
 
     // TODO vérifier les champs

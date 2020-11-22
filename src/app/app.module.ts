@@ -1,4 +1,4 @@
-import { AlerteComponent } from './views/Alerte/Alerte.component';
+import { AlerteComponent } from './views/alerte/alerte.component';
 import { FormActeComponent } from './views/Acte/form-acte/form-acte.component';
 import { NouvelleSpecialiteComponent } from './views/Specialite/Nouvelle-specialite/Nouvelle-specialite.component';
 import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
@@ -6,7 +6,7 @@ import { ListPatientComponent } from './views/Patient/list-patient/list-patient.
 import { PatientComponent } from './views/Patient/Patient.component';
 import { ListMedecinComponent } from './views/Medecin/list-medecin/list-medecin.component';
 import { FormsMedecinComponent } from './views/Medecin/forms-medecin/forms-medecin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -69,7 +69,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ChartsModule,
     HttpClientModule,
     FormsModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,

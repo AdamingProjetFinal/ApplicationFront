@@ -24,7 +24,7 @@ constructor(private http: HttpClient) { }
   // Récupère la liste des medecins  
   getMedecins(){
     return this.http
-          .get<any[]>(this.URL + '/all')
+          .get<Medecin[]>(this.URL + '/all')
           .pipe(map(value => this.medecins = value));
   }
   

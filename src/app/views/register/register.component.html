@@ -29,7 +29,7 @@
                       <div class="form-group">
                         <label for="specialite">Spécialité</label>
                         <select class="form-control" id="specialite" placeholder="Specialite" [(ngModel)]="medecin.specialite"><!-- TODO remplacer les champs placeholder et ngmodel -->
-                          <option *ngFor="let specialite of listSpecialites" value="{{specialite.id}}">{{specialite.nomSpe}}</option>
+                          <option *ngFor="let specialite of listSpecialites" value="{{specialite.idSpecialite}}">{{specialite.nom}}</option>
                         </select>
                       </div>
                       <div class="row">

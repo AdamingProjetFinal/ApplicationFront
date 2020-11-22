@@ -8,20 +8,20 @@ import { Injectable } from '@angular/core';
 export class SpecialiteService {
   URL = 'http://localhost:'; // TODO mettre la bonne url
   specialite0 : Specialite = {
-    id:0,
-    nomSpe:"medecin traitant"
+    idSpecialite:0,
+    nom:"medecin traitant"
   }
   specialite1 : Specialite = {
-    id:1,
-    nomSpe:"dentiste"
+    idSpecialite:1,
+    nom:"dentiste"
   }
   specialite2 : Specialite = {
-    id:2,
-    nomSpe:"Orthophoniste"
+    idSpecialite:2,
+    nom:"Orthophoniste"
   }
   specialite3 : Specialite = {
-    id:3,
-    nomSpe:"chirurgien"
+    idSpecialite:3,
+    nom:"chirurgien"
   }
   listeSpecialite : Specialite[] = [this.specialite0,this.specialite1,this.specialite2,this.specialite3];
 
