@@ -58,8 +58,6 @@ export class ListMedecinComponent implements OnInit {
   // Permet de recuperer la liste des spécialités pour le menu déroulant 
   getSepcialites() {
     this.listSpecialites = this.specialiteService.getSpecialites()
-    this.listSpecialites.push({idSpecialite : -1, nom: ""})
-
     this.listSpecialites$ = of(this.listSpecialites.sort())
 
 
