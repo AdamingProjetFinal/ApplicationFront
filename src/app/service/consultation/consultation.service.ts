@@ -31,5 +31,4 @@ update(consultation: Consultation): Observable<HttpResponse<Object>>{
 delete(id: number) {
   return this.http.delete(this.URL + '/' + id, {observe: "response"});
 }
-
 }

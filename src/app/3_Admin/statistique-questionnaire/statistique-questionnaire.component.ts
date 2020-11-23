@@ -1,13 +1,13 @@
-import { Questionnaire } from './../../model/Questionnaire';
 import { QuestionnaireService } from './../../service/questionnaire/questionnaire.service';
+import { Questionnaire } from './../../model/Questionnaire';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-accueil-admin',
-  templateUrl: './accueil-admin.component.html',
-  styleUrls: ['./accueil-admin.component.scss']
+  selector: 'app-statistique-questionnaire',
+  templateUrl: './statistique-questionnaire.component.html',
+  styleUrls: ['./statistique-questionnaire.component.scss']
 })
-export class AccueilAdminComponent implements OnInit {
+export class StatistiqueQuestionnaireComponent implements OnInit {
   public radarChartLabels: string[] = ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5'];
   data: Questionnaire[]
   public radarChartData: any = [
@@ -17,7 +17,6 @@ export class AccueilAdminComponent implements OnInit {
   constructor(private questionnaireService: QuestionnaireService) { }
 
   ngOnInit() {
-    this.initialiserData()
   }
 
   initialiserData() {
