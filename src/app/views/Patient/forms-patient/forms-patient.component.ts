@@ -24,9 +24,6 @@ export class FormsPatientComponent implements OnInit {
 
   ngOnInit() {
     this.recuperationPatient()
-    this.patientService.getPatientByEmail("aze").subscribe((value: any) => {
-      console.log(value.data);
-     })
   }
 
 

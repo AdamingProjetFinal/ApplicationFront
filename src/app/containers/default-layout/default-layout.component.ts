@@ -61,6 +61,8 @@ export class DefaultLayoutComponent {
   // TODO a supprimer permet de se connecter en un clic
   fackloginPatient() {
     this.patientService.getPatients().subscribe(patients => {
+      console.log(patients[0].email);
+      
       this.authentificationService.authentification(patients[0].email, patients[0].password, "patient")
       this.getLoggedIn()
     })
