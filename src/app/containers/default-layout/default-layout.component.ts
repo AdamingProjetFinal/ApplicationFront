@@ -1,8 +1,8 @@
+import { navItems } from './../../_nav';
 import { AlerteService } from './../../service/alerte/alerte.service';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { Router } from '@angular/router';
 import {Component} from '@angular/core';
-import { navItems } from '../../_nav';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 
 export function getAlertConfig(): AlertConfig {
@@ -19,7 +19,7 @@ export class DefaultLayoutComponent {
   public isUserLoggedIn : boolean;
   public profil:string
   alertsDismiss: any = [];
-  public navItems = navItems;
+  public navItems= navItems;
   constructor(private router: Router,
     private authentificationService :AuthentificationService,
     private alerteService: AlerteService){}
