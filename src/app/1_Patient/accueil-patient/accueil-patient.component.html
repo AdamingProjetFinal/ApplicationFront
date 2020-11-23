@@ -1,7 +1,120 @@
-<p>
-  accueil-patient works!
-</p>
+<div class="animated fadeIn">
+  <div class="card-columns cols-2">
 
-<div>
-  <h1>HOLA</h1>
+    <!-- Consulter Medecin-->
+    <div class="card">
+      <div class="card-header">
+        Consulter un médecin
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Mes Fiches Médicales
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <table class="table tabler-bordered">
+            <tr>
+              <th>Nom</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of listFiches">
+              <td>{{item.nom}}</td>
+              <td><button class="btn btn-success">Download</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Calendrier
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Consultations -->
+    <div class="card">
+      <div class="card-header">
+        Mes Consulations
+      </div>
+      <div class="card-body">
+        <!-- A Venir -->
+        <div class="chart-wrapper">
+          <h1>Consultations à venir</h1>
+          <table class="table tabler-bordered">
+            <tr>
+              <th>Médecin</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let item of listRdvVenir">
+              <td>{{item.medecin.nom}}</td>
+              <td><button class="btn btn-success">Info</button></td>
+            </tr>
+          </table>
+          <hr>
+        </div>
+
+        <!-- En attente du médecin -->
+        <div class="chart-wrapper">
+          <h1>Consultations en attente</h1>
+          <table class="table tabler-bordered">
+            <tr>
+              <th>Médecin</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let item of listRdvAttente">
+              <td>{{item.medecin.nom}}</td>
+              <td>{{item.date}}</td>
+              <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+          </table>
+          <hr>
+        </div>
+
+        <!-- Passées -->
+        <div class="chart-wrapper">
+          <h1>Consultations passées</h1>
+          <table class="table tabler-bordered">
+            <tr>
+              <th>Médecin</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let item of listFichesPasser">
+              <td>{{item.medecin.nom}}</td>
+              <td><button class="btn btn-info">Avis</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Mon Profil
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <h1>Bonjour X</h1>
+          <hr>
+          <button style="text-align: auto;" class="btn btn-info">Modifier</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

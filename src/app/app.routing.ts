@@ -16,7 +16,6 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-import { navItems } from './_nav';
 
 export const routes: Routes = [
   
@@ -33,7 +32,6 @@ export const routes: Routes = [
   
   { 
     path: '', component: DefaultLayoutComponent, data: { title: 'Home' },
-    
     children: [
       { path: 'patient', loadChildren: () => import('./1_Patient/patient.module').then(m => m.PatientModule),
         data: { title: "Patient-Home"} },
