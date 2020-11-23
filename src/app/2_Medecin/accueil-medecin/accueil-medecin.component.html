@@ -1,3 +1,124 @@
-<p>
-  accueil-medecin works!
-</p>
+<!-- TODO Calendar-->
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      Calendrier
+    </div>
+    <div class="card-body">
+      <div class="chart-wrapper">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card-columns cols-2">
+
+    <!-- Profil -->
+    <div class="card">
+      <div class="card-header">
+        Mon Profil
+        <div class="card-header-actions" style="height: 21px;">
+          <button class="btn btn-warning btn-sm">Modifier</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <h1>Bonjour X</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fiches Medicales -->
+    <div class="card">
+      <div class="card-header">
+        Mes Fiches Médicales
+        <div class="card-header-actions" style="height: 21px;">
+          <button class="btn btn-success btn-sm">Ajouter</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <table class="table tabler-bordered">
+            <tr>
+              <th>Nom</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of listFiches">
+              <td>{{item.nom}}</td>
+              <td>
+                <button class="btn btn-warning">Download</button>
+                <button class="btn btn-success">Aperçu</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="card">
+      <div class="card-header">
+        Statistiques
+        <div class="card-header-actions">
+          <a href="http://www.chartjs.org">
+            <small class="text-muted">docs</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <!--
+          <canvas baseChart class="chart"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColours"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Gains -->
+    <div class="card">
+      <div class="card-header">
+        Vos Gains
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <!-- <canvas baseChart class="chart"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColours"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Rapports Satisfactions -->
+    <div class="card">
+      <div class="card-header">
+        Rapports de Satisfactions
+        <div class="card-header-actions" style="height: 21px;">
+          <button class="btn btn-info btn-sm">Accéder</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <!-- <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels"
+            [chartType]="radarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
