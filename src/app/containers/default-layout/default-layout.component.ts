@@ -1,3 +1,4 @@
+
 import { Subscription } from 'rxjs';
 import { PatientService } from './../../service/patient/patient.service';
 import { MedecinService } from './../../service/medecin/medecin.service';
@@ -22,7 +23,7 @@ export class DefaultLayoutComponent {
   public isUserLoggedIn: boolean;
   public profil: string
   alertsDismiss: any = [];
-  public navItems = navItems;
+  public navItems= navItems;
   constructor(private router: Router,
     private authentificationService: AuthentificationService,
     private alerteService: AlerteService,
