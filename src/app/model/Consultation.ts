@@ -1,3 +1,4 @@
+import { Acte } from './Acte';
 import { Patient } from './Patient';
 import { Medecin } from './Medecin';
 export class Consultation {
@@ -9,6 +10,6 @@ export class Consultation {
 
     medecin: Medecin;
     patient: Patient;
-    // TODO
-    acts: number;
-}
+    acts: Acte[];
+    // TODO Vérifier les champs
+ }

@@ -8,14 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-acte.component.scss']
 })
 export class FormActeComponent implements OnInit {
-  acte : Acte = new Acte
+  acte : Acte = new Acte()
   constructor(private acteService : ActeService) { }
 
   ngOnInit() {
   }
 
   save(){
-    this.acteService.save(this.acte)
-    this.acte = new Acte()
+    this.acteService.save(this.acte).subscribe(() => this.acte = new Acte())
   }
 }

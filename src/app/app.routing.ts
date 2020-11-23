@@ -53,7 +53,7 @@ export const routes: Routes = [
         path: "specialite/new", component: NouvelleSpecialiteComponent, data: { title: "Nouvelle Spécialité" }
       },
       {
-        path: "acte/new", component: FormActeComponent, data: { title: "Nouvelle Spécialité" }
+        path: "acte/new", component: FormActeComponent, data: { title: "Nouvel acte" }
       },
       {
         path: "medecine", component: MedecinComponent, data: { title: "Medecin" },

@@ -1,5 +1,5 @@
 export class Specialite {
-    // attributs utilisateur
+    // attributs Specialite
     idSpecialite:number;
     nom:string;
 

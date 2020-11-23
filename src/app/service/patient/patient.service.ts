@@ -13,10 +13,16 @@ export class PatientService {
   headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
-  // Récupère un medecin avec son id 
+  // Récupère un patient avec son id 
   getPatient(id:string){
     return this.http
     .get<Patient>(this.URL + '/' + id);
+  }
+
+  // Récupère un patient avec son email 
+  getPatientByEmail(email:string){
+    return this.http
+    .get<Patient>(this.URL + '/email/' + email);
   }
   
   // Récupère la liste des patients  
@@ -26,17 +32,17 @@ constructor(private http: HttpClient) { }
           .pipe(map(value => this.patients = value));
   }
   
-  // Sauvegarde un medecin en base 
+  // Sauvegarde un patient en base 
   save(patient : Patient) {
     return this.http.post(this.URL , patient, { headers: this.headers, observe: 'response' }).pipe()
   }
 
-  // Mise à jour d'un medecin en base 
+  // Mise à jour d'un patient en base 
   update(patient: Patient) {
     return this.http.put(this.URL, patient, { observe: 'response' });
   }
 
-  // Suppression d'un medecin en base
+  // Suppression d'un patient en base
   delete(id: any) {
     return this.http.delete(this.URL + '/' + id);
   }

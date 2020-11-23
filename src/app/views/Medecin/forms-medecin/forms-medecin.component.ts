@@ -1,12 +1,15 @@
+import { Observable } from 'rxjs';
 import { AlerteService } from './../../../service/alerte/alerte.service';
 import { Specialite } from './../../../model/Specialite';
 import { SpecialiteService } from './../../../service/specialite/specialite.service';
 import { AuthentificationService } from './../../../service/authentification/authentification.service';
 import { Medecin } from './../../../model/Medecin';
 import { MedecinService } from '../../../service/medecin/medecin.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal'
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-forms-medecin',
@@ -14,9 +17,11 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./forms-medecin.component.scss']
 })
 export class FormsMedecinComponent implements OnInit {
+  @ViewChild('myModal') public myModal: ModalDirective;
   id:string
   medecin:Medecin = new Medecin
   listSpecialites : Specialite[]
+  specialiteId: number;
   constructor(private medecinService : MedecinService,
               private activatedRoute : ActivatedRoute, 
               private authentificationService : AuthentificationService,
@@ -32,14 +37,16 @@ export class FormsMedecinComponent implements OnInit {
 
   // Permet de recuperer la liste des spécialités pour le menu déroulant 
   getSepcialites() {
-    this.listSpecialites = this.specialiteService.getSpecialites()
+    this.specialiteService.getSpecialites().subscribe(specialite => {
+      this.listSpecialites = specialite as Specialite[]      
+    })
   }
   // Permet de récupérer l'id contenu dans l'url, Si il n'y en a pas c'est l'id de l'utilisateur courant qui est pris
   recuperationMedecin() {
     this.activatedRoute.params.subscribe((param: Params) => {
       if (param['id'] == null) {
         if (this.authentificationService.isUserLoggedIn()) {
-          this.id = this.authentificationService.getUserId() // "+" pour convertir un string en number
+          this.id = this.authentificationService.getUserId()
         }else {
           this.router.navigate([''])
         }
@@ -48,15 +55,21 @@ export class FormsMedecinComponent implements OnInit {
       }
       
       this.medecinService.getMedecin(this.id).subscribe((value: any) => {
-       this.medecin = value.data;
+        this.medecin = value.data;
+        // Permet de récupérer l'id de la spécialite pour initialiser le formulaire avec la bonne spécialité
+        this.specialiteId = (this.medecin.specialite ?  this.medecin.specialite.idSpecialite : -1) 
       })
     })
   }
+  // TODO unsbcribe
+  // ngOndestroy (){
+
+  // }
  
 
   update() : void{
-    console.log(this.medecin);
-    
+    // Permet d'associer un objet Specialite à medecin.specialité (impossible de renvoyer un objet spécialité depuis le formulaire)
+    this.medecin.specialite = this.listSpecialites.find(specialite => specialite.idSpecialite == this.specialiteId)
     this.medecinService.update(this.medecin).subscribe(response => {
       if (response.status == 200) {
         this.alerteService.success("Le profil a bien été mis a jour")
@@ -78,8 +91,8 @@ export class FormsMedecinComponent implements OnInit {
     });
   }
 
-  
-
-    
-
+  validationModal(){
+    this.getSepcialites()
+    this.myModal.hide()
+  }
 }

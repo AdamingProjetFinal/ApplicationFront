@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlerteService } from './../../service/alerte/alerte.service';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
@@ -8,8 +9,9 @@ import { Specialite } from './../../model/Specialite';
 import { SpecialiteService } from './../../service/specialite/specialite.service';
 import { Medecin } from './../../model/Medecin';
 import { Patient } from './../../model/Patient';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertConfig } from 'ngx-bootstrap/alert';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
@@ -21,12 +23,14 @@ export function getAlertConfig(): AlertConfig {
 })
 
 export class RegisterComponent implements OnInit{
+  @ViewChild('myModal') public myModal: ModalDirective
   medecin : Medecin = new Medecin
   patient : Patient = new Patient
   checkPassword : string
   alertHtmlMedecin: any = [];
   alertHtmlPatient: any = [];
   listSpecialites: Specialite[];
+  specialiteId : number;
   constructor(private specialiteService : SpecialiteService,
     private medecinService: MedecinService,
     private patientService: PatientService,
@@ -40,7 +44,9 @@ export class RegisterComponent implements OnInit{
 
   // Permet de recuperer la liste des spécialités pour le menu déroulant 
   getSepcialites() {
-    this.listSpecialites = this.specialiteService.getSpecialites()
+    this.specialiteService.getSpecialites().subscribe(specialite => {
+      this.listSpecialites = specialite as Specialite[]      
+    })
   }
 
 
@@ -48,6 +54,9 @@ export class RegisterComponent implements OnInit{
   saveMedecin() : void{
     if (this.medecin.password == this.checkPassword) {
       // this.medecin.password = Md5.init(this.medecin.password); // TODO décommenter pour chiffrer les mots de passes en base
+      this.medecin.specialite = this.listSpecialites.find(specialite => specialite.idSpecialite == this.specialiteId)
+      console.log(this.medecin);
+      
       this.medecinService.save(this.medecin).subscribe(response => response.body);
       this.authentificationService.authentification(this.medecin.email,this.medecin.password,'medecin')
     } else {
@@ -83,5 +92,11 @@ export class RegisterComponent implements OnInit{
       default:
         break;
     }
+  }
+
+  // validation de la modal
+  validationModal(){
+    this.getSepcialites()
+    this.myModal.hide()
   }
 }

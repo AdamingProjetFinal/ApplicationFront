@@ -1,51 +1,43 @@
-import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Specialite } from './../../model/Specialite';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecialiteService {
-  URL = 'http://localhost:'; // TODO mettre la bonne url
-  specialite0 : Specialite = {
-    idSpecialite:0,
-    nom:"medecin traitant"
-  }
-  specialite1 : Specialite = {
-    idSpecialite:1,
-    nom:"dentiste"
-  }
-  specialite2 : Specialite = {
-    idSpecialite:2,
-    nom:"Orthophoniste"
-  }
-  specialite3 : Specialite = {
-    idSpecialite:3,
-    nom:"chirurgien"
-  }
-  listeSpecialite : Specialite[] = [this.specialite0,this.specialite1,this.specialite2,this.specialite3];
-
+  URL = 'http://localhost:5050/gestion-rdv-microservice/specialite'; 
+  specialites :Specialite[] = []
+  headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
 // Récupère une specialite avec son id 
-  // TODO remplacer par l'appel au back
-  getSpecialite(id:number){
-    return this.listeSpecialite[id]
+  getSpecialite(id:string) : Observable<Specialite>{
+    return this.http
+    .get<Specialite>(this.URL + '/' + id);
   }
   
   // Récupère la liste des specialites  
-  // TODO remplacer par l'appel au back
-  getSpecialites(){
-    console.log("hello from specialite service");
-    return this.listeSpecialite
+  getSpecialites() : Observable<Specialite[]>{
+    return this.http
+          .get<any[]>(this.URL + '/all')
+          .pipe(map(value => this.specialites = value));
   }
 
-  // Enregistrer une nouvelle spécialité
-  // TODO appel au back 
-  save(spe:Specialite) {
-    // Verifier si le spécialite existe déjà ou pas 
-    // TODO if ...
-    console.log(spe);
+  // Sauvegarde un specialite en base 
+  save(specialite : Specialite) :Observable<HttpResponse<Object>>{
+    return this.http.post(this.URL , specialite, { headers: this.headers, observe: 'response' }).pipe()
   }
-   // rajouter les autres appel au back
+
+  // Mise à jour d'un specialite en base 
+  update(specialite: Specialite) : Observable<HttpResponse<Object>>{
+    return this.http.put(this.URL, specialite, { observe: 'response' });
+  }
+
+  // Suppression d'un specialite en base
+  delete(id: any) : Observable<Object>{
+    return this.http.delete(this.URL + '/' + id);
+  }
 }

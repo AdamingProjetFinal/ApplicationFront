@@ -1,14 +1,12 @@
-<div class="col-md-12">
-  <div class="card">
-    <div class="card-header">
-      <strong>Ajouter une spécialité</strong>
-    </div>
-    <div class="card-body">
-      <div class="form-group">
-        <label for="Nom">Nom de la scpécialité</label>
-        <input type="text" class="form-control" id="name" placeholder="Nom de la spécialite" [(ngModel)]="specialite.nom">
-      </div>
-      <button type="button" class="btn btn-success" (click)=save()>Enregistrer</button>
-    </div>
+
+<app-Alerte></app-Alerte>
+<label for="Nom">Nom de la scpécialité</label>
+<div class="row form-group">
+  <div class="col-md-8">
+    <input type="text" class="form-control" placeholder="Nom de la spécialite" (keyup.enter)="save()" [(ngModel)]="specialite.nom">
   </div>
-</div><!--/.col-->
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-block btn-success" (click)=save()>Enregistrer</button>
+  </div>
+</div>
+
