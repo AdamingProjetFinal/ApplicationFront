@@ -30,7 +30,14 @@ export const navItems: INavData[] = [
       name: 'Liste des Médecins',
       url: '/medecin/list',
       icon: 'icon-list'
-    }]
+    },
+    {
+      name: 'Planning',
+      url: '/medecin/planning',
+      icon: 'icon-list'
+    }
+  
+  ]
   },
   {
     name: 'Patient',

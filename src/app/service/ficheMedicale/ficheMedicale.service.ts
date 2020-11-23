@@ -20,8 +20,8 @@ getFiche(id: number): Observable<FicheMedicale> {
   return this.http.get<FicheMedicale>(this.URL + "/" + id);
 }
 
-getFiches(): Observable<FicheMedicale> {
-  return this.http.get<FicheMedicale>(this.URL + "/all");
+getFiches(): Observable<FicheMedicale[]> {
+  return this.http.get<FicheMedicale[]>(this.URL + "/all");
 }
 
 update(ficheMedicale: FicheMedicale): Observable<HttpResponse<Object>> {

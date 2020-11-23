@@ -13,6 +13,14 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+// fullcalendar
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, {Draggable} from '@fullcalendar/interaction';
+import { formatDate } from '@fullcalendar/angular';
+import timeGridPlugin from "@fullcalendar/timegrid";
+import list from "@fullcalendar/list";
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -56,6 +64,16 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
+import { PlanningComponent } from './views/Medecin/planning/planning.component';
+
+// plugin fullcalendar
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin,
+  list,
+]);
+
 
 @NgModule({
   imports: [
@@ -78,7 +96,8 @@ import { MatTableModule } from '@angular/material/table';
     ModalModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSliderModule
+    MatSliderModule,
+    FullCalendarModule,
   ],
   declarations: [
     AppComponent,
@@ -95,7 +114,8 @@ import { MatTableModule } from '@angular/material/table';
     FormsPatientComponent,
     NouvelleSpecialiteComponent,
     FormActeComponent,
-    AlerteComponent
+    AlerteComponent,
+    PlanningComponent
   ],
   providers: [{
     provide: LocationStrategy,

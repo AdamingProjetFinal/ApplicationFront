@@ -19,8 +19,8 @@ getActe(id: number): Observable<Acte> {
   return this.http.get<Acte>(this.URL + "/" + id);
 }
 
-getActes(): Observable<Acte> {
-  return this.http.get<Acte>(this.URL + "/all");
+getActes(): Observable<Acte[]> {
+  return this.http.get<Acte[]>(this.URL + "/all");
 }
 
 update(acte: Acte): Observable<HttpResponse<Object>> {

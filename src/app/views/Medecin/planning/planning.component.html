@@ -1,0 +1,30 @@
+<div id="calendar">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+<!-- modal ajout specialité -->
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter une spécialité</h3>
+                <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+
+            <!-- infos ={note: null, deplacement: false, validationMedecin: false, dureeConsultation:0}; -->
+            <div id="infos">
+                <p><b>duree de la consultation : </b>{{infos.dureeConsultation}} </p>
+                <p><b>note : </b>{{infos.note}} </p>
+                <p><b>deplacement: </b>{{infos.deplacement}} </p>
+                <p><b>Validation par le medecin : </b>{{infos.validationMedecin}} </p>
+            </div>
+            <div *ngIf="infos.validationMedecin==false" class="modal-footer">
+                <button type="button" class="btn btn-primary">Validation de la consultation</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

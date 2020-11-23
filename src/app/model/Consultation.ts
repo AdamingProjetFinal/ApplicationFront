@@ -7,9 +7,10 @@ export class Consultation {
     note: String;
     deplacement: boolean;
     validationMedecin: boolean;
-
+    dureeConsultation:number;
     medecin: Medecin;
     patient: Patient;
     acts: Acte[];
+
     // TODO Vérifier les champs
  }

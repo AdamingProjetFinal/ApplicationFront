@@ -1,3 +1,4 @@
+import { PlanningComponent } from './views/Medecin/planning/planning.component';
 import { FormActeComponent } from './views/Acte/form-acte/form-acte.component';
 import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';
 import { FormsPatientComponent } from './views/Patient/forms-patient/forms-patient.component';
@@ -39,6 +40,7 @@ export const routes: Routes = [
       {
         path: "specialite/new", component: NouvelleSpecialiteComponent, data: { title: "Nouvelle Spécialité" }
       },
+
       {
         path: "acte/new", component: FormActeComponent, data: { title: "Nouvelle Spécialité" }
       },
@@ -53,7 +55,10 @@ export const routes: Routes = [
           },
           {
             path: 'list', component: ListMedecinComponent, data: {title: 'Liste des médecins'}
-          }
+          },
+          {
+            path: "planning", component: PlanningComponent, data: { title: "Planning" }
+          },
         ]
       },
       {

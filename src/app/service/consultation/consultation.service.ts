@@ -20,8 +20,8 @@ getConsultation(id: number): Observable<Consultation> {
   return this.http.get<Consultation>(this.URL + "/" + id);
 }
 
-getConsultations(): Observable<Consultation> {
-  return this.http.get<Consultation>(this.URL + "/all");
+getConsultations(): Observable<Consultation[]> {
+  return this.http.get<Consultation[]>(this.URL + "/all");
 }
 
 update(consultation: Consultation): Observable<HttpResponse<Object>>{
@@ -30,6 +30,11 @@ update(consultation: Consultation): Observable<HttpResponse<Object>>{
 
 delete(id: number) {
   return this.http.delete(this.URL + '/' + id, {observe: "response"});
+}
+// http://localhost:5050/gestion-rdv-microservice/consultation/getByIdMedecin/1
+
+getConsultationsByIdMedecin(id :number): Observable<Consultation[]> {
+  return this.http.get<Consultation[]>(this.URL + "/getByIdMedecin/"+id);
 }
 
 }
