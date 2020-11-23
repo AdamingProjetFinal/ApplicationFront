@@ -1,3 +1,4 @@
+import { Consultation } from './../../../model/Consultation';
 import { AuthentificationService } from './../../../service/authentification/authentification.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ConsultationService } from './../../../service/consultation/consultation.service';
@@ -13,13 +14,15 @@ import { buildEventApis } from '@fullcalendar/core';
 export class PlanningComponent implements OnInit {
   @ViewChild('myModal') public myModal: ModalDirective;
   calendarOptions;
-  backrground;
+  backrground:String;
+  title:String;
   consultations: any[] = []
+  consultation:Consultation;
   // @Input()  id :number
-  infos ={note: null, deplacement: false, validationMedecin: false, dureeConsultation:0};
+  infos = { note: null, deplacement: false, validationMedecin: false, dureeConsultation: 0 };
   constructor(private consultationService: ConsultationService,
-    private auth : AuthentificationService
-    ) { }
+    private auth: AuthentificationService
+  ) { }
 
 
   ngOnInit(): void {
@@ -27,38 +30,34 @@ export class PlanningComponent implements OnInit {
 
     //TODO
   }
-  buildEvent(idMedecin:number) {
+  buildEvent(idMedecin: number) {
 
-     
 
-     //TODO
+
+    //TODO
     this.consultationService.getConsultationsByIdMedecin(idMedecin).subscribe(data => {
       data.forEach(consult => {
         if (consult.validationMedecin === false) {
-          this.backrground = "red";
+          this.backrground = "#FF1F1F";
+          //TODO mettre le nom du patient  sur le titre. si la consultation n'a pas de patient, les consultation n'apparaissent pas ne marche//
+          this.title = consult.medecin.nom+" - "+" (Vous devez valider la consultation)"
+          
         } else {
-          this.backrground = "green";
+          this.backrground = "#02A307";
+          this.title = consult.medecin.nom
         }
         let duree = consult.dureeConsultation * 60 * 1000;
         let event = {
-          title: consult.medecin.nom,
+          title:this.title,
           start: consult.date,
           end: new Date(consult.date).setTime(new Date(consult.date).getTime() + duree),
           backgroundColor: this.backrground,
+          idConsultation: consult.id,
           note: consult.note,
-          deplacement : consult.deplacement,
-          validationMedecin :consult.validationMedecin,
-          dureeConsultation : consult.dureeConsultation,
+          deplacement: consult.deplacement,
+          validationMedecin: consult.validationMedecin,
+          dureeConsultation: consult.dureeConsultation,
         }
-        // id: number;
-        // date: Date;
-        // note: String;
-        // deplacement: boolean;
-        // validationMedecin: boolean;
-        // dureeConsultation:number;
-        // medecin: Medecin;
-        // patient: Patient;
-        // acts: Acte[];
         this.consultations.push(event)
       });//foreach
       this.buildCalendar();
@@ -106,8 +105,26 @@ export class PlanningComponent implements OnInit {
   } // méthode buildCalendar()
 
   voirDetailsConsultation(inf) {
-    console.log(inf.event.extendedProps)
-    this.infos = inf.event.extendedProps
-    this.myModal.show()
+  
+    this.consultationService.getConsultation(inf.event.extendedProps.idConsultation).subscribe(data => {
+   
+      this.consultation = data.data;
+      console.log(this.consultation);
+      this.infos = inf.event.extendedProps
+      this.myModal.show()
+    })
+
   };
+
+  valider() {
+    this.consultation.validationMedecin = true;
+
+    this.consultationService.update(this.consultation).subscribe(data => {
+
+      location.reload()
+      alert("la consultation a bien été validée")
+
+    })
+
+  }
 }// class

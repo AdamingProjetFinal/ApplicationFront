@@ -20,7 +20,7 @@
                 <p><b>Validation par le medecin : </b>{{infos.validationMedecin}} </p>
             </div>
             <div *ngIf="infos.validationMedecin==false" class="modal-footer">
-                <button type="button" class="btn btn-primary">Validation de la consultation</button>
+                <button type="button" class="btn btn-primary" (click)="valider()">Validation de la consultation</button>
             </div>
         </div>
         <!-- /.modal-content -->

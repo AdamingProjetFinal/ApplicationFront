@@ -16,8 +16,8 @@ save(consultation: Consultation): Observable<HttpResponse<Object>>{
   return this.http.post(this.URL, consultation, { headers: this.headers, observe: 'response' });
 }
 
-getConsultation(id: number): Observable<Consultation> {
-  return this.http.get<Consultation>(this.URL + "/" + id);
+getConsultation(id: number): Observable<any> {
+  return this.http.get<any>(this.URL + "/" + id);
 }
 
 getConsultations(): Observable<Consultation[]> {
