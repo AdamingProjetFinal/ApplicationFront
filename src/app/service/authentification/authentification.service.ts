@@ -11,14 +11,14 @@ import { AlerteService } from '../alerte/alerte.service';
   providedIn: 'root'
 })
 export class AuthentificationService {
-  medecin : Medecin = new Medecin
-  patient : Patient = new Patient
+  medecin: Medecin = new Medecin
+  patient: Patient = new Patient
   bool: boolean
-  constructor(private medecinService : MedecinService,
+  constructor(private medecinService: MedecinService,
     private patientService: PatientService,
-    private alerteService : AlerteService,
+    private alerteService: AlerteService,
     private router: Router) { }
-    
+
   // Vérification du mot de passe
   authentification(email: string, password: string, type: string): boolean {
     switch (type) {
@@ -27,25 +27,25 @@ export class AuthentificationService {
         this.medecinService.getMedecin("1").subscribe((value: any) => { // TODO remplacer par la recherche par email
           this.medecin = value.data
         })
-            if (this.medecin.password === password){
-              sessionStorage.setItem('type', "medecin");
-              sessionStorage.setItem('user', JSON.stringify(this.medecin))
-              this.router.navigate(['/'])
-              this.bool = true;
-            } else {
-              this.bool = false
-            }
-            return this.bool
-          }
-          case "patient": {
-            console.log("Connexion en tant que patient");
-            this.patientService.getPatientByEmail("aze").subscribe((value: any) => {
-              this.patient = value.data
-              if (this.patient.password === password){
-                sessionStorage.setItem('user', JSON.stringify(this.patient))
-                sessionStorage.setItem('type', "patient");
-                this.router.navigate(['/'])
-                return this.bool = true;
+        if (this.medecin.password === password) {
+          sessionStorage.setItem('type', "medecin");
+          sessionStorage.setItem('user', JSON.stringify(this.medecin))
+          this.router.navigate(['/'])
+          this.bool = true;
+        } else {
+          this.bool = false
+        }
+        return this.bool
+      }
+      case "patient": {
+        console.log("Connexion en tant que patient");
+        this.patientService.getPatientByEmail("aze").subscribe((value: any) => {
+          this.patient = value.data
+          if (this.patient.password === password) {
+            sessionStorage.setItem('user', JSON.stringify(this.patient))
+            sessionStorage.setItem('type', "patient");
+            this.router.navigate(['/'])
+            return this.bool = true;
           } else {
             this.alerteService.error("Echec de la connexion")
           }
@@ -54,36 +54,36 @@ export class AuthentificationService {
     }
   }
 
-// Vérifie si un utilisateur est connecté
-isUserLoggedIn() {
-  return !(sessionStorage.getItem('user') == null);
-}
+  // Vérifie si un utilisateur est connecté
+  isUserLoggedIn() {
+    return !(sessionStorage.getItem('user') == null);
+  }
 
-// Récupère l'Id de l'utilisateur  //TODO à supprimer ?
-getUserId(){
-  let user = JSON.parse(sessionStorage.getItem('user'))
-  
-  return user.id
-}
+  // Récupère l'Id de l'utilisateur  //TODO à supprimer ?
+  getUserId() {
+    let user = JSON.parse(sessionStorage.getItem('user'))
 
-// Méthode permettant de se déconnecter
-logOut() {
-  sessionStorage.removeItem('user');  
-  sessionStorage.removeItem('type');  
-  this.router.navigate([''])
-}
-// récuperer le type d'utilisateur
-getType() {
-  return sessionStorage.getItem('type')
-}
+    return user.id
+  }
 
-// Vérifier si l'utilisateur est un patient
-isPatient():boolean{
-  return sessionStorage.getItem('type') == 'patient'
-}
+  // Méthode permettant de se déconnecter
+  logOut() {
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('type');
+    this.router.navigate([''])
+  }
+  // récuperer le type d'utilisateur
+  getType() {
+    return sessionStorage.getItem('type')
+  }
 
-// récuperer l'utilisateur
-getUser(){
-  return JSON.parse(sessionStorage.getItem('user'))
-}
+  // Vérifier si l'utilisateur est un patient
+  isPatient(): boolean {
+    return sessionStorage.getItem('type') == 'patient'
+  }
+
+  // récuperer l'utilisateur
+  getUser() {
+    return JSON.parse(sessionStorage.getItem('user'))
+  }
 }

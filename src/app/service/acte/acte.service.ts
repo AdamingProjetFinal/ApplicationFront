@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ActeService {
-  URL = 'http://localhost:5050/gestion-rdv-microservice/act'; // TODO mettre la bonne url
+  URL = 'http://localhost:5050/gestion-rdv-microservice/act'; 
 
   headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
