@@ -16,20 +16,20 @@ export class AlerteComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.subscription = this.alerteService.getAlert()
             .subscribe(messages => {
-                console.log(messages);
-                
-                for (let message of messages) {
-                    switch (message && message.type) {
-                        case 'success':
-                            message.cssClass = 'alert alert-success';
-                            message.type = 'success';
-                            break;
-                        case 'error':
-                            message.cssClass = 'alert alert-danger';
-                            message.type = 'danger';
-                            break;
-                    }    
-                }
+                if (messages) {
+                    for (let message of messages) {
+                        switch (message && message.type) {
+                            case 'success':
+                                message.cssClass = 'alert alert-success';
+                                message.type = 'success';
+                                break;
+                            case 'error':
+                                message.cssClass = 'alert alert-danger';
+                                message.type = 'danger';
+                                break;
+                        }    
+                    }
+                }                
 
                 this.messages = messages;
             });

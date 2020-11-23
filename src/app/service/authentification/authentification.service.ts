@@ -39,7 +39,7 @@ export class AuthentificationService {
       }
       case "patient": {
         console.log("Connexion en tant que patient");
-        this.patientService.getPatientByEmail("aze").subscribe((value: any) => {
+        this.patientService.getPatientByEmail(email).subscribe((value: any) => {
           this.patient = value.data
           if (this.patient.password === password) {
             sessionStorage.setItem('user', JSON.stringify(this.patient))
