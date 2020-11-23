@@ -19,33 +19,44 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
-  {
-    path: '', redirectTo: 'dashboard', pathMatch: 'full',
+  
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  
+  { path: '404', component: P404Component, data: {title: 'Page 404'} },
+  
+  { path: '500', component: P500Component, data: {title: 'Page 500'} },
+  
+  { path: 'login', component: LoginComponent, data: {title: 'Login Page'} },
+  
+  { path: 'register', component: RegisterComponent, data: {title: 'Register Page'} },
+
+  
+  { 
+    path: '', component: DefaultLayoutComponent, data: { title: 'Home' },
+    children: [
+      { path: 'patient', loadChildren: () => import('./1_Patient/patient.module').then(m => m.PatientModule),
+        data: { title: "Patient-Home"} },
+
+      { path: 'medecin', loadChildren: () => import('./2_Medecin/medecin.module').then(m => m.MedecinModule),
+        data: {title: "Medecin-Home"} },
+
+      { path: 'admin', loadChildren: () => import('./3_Admin/admin.module').then(m => m.AdminModule),
+        data: {title: "Admin-Home"} }
+    ]
   },
-  {
-    path: '404', component: P404Component, data: {title: 'Page 404'}
-  },
-  {
-    path: '500', component: P500Component, data: {title: 'Page 500'}
-  },
-  {
-    path: 'login', component: LoginComponent, data: {title: 'Login Page'}
-  },
-  {
-    path: 'register', component: RegisterComponent, data: {title: 'Register Page'}
-  },
-  {
-    path: '', component: DefaultLayoutComponent, data: {title: 'Home'},
+  
+  
+  { path: '', component: DefaultLayoutComponent, data: {title: 'Home', },
     children: [
       {
         path: "specialite/new", component: NouvelleSpecialiteComponent, data: { title: "Nouvelle Spécialité" }
       },
 
       {
-        path: "acte/new", component: FormActeComponent, data: { title: "Nouvelle Spécialité" }
+        path: "acte/new", component: FormActeComponent, data: { title: "Nouvel acte" }
       },
       {
-        path: "medecin", component: MedecinComponent, data: { title: "Medecin" },
+        path: "medecine", component: MedecinComponent, data: { title: "Medecin" },
         children: [
           {
             path: 'update/:id', component: FormsMedecinComponent, data: {title: 'Mise à jour'}
@@ -62,7 +73,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: "patient", component: PatientComponent, data: { title: "Patient" },
+        path: "patiente", component: PatientComponent, data: { title: "Patient" },
         children: [
           {
             path: 'update/:id', component: FormsPatientComponent, data: {title: 'Mise à jour'}
@@ -83,6 +94,8 @@ export const routes: Routes = [
       }
     ]
   },
+  
+
   { path: '**', component: P404Component }
 ];
 

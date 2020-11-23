@@ -1,1 +1,3 @@
-<div *ngIf="message" [ngClass]="message.cssClass">{{message.text}}</div>
+<div *ngIf="messages">
+    <alert *ngFor="let message of messages" type="{{message.type}}" dismissible="true" dismissOnTimeout="5000">{{message.text}}</alert>
+</div>

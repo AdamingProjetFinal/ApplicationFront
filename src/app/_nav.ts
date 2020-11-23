@@ -6,16 +6,19 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     icon: 'icon-speedometer'
   },
+
   {
     name: 'Colors',
     url: '/base/cards',
     icon: 'icon-drop'
   },
+
   {
     name: 'Login',
     url: '/login',
     icon: 'icon-star'
   },
+  
   {
     name: 'Medecin',
     url: '/medecin',
@@ -39,20 +42,22 @@ export const navItems: INavData[] = [
   
   ]
   },
+  
   {
     name: 'Patient',
     url: '/patient',
     icon: 'fa fa-user',
-  children: [
-    {
-      name: 'Mise à jour',
-      url: '/patient/update/1',
-      icon: 'fa fa-user'
-    },
-    {
-      name: 'Liste des Patients',
-      url: '/patient/list',
-      icon: 'icon-list'
-    }]
+    children: [
+      {
+        name: 'Mise à jour',
+        url: '/patient/update/1',
+        icon: 'fa fa-user'
+      },
+      
+      {
+        name: 'Liste des Patients',
+        url: '/patient/list',
+        icon: 'icon-list'
+      }]
   }
 ];
