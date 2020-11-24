@@ -13,4 +13,4 @@ export class Consultation {
     acts: Acte[];
 
     // TODO Vérifier les champs
- }
+}

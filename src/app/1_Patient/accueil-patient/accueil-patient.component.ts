@@ -1,3 +1,4 @@
+import { ConsultationService } from './../../service/consultation/consultation.service';
 import { FicheMedicaleService } from './../../service/ficheMedicale/ficheMedicale.service';
 import { FicheMedicale } from './../../model/FicheMedicale';
 import { Consultation } from './../../model/Consultation';
@@ -16,17 +17,26 @@ export class AccueilPatientComponent implements OnInit {
   // Declaration des attributs
   id: string;
   patient: Patient = new Patient();
+
+  // Les fiches
   fichesMedicales: FicheMedicale[] = new Array();
   fichesSort: FicheMedicale[] = new Array();
-  listRdv: Consultation[] = new Array();
   indiceFiche1: boolean = true;
   indiceFiche2: boolean = false;
 
+  // Les Consultations
+  consultations: Consultation[] = new Array();
+  consultPasse: Consultation[] = new Array();
+  consultValide: Consultation[] = new Array();
+  consultVenir: Consultation[] = new Array();
+  today: number = Date.now();
+  numberDate: number;
 
   // Injection de PatientService pour en utiliser les fonctions
   constructor(
     private patientService: PatientService,
     private ficheService: FicheMedicaleService,
+    private consultationService: ConsultationService,
     private authService: AuthentificationService, 
     private router: Router, 
     private activatedRoute: ActivatedRoute
@@ -59,7 +69,27 @@ export class AccueilPatientComponent implements OnInit {
         }
       )
 
-
+      // Recuperer les consultations du patient
+      // TODO -> Rajouter un limiteur de res
+      this.consultationService.getConsultationsByIdPatient(this.patient.id).subscribe(
+        (data) => {
+          this.consultations = data;
+          console.log(this.consultations);
+          
+          this.consultations.forEach(
+            s => {
+              this.numberDate = new Date(s.date).getTime();
+              if(s.validationMedecin == false) {
+                this.consultValide.push(s);
+              } else if(s.validationMedecin == true && this.numberDate > this.today){
+                this.consultVenir.push(s);
+              } else if(s.validationMedecin == true && this.numberDate < this.today){
+                this.consultPasse.push(s);
+              }
+            }
+          )
+        }
+      )
     }
   
     recupPatient() {
