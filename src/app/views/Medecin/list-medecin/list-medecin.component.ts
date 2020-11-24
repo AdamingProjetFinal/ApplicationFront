@@ -17,8 +17,8 @@ import { AuthentificationService } from '../../../service/authentification/authe
   styleUrls: ['./list-medecin.component.scss']
 })
 export class ListMedecinComponent implements OnInit {
-  listMedecin : Medecin[]
-  medecin$ : Observable<Medecin[]>
+  listMedecin: Medecin[]
+  medecin$: Observable<Medecin[]>
   filteredMedecin$: Observable<Medecin[]>;
   filter: FormControl;
   filter$: Observable<string>;
@@ -26,14 +26,14 @@ export class ListMedecinComponent implements OnInit {
   filterSpe$: Observable<string>;
   listSpecialites: Specialite[];
   listSpecialites$: Observable<Specialite[]>;
-  
-  constructor(private medecinService : MedecinService,
+
+  constructor(private medecinService: MedecinService,
     private specialiteService: SpecialiteService,
     private authentificationService: AuthentificationService,
     private patientService: PatientService,
-    private alerteService: AlerteService) { 
-// template recherche dynamique :
-// https://stackblitz.com/edit/angular-filtering-rxjs-bsxbf5?file=src%2Fapp%2Fapp.component.ts
+    private alerteService: AlerteService) {
+    // template recherche dynamique :
+    // https://stackblitz.com/edit/angular-filtering-rxjs-bsxbf5?file=src%2Fapp%2Fapp.component.ts
 
     this.medecin$ = this.getList();
     // nom des champs dans le HTML
@@ -45,12 +45,11 @@ export class ListMedecinComponent implements OnInit {
     // filtrage des données de la liste de médecins (Observable<Medecin[]>)
     this.filteredMedecin$ = combineLatest([this.medecin$, this.filter$, this.filterSpe$])
       .pipe(
-        map( ([listMedecin, filterString, filterSpe]) => 
-                    
+        map(([listMedecin, filterString, filterSpe]) =>
           listMedecin
-            .filter( medecin => 
-              (medecin.nom ? medecin.nom.toLowerCase().indexOf(filterString.toLowerCase()) !== -1 : true) 
-              && (filterSpe ? medecin.specialite.nom === filterSpe :  true)
+            .filter(medecin =>
+              (medecin.nom ? medecin.nom.toLowerCase().indexOf(filterString.toLowerCase()) !== -1 : true)
+              && (filterSpe ? medecin.specialite.nom === filterSpe : true)
             )
         )
       );
@@ -64,25 +63,22 @@ export class ListMedecinComponent implements OnInit {
 
   // Permet de recuperer la liste des spécialités pour le menu déroulant 
   getSepcialites() {
-    
     this.listSpecialites$ = this.specialiteService.getSpecialites()
-
-
   }
-  
+
   // Récupère la liste des medecins via le service Medecin renvoie un Observable<Medecin[]>
-  getList(){
+  getList() {
     return this.medecinService.getMedecins()
   }
 
   // Ajouter un medecin en tant que medecin traitant 
-  ajoutMedecinTraitant(medecin:Medecin){
+  ajoutMedecinTraitant(medecin: Medecin) {
     if (this.authentificationService.isPatient()) {
-      let patient : Patient
+      let patient: Patient
       patient = this.authentificationService.getUser()
       patient.medecin = medecin
       console.log(patient);
-      
+
       this.patientService.update(patient).subscribe(response => {
         if (response.status == 200) {
           this.alerteService.success("Le medecin a bien été ajouté")

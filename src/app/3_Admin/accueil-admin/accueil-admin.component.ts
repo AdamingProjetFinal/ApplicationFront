@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilAdminComponent implements OnInit {
   public radarChartLabels: string[] = ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5'];
-  data: Questionnaire[]
+  questionnaires: Questionnaire[]
   public radarChartData: any = [
     { data: [], label: '' }
   ];
@@ -22,11 +22,11 @@ export class AccueilAdminComponent implements OnInit {
 
   initialiserData() {
     this.questionnaireService.getQuestionnaires().subscribe((value: any[]) => {
-      console.log(this.data = value)
-      this.radarChartData[0].data = [this.data.reduce((acc, cur) => acc + Number(cur.reponse1), 0) / this.data.length,
-      this.data.reduce((acc, cur) => acc + Number(cur.reponse2), 0) / this.data.length,
-      this.data.reduce((acc, cur) => acc + Number(cur.reponse3), 0) / this.data.length,
-      this.data.reduce((acc, cur) => acc + Number(cur.reponse4), 0) / this.data.length
+      console.log(this.questionnaires = value)
+      this.radarChartData[0].data = [this.questionnaires.reduce((acc, cur) => acc + Number(cur.reponse1), 0) / this.questionnaires.length,
+      this.questionnaires.reduce((acc, cur) => acc + Number(cur.reponse2), 0) / this.questionnaires.length,
+      this.questionnaires.reduce((acc, cur) => acc + Number(cur.reponse3), 0) / this.questionnaires.length,
+      this.questionnaires.reduce((acc, cur) => acc + Number(cur.reponse4), 0) / this.questionnaires.length
       ]
       this.radarChartData[0].label = "Réponse"
     });
