@@ -1,21 +1,45 @@
+// import { TransfertModule } from './../transfert/transfert/transfert.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MedecinRoutingModule } from './medecin-routing.module';
 import { AccueilMedecinComponent } from './accueil-medecin/accueil-medecin.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, {Draggable} from '@fullcalendar/interaction';
+import { formatDate } from '@fullcalendar/angular';
+import timeGridPlugin from "@fullcalendar/timegrid";
+import list from "@fullcalendar/list";
+
+
+
+
+
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin,
+  list,
+]);
+
 
 @NgModule({
   // Ajouter chaque composant de patient
   declarations: [
-    AccueilMedecinComponent
+    AccueilMedecinComponent,
+    // TransfertModule
   ],
 
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
-    MedecinRoutingModule
+    MedecinRoutingModule,
+    FullCalendarModule,
+ 
   ]
 })
 export class MedecinModule { }

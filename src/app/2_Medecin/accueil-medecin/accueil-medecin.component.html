@@ -1,75 +1,103 @@
 <!-- TODO Calendar-->
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      Calendrier
-    </div>
-    <div class="card-body">
-      <div class="chart-wrapper">
+    <div class="card">
+        <div class="card-header">
+            Calendrier
+        </div>
+        <div class="card-body">
+            <div class="chart-wrapper">
+                <div id="calendar">
+                    <full-calendar [options]="calendarOptions"></full-calendar>
+                </div>
 
-      </div>
+                <!-- <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-primary" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Ajouter une spécialité</h3>
+                                <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                            </div>
+
+
+                            <div id="infos">
+                                <p><b>duree de la consultation : </b>{{infos.dureeConsultation}} </p>
+                                <p><b>note : </b>{{infos.note}} </p>
+                                <p><b>deplacement: </b>{{infos.deplacement}} </p>
+                                <p><b>Validation par le medecin : </b>{{infos.validationMedecin}} </p>
+                            </div>
+                            <div *ngIf="infos.validationMedecin==false" class="modal-footer">
+                                <button type="button" class="btn btn-primary" (click)="valider()">Validation de la consultation</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div> -->
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="animated fadeIn">
-  <div class="card-columns cols-2">
+    <div class="card-columns cols-2">
 
-    <!-- Profil -->
-    <div class="card">
-      <div class="card-header">
-        Mon Profil
-        <div class="card-header-actions" style="height: 21px;">
-          <button class="btn btn-warning btn-sm">Modifier</button>
+        <!-- Profil -->
+        <div class="card">
+            <div class="card-header">
+                Mon Profil
+                <div class="card-header-actions" style="height: 21px;">
+                    <button class="btn btn-warning btn-sm">Modifier</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-wrapper">
+                    <h1>Bonjour X</h1>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <h1>Bonjour X</h1>
-        </div>
-      </div>
-    </div>
 
-    <!-- Fiches Medicales -->
-    <div class="card">
-      <div class="card-header">
-        Mes Fiches Médicales
-        <div class="card-header-actions" style="height: 21px;">
-          <button class="btn btn-success btn-sm">Ajouter</button>
+        <!-- Fiches Medicales -->
+        <div class="card">
+            <div class="card-header">
+                Mes Fiches Médicales
+                <div class="card-header-actions" style="height: 21px;">
+                    <button class="btn btn-success btn-sm">Ajouter</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-wrapper">
+                    <table class="table tabler-bordered">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr *ngFor="let item of listFiches">
+                            <td>{{item.nom}}</td>
+                            <td>
+                                <button class="btn btn-warning">Download</button>
+                                <button class="btn btn-success">Aperçu</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <table class="table tabler-bordered">
-            <tr>
-              <th>Nom</th>
-              <th>Action</th>
-            </tr>
-            <tr *ngFor="let item of listFiches">
-              <td>{{item.nom}}</td>
-              <td>
-                <button class="btn btn-warning">Download</button>
-                <button class="btn btn-success">Aperçu</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- Statistiques -->
-    <div class="card">
-      <div class="card-header">
-        Statistiques
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <!--
+        <!-- Statistiques -->
+        <div class="card">
+            <div class="card-header">
+                Statistiques
+                <div class="card-header-actions">
+                    <a href="http://www.chartjs.org">
+                        <small class="text-muted">docs</small>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-wrapper">
+                    <!--
           <canvas baseChart class="chart"
           [datasets]="lineChartData"
           [labels]="lineChartLabels"
@@ -79,18 +107,18 @@
           [chartType]="lineChartType"
           (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas> -->
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Gains -->
-    <div class="card">
-      <div class="card-header">
-        Vos Gains
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <!-- <canvas baseChart class="chart"
+        <!-- Gains -->
+        <div class="card">
+            <div class="card-header">
+                Vos Gains
+            </div>
+            <div class="card-body">
+                <div class="chart-wrapper">
+                    <!-- <canvas baseChart class="chart"
           [datasets]="lineChartData"
           [labels]="lineChartLabels"
           [options]="lineChartOptions"
@@ -99,26 +127,26 @@
           [chartType]="lineChartType"
           (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas> -->
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Rapports Satisfactions -->
-    <div class="card">
-      <div class="card-header">
-        Rapports de Satisfactions
-        <div class="card-header-actions" style="height: 21px;">
-          <button class="btn btn-info btn-sm">Accéder</button>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <!-- <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels"
+        <!-- Rapports Satisfactions -->
+        <div class="card">
+            <div class="card-header">
+                Rapports de Satisfactions
+                <div class="card-header-actions" style="height: 21px;">
+                    <button class="btn btn-info btn-sm">Accéder</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-wrapper">
+                    <!-- <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels"
             [chartType]="radarChartType" (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas> -->
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </div>
+    </div>
 </div>
