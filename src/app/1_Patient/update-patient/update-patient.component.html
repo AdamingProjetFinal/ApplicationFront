@@ -1,0 +1,47 @@
+<div class="col-md-12">
+  <div class="card">
+
+    <div class="card-header">
+      <strong>Mettre à jour mes informations</strong>
+    </div>
+
+    <div class="card-body">
+      <div class="form-group">
+        <label for="Pseudo">Pseudo</label>
+        <input type="text" class="form-control" id="company" placeholder="{{patient.username}}" [(ngModel)]="patient.username">
+      </div>
+
+      <div class="form-group">
+        <label for="Nom">Nom</label>
+        <input type="text" class="form-control" id="name" placeholder="{{patient.nom}}" [(ngModel)]="patient.nom">
+      </div>
+
+      <div class="form-group">
+        <label for="Prenom">Prenom</label>
+        <input type="text" class="form-control" id="firstname" placeholder="{{patient.prenom}}" [(ngModel)]="patient.prenom">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <label for="Email">Email</label>
+          <input type="text" class="form-control" id="email" placeholder="{{patient.email}}" [(ngModel)]="patient.email">
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label for="Date-naissance">Date de naissance</label>
+          <input type="text" class="form-control" id="date-naissance" placeholder="{{patient.dateNaissance}}" [(ngModel)]="patient.dateNaissance">
+        </div>
+      </div><!--/.row-->
+
+      <div class="form-group">
+        <label for="Telephone">Telephone</label>
+        <input type="text" class="form-control" id="postal-code" placeholder="{{patient.telephone}}" [(ngModel)]="patient.telephone">
+      </div>
+
+      <button type="button" class="btn btn-success" (click)=update()>Modifier mes changements</button>
+      <button type="button" class="btn btn-danger" (click)=delete()>Supprimer mon compte</button>
+      <button type="button" class="btn btn-info" (click)=annuler()>Annuler</button>
+
+    </div>
+  </div>
+</div><!--/.col-->
