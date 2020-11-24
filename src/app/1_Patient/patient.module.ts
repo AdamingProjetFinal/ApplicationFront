@@ -1,3 +1,5 @@
+import { InfoConsultationPatientComponent } from './infoConsultation-patient/infoConsultation-patient.component';
+import { FicheMedicalPatientComponent } from './ficheMedical-patient/ficheMedical-patient.component';
 import { TransfertModule } from './../transfert/transfert/transfert.module';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { NgModule } from '@angular/core';
@@ -15,7 +17,9 @@ import { ReponseQuestionnaireComponent } from './reponseQuestionnaire/reponseQue
   declarations: [
     AccueilPatientComponent,
     UpdatePatientComponent,
-    ReponseQuestionnaireComponent
+    ReponseQuestionnaireComponent,
+    FicheMedicalPatientComponent,
+    InfoConsultationPatientComponent
   ],
 
   imports: [
