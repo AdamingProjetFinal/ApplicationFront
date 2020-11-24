@@ -1,3 +1,4 @@
+import { TransfertModule } from './../transfert/transfert/transfert.module';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,8 @@ import { AccueilPatientComponent } from './accueil-patient/accueil-patient.compo
     CommonModule,
     FormsModule,
     HttpClientModule,
-    PatientRoutingModule
+    PatientRoutingModule,
+    TransfertModule
   ]
 })
 

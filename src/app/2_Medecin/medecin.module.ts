@@ -1,4 +1,4 @@
-// import { TransfertModule } from './../transfert/transfert/transfert.module';
+import { TransfertModule } from './../transfert/transfert/transfert.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,10 +14,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import list from "@fullcalendar/list";
 
 
-
-
-
-
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin,
@@ -30,7 +26,7 @@ FullCalendarModule.registerPlugins([
   // Ajouter chaque composant de patient
   declarations: [
     AccueilMedecinComponent,
-    // TransfertModule
+ 
   ],
 
   imports: [
@@ -38,8 +34,8 @@ FullCalendarModule.registerPlugins([
     FormsModule,
     HttpClientModule,
     MedecinRoutingModule,
-    FullCalendarModule,
- 
+    // FullCalendarModule,
+    TransfertModule
   ]
 })
 export class MedecinModule { }
