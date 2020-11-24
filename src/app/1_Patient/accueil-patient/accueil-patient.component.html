@@ -68,7 +68,7 @@
             </tr>
             <tr *ngFor="let item of consultPasse">
               <td>{{item.medecin.nom}}</td>
-              <td><button class="btn btn-info">Avis</button></td>
+              <td><app-reponseQuestionnaire testId="item.id"></app-reponseQuestionnaire></td>
             </tr>
           </table>
         </div>
@@ -159,3 +159,6 @@
 
   </div>
 </div>
+
+
+

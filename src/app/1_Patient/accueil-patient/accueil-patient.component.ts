@@ -1,10 +1,11 @@
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ConsultationService } from './../../service/consultation/consultation.service';
 import { FicheMedicaleService } from './../../service/ficheMedicale/ficheMedicale.service';
 import { FicheMedicale } from './../../model/FicheMedicale';
 import { Consultation } from './../../model/Consultation';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PatientService } from '../../service/patient/patient.service';
 import { Patient } from '../../model/Patient';
 
@@ -14,6 +15,10 @@ import { Patient } from '../../model/Patient';
   styleUrls: ['./accueil-patient.component.scss']
 })
 export class AccueilPatientComponent implements OnInit {
+  // Modal
+  @ViewChild('modalReponseQuestionnaire') public modalReponseQuestionnaire: ModalDirective
+  
+  idConsultationPourQuestionnaire : number
   // Declaration des attributs
   id: string;
   patient: Patient = new Patient();
@@ -72,7 +77,7 @@ export class AccueilPatientComponent implements OnInit {
 
       // Recuperer les consultations du patient
       // TODO -> Rajouter un limiteur de res
-      this.consultationService.getConsultationsByIdPatient(this.patient.id).subscribe(
+      this.consultationService.getConsultationsByIdPatient(this.authService.getUserId()).subscribe(
         (data) => {
           this.consultations = data;
           console.log(this.consultations);
@@ -109,10 +114,16 @@ export class AccueilPatientComponent implements OnInit {
       })
     })
   }
+    
+  // bouton valider de la modal de reponse au questionnaire
+  validationModalReponseQuestionnaire(){
+    this.modalReponseQuestionnaire.hide()
+  }
 
-
-
-
+  ouvrirModalReponseQuestionnaire(idConsultation : number) {
+    this.idConsultationPourQuestionnaire = idConsultation
+    this.modalReponseQuestionnaire.show()
+  }
 
 
 

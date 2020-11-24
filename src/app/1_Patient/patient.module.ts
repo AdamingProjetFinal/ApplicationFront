@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 // Imports components
 import { PatientRoutingModule } from './patient-routing.module';
 import { AccueilPatientComponent } from './accueil-patient/accueil-patient.component';
+import { ReponseQuestionnaireComponent } from './reponseQuestionnaire/reponseQuestionnaire.component';
 
 @NgModule({
   // Ajouter chaque composant de patient
   declarations: [
     AccueilPatientComponent,
-    UpdatePatientComponent
+    UpdatePatientComponent,
+    ReponseQuestionnaireComponent
   ],
 
   imports: [
