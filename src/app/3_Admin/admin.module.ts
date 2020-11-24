@@ -1,3 +1,4 @@
+import { TransfertModule } from './../transfert/transfert/transfert.module';
 import { AraigneeComponent } from './../views/Araignee/Araignee.component';
 import { StatistiqueQuestionnaireComponent } from './statistique-questionnaire/statistique-questionnaire.component';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,8 @@ import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
     HttpClientModule,
     AdminRoutingModule,
     ChartsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TransfertModule
   ]
 })
 export class AdminModule { }
