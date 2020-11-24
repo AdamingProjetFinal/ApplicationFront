@@ -37,4 +37,9 @@ getConsultationsByIdMedecin(id :number): Observable<Consultation[]> {
   return this.http.get<Consultation[]>(this.URL + "/getByIdMedecin/"+id);
 }
 
+// http://localhost:5050/gestion-rdv-microservice/consultation/getByIdPatient/1
+getConsultationsByIdPatient(id :number): Observable<Consultation[]> {
+  return this.http.get<Consultation[]>(this.URL + "/getByIdPatient/"+id);
+}
+
 }
