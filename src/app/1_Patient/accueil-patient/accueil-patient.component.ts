@@ -20,8 +20,9 @@ export class AccueilPatientComponent implements OnInit {
   
   idConsultationPourQuestionnaire : number
   // Declaration des attributs
-  id: string;
-  patient: Patient = new Patient();
+  // WIP plus besoin cf plus bas
+  // id: string;
+  // patient: Patient = new Patient();
 
   // Les fiches
   fichesMedicales: FicheMedicale[] = new Array();
@@ -48,11 +49,14 @@ export class AccueilPatientComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.recupPatient();
+
+    // WIP plus besoin donc cf plus bas
+    // this.recupPatient();
 
     // Recuperer les fiches medicales du patient
     // TODO
-    this.ficheService.getFichesByIdPatient(this.patient.id).subscribe(
+    // WIP Ramplacement de this.patient.id par this.authService.getUserId() qui récupère l'id de l'utilisateur connecté
+    this.ficheService.getFichesByIdPatient(this.authService.getUserId()).subscribe(
       (data) => {
         this.fichesMedicales = data;
         console.log(this.fichesMedicales);
@@ -77,6 +81,7 @@ export class AccueilPatientComponent implements OnInit {
 
       // Recuperer les consultations du patient
       // TODO -> Rajouter un limiteur de res
+      // WIP Ramplacement de this.patient.id par this.authService.getUserId() qui récupère l'id de l'utilisateur connecté
       this.consultationService.getConsultationsByIdPatient(this.authService.getUserId()).subscribe(
         (data) => {
           this.consultations = data;
@@ -98,22 +103,24 @@ export class AccueilPatientComponent implements OnInit {
       )
     }
   
-    recupPatient() {
-      this.activatedRoute.params.subscribe((param: Params) => {
-        if (param['id'] == null) {
-          if (this.authService.isUserLoggedIn()) {
-            this.id = this.authService.getUserId() // "+" pour convertir un string en number
-           } else {
-          this.router.navigate([''])
-        }
-      } else {
-        this.id = param['id'];
-      }
-      this.patientService.getPatient(this.id).subscribe((value: any) => {
-        this.patient = value.data;
-      })
-    })
-  }
+  // WIP Pas besoin l'utilisateur est stocké dans sessionStorage
+
+  //   recupPatient() {
+  //     this.activatedRoute.params.subscribe((param: Params) => {
+  //       if (param['id'] == null) {
+  //         if (this.authService.isUserLoggedIn()) {
+  //           this.id = this.authService.getUserId() // "+" pour convertir un string en number
+  //          } else {
+  //         this.router.navigate([''])
+  //       }
+  //     } else {
+  //       this.id = param['id'];
+  //     }
+  //     this.patientService.getPatient(this.id).subscribe((value: any) => {
+  //       this.patient = value.data;
+  //     })
+  //   })
+  // }
     
   // bouton valider de la modal de reponse au questionnaire
   validationModalReponseQuestionnaire(){
