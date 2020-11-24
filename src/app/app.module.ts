@@ -65,7 +65,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
-import { PlanningComponent } from './views/Medecin/planning/planning.component';
+import { PlanningComponent} from './views/Medecin/planning/planning.component';
+
 
 // plugin fullcalendar
 FullCalendarModule.registerPlugins([
@@ -116,7 +117,8 @@ FullCalendarModule.registerPlugins([
     NouvelleSpecialiteComponent,
     FormActeComponent,
     AlerteComponent,
-    PlanningComponent
+    PlanningComponent,
+
   ],
   providers: [{
     provide: LocationStrategy,
