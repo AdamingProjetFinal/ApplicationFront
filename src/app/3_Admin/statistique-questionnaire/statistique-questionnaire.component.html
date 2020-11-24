@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let medecin of filteredMedecin$ | async" (click)=initialiserData(medecin.id)>
+        <tr *ngFor="let medecin of filteredMedecin$ | async" (click)=changerMedecin(medecin.id)>
           <td>{{medecin.nom}}</td>
           <td>{{medecin.prenom}}</td>
           <td>
@@ -35,10 +35,6 @@
   </div>
 
   <div class=" col-md-8">
-    <div class="chart-wrapper">
-      <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels"
-        [chartType]="radarChartType" [options]="radarOptions" (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
-    </div>
+    <app-Araignee testId="{{IdMed}}"></app-Araignee>
   </div>
 </div>

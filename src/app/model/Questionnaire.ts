@@ -1,14 +1,13 @@
 export class Questionnaire {
     // attributs Admin
     id:number;
-    idConsultation:number;
     question1:string;
-    reponse1:number;
+    tagQuestion1:string;
     question2:string;
-    reponse2:number;
+    tagQuestion2:string;
     question3:string;
-    reponse3:number;
+    tagQuestion3:string;
     question4:string;
-    reponse4:number;
+    tagQuestion4:string;
     // TODO vérifier les champs
 }

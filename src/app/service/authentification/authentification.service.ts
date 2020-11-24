@@ -13,29 +13,26 @@ import { AlerteService } from '../alerte/alerte.service';
 export class AuthentificationService {
   medecin: Medecin = new Medecin
   patient: Patient = new Patient
-  bool: boolean
   constructor(private medecinService: MedecinService,
     private patientService: PatientService,
     private alerteService: AlerteService,
     private router: Router) { }
 
   // Vérification du mot de passe
-  authentification(email: string, password: string, type: string): boolean {
+  authentification(email: string, password: string, type: string) {
     switch (type) {
       case "medecin": {
         console.log("Connexion en tant que medecin");
-        this.medecinService.getMedecin("1").subscribe((value: any) => { // TODO remplacer par la recherche par email
+        this.medecinService.getMedecinByEmail(email).subscribe((value: any) => { // TODO remplacer par la recherche par email
           this.medecin = value.data
+          if (this.medecin.password === password) {
+            sessionStorage.setItem('type', "medecin");
+            sessionStorage.setItem('user', JSON.stringify(this.medecin))
+            this.router.navigate(['/'])
+          } else {
+          }
         })
-        if (this.medecin.password === password) {
-          sessionStorage.setItem('type', "medecin");
-          sessionStorage.setItem('user', JSON.stringify(this.medecin))
-          this.router.navigate(['/'])
-          this.bool = true;
-        } else {
-          this.bool = false
-        }
-        return this.bool
+        break
       }
       case "patient": {
         console.log("Connexion en tant que patient");
@@ -45,11 +42,11 @@ export class AuthentificationService {
             sessionStorage.setItem('user', JSON.stringify(this.patient))
             sessionStorage.setItem('type', "patient");
             this.router.navigate(['/'])
-            return this.bool = true;
           } else {
             this.alerteService.error("Echec de la connexion")
           }
         })
+        break
       }
     }
   }
