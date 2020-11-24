@@ -67,6 +67,10 @@ export class FormsPatientComponent implements OnInit {
     });
   }
 
+  annuler(){
+    this.router.navigate(['']);
+  }
+
     
 
 }
