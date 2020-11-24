@@ -32,6 +32,11 @@ delete(id: number) {
   return this.http.delete(this.URL, {observe: "response"});
 }
 
+// http://localhost:5050/gestion-rdv-microservice/consultation/getByIdPatient/1
+getFichesByIdPatient(id :number): Observable<FicheMedicale[]> {
+  return this.http.get<FicheMedicale[]>(this.URL + "/getByIdPatient/"+id);
+}
+
 
 
 }

@@ -1,3 +1,4 @@
+import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,7 +11,8 @@ import { AccueilPatientComponent } from './accueil-patient/accueil-patient.compo
 @NgModule({
   // Ajouter chaque composant de patient
   declarations: [
-    AccueilPatientComponent
+    AccueilPatientComponent,
+    UpdatePatientComponent
   ],
 
   imports: [

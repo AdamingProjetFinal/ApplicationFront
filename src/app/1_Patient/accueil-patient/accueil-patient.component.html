@@ -110,10 +110,14 @@
     <div class="card">
       <div class="card-header">
         Mes Fiches Médicales
+        <div class="card-header-actions" style="height: 21px;">
+          <button class="btn btn-info btn-sm">Consulter</button>
+        </div>
       </div>
       <div class="card-body">
         <div class="chart-wrapper">
-          <table class="table tabler-bordered">
+          <p *ngIf="indiceFiche1">Aucunes fiches médicales présentes</p>
+          <table class="table tabler-bordered" *ngIf="indiceFiche2">
             <tr>
               <th>Nom</th>
               <th>Action</th>
@@ -121,7 +125,10 @@
             <tr *ngFor="let item of listFiches">
               <td>{{item.nom}}</td>
               <td>
+                <!-- Bouton télécharger fiche médicale TODO-->
                 <button class="btn btn-warning">Download</button>
+                
+                <!-- Bouton Apercu en modal TODO-->
                 <button class="btn btn-success">Aperçu</button>
               </td>
             </tr>

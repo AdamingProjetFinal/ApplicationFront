@@ -1,3 +1,4 @@
+import { FicheMedicale } from './FicheMedicale';
 import { Adresse } from './Adresse';
 import { Medecin } from './Medecin';
 export class Patient {
@@ -15,6 +16,7 @@ export class Patient {
     // attributs patient
     numeroSecu: string;
     medecin: Medecin;
+    listFiches: FicheMedicale[];
 
 
     // TODO vérifier les champs
