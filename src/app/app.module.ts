@@ -1,3 +1,4 @@
+import { AraigneeComponent } from './views/Araignee/Araignee.component';
 import { AlerteComponent } from './views/alerte/alerte.component';
 import { FormActeComponent } from './views/Acte/form-acte/form-acte.component';
 import { NouvelleSpecialiteComponent } from './views/Specialite/Nouvelle-specialite/Nouvelle-specialite.component';

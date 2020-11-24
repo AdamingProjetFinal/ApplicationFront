@@ -1,3 +1,4 @@
+import { AraigneeComponent } from './../views/Araignee/Araignee.component';
 import { StatistiqueQuestionnaireComponent } from './statistique-questionnaire/statistique-questionnaire.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,8 @@ import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
   // Ajouter chaque composant de patient
   declarations: [
     AccueilAdminComponent,
-    StatistiqueQuestionnaireComponent
+    StatistiqueQuestionnaireComponent,
+    AraigneeComponent
   ],
 
   imports: [

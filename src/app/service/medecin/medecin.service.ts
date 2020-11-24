@@ -20,6 +20,12 @@ constructor(private http: HttpClient) { }
     return this.http
     .get<Medecin>(this.URL + '/' + id);
   }
+
+  // Récupère un patient avec son email 
+  getMedecinByEmail(email:string){
+    return this.http
+    .get<Medecin>(this.URL + '/email/' + email);
+  }
   
   // Récupère la liste des medecins  
   getMedecins(){
