@@ -27,61 +27,62 @@ export class AccueilPatientComponent implements OnInit {
   constructor(
     private patientService: PatientService,
     private ficheService: FicheMedicaleService,
-    private authService: AuthentificationService, 
-    private router: Router, 
+    private authService: AuthentificationService,
+    private router: Router,
     private activatedRoute: ActivatedRoute
-    ) { }
+  ) { }
 
-    ngOnInit() {
-      this.recupPatient();
-      
-      // Recuperer les fiches medicales du patient
-      // TODO
-      this.ficheService.getFichesByIdPatient(this.patient.id).subscribe(
-        (data) => { this.fichesMedicales = data;
-          console.log(this.fichesMedicales);
-          if(this.fichesMedicales.length == 0) {
-            // Message pour abscence de fiche
-            this.indiceFiche1 = true;
-            this.indiceFiche2 = false;
-          } else if(this.fichesMedicales.length <= 5) {
-            this.indiceFiche1 = false;
-            this.indiceFiche2 = true;
-            this.fichesSort = this.fichesMedicales;
-          } else {
-            this.indiceFiche1 = false;
-            this.indiceFiche2 = true;
-            this.fichesMedicales.sort();
-            for(let i =0; i < 5; i++){
-              this.fichesSort.push(this.fichesMedicales[i]);
-            }
-          }
-        }
-      )
+  ngOnInit() {
+    this.recupPatient();
 
-
-    }
-  
-    recupPatient() {
-      this.activatedRoute.params.subscribe((param: Params) => {
-        if (param['id'] == null) {
-          if (this.authService.isUserLoggedIn()) {
-            this.id = this.authService.getUserId() // "+" pour convertir un string en number
-          }else {
-            this.router.navigate([''])
-          }
+    // Recuperer les fiches medicales du patient
+    // TODO
+    this.ficheService.getFichesByIdPatient(this.patient.id).subscribe(
+      (data) => {
+        this.fichesMedicales = data;
+        console.log(this.fichesMedicales);
+        if (this.fichesMedicales.length == 0) {
+          // Message pour abscence de fiche
+          this.indiceFiche1 = true;
+          this.indiceFiche2 = false;
+        } else if (this.fichesMedicales.length <= 5) {
+          this.indiceFiche1 = false;
+          this.indiceFiche2 = true;
+          this.fichesSort = this.fichesMedicales;
         } else {
-          this.id = param['id'];
+          this.indiceFiche1 = false;
+          this.indiceFiche2 = true;
+          this.fichesMedicales.sort();
+          for (let i = 0; i < 5; i++) {
+            this.fichesSort.push(this.fichesMedicales[i]);
+          }
         }
-        this.patientService.getPatient(this.id).subscribe((value: any) => {
-          this.patient = value.data;
-         })
+      }
+    )
+
+
+  }
+
+  recupPatient() {
+    this.activatedRoute.params.subscribe((param: Params) => {
+      if (param['id'] == null) {
+        if (this.authService.isUserLoggedIn()) {
+          this.id = this.authService.getUserId() // "+" pour convertir un string en number
+        } else {
+          this.router.navigate([''])
+        }
+      } else {
+        this.id = param['id'];
+      }
+      this.patientService.getPatient(this.id).subscribe((value: any) => {
+        this.patient = value.data;
       })
-    }
+    })
+  }
 
 
 
-    
+
 
 
 
