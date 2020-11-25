@@ -16,8 +16,6 @@ import { Patient } from '../../model/Patient';
 })
 export class AccueilPatientComponent implements OnInit {
   // Modal
-  @ViewChild('modalReponseQuestionnaire') public modalReponseQuestionnaire: ModalDirective;
-  idConsultationPourQuestionnaire: number;
   @ViewChild('infoConsultation') public modalInfoConsultation: ModalDirective;
 
 
@@ -111,17 +109,6 @@ export class AccueilPatientComponent implements OnInit {
       },
       (erreur) => {console.log(erreur);}
     )
-  }
-
-  // MODAL -> AVIS CONSULTATION
-  // bouton valider de la modal de reponse au questionnaire
-  validationModalReponseQuestionnaire() {
-    this.modalReponseQuestionnaire.hide()
-  }
-
-  ouvrirModalReponseQuestionnaire(idConsultation: number) {
-    this.idConsultationPourQuestionnaire = idConsultation
-    this.modalReponseQuestionnaire.show()
   }
 
   // MODAL -> INFO CONSULTATION

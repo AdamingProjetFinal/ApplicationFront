@@ -72,9 +72,7 @@
             <tr *ngFor="let item of consultPasse">
               <td>{{item.medecin.nom}} {{item.medecin.prenom}}</td>
               <td>{{item.medecin.specialite.nom}}</td>
-              <td>
-                <app-reponseQuestionnaire testId="item.id"></app-reponseQuestionnaire>
-              </td>
+              <td><app-reponseQuestionnaire [idConsultationPourQuestionnaire]=item.id></app-reponseQuestionnaire></td>
             </tr>
           </table>
         </div>

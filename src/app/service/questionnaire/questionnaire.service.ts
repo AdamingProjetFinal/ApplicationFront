@@ -14,7 +14,7 @@ export class QuestionnaireService {
 constructor(private http: HttpClient) { }
 
 // Récupère une Questionnaire avec son id 
-  getQuestionnaire(id:string) : Observable<Questionnaire>{
+  getQuestionnaire(id:number) : Observable<Questionnaire>{
     return this.http
     .get<Questionnaire>(this.URL + '/' + id);
   }
