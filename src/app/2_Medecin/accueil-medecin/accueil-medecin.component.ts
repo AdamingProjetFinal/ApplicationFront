@@ -1,3 +1,4 @@
+import { Medecin } from './../../model/Medecin';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { ConsultationService } from './../../service/consultation/consultation.service';
 import { Consultation } from './../../model/Consultation';
@@ -19,27 +20,50 @@ export class AccueilMedecinComponent implements OnInit {
   consultation: Consultation;
   // @Input()  id :number
   infos = { note: null, deplacement: false, validationMedecin: false, dureeConsultation: 0 };
-  constructor(private consultationService: ConsultationService,
-    private auth: AuthentificationService
+  
+  // Declaration des attributs
+  medecin: Medecin;
+  consultsCar: Consultation[] = new Array(); 
+  futurPatient: Consultation[] = new Array();
+
+
+  constructor(
+    private consultationService: ConsultationService,
+    private authService: AuthentificationService
   ) { }
 
 
   ngOnInit(): void {
     this.buildEvent(1);
+    this.medecin = this.authService.getUser();
 
-    //TODO
+    this.consultationService.getConsultationsByIdMedecin(this.authService.getUserId()).subscribe(
+      (data) => {
+        this.consultsCar = data;
+        const sortByMapped = (map,compareFn) => (a,b) => compareFn(map(a),map(b));
+        const toDate = e => new Date(e.date).getTime();
+        const byValue = (a,b) => a - b;
+        const byDate = sortByMapped(toDate,byValue);
+        console.log(this.consultsCar.sort(byDate).reverse());
+        if(this.consultsCar.length <= 5) {
+          this.futurPatient = this.consultsCar;
+        } else {
+          for (let i = 0; i < 5; i++) {
+            this.futurPatient.push(this.consultsCar[i]);
+          }
+        }
+      }
+    )
   }
+
+
   buildEvent(idMedecin: number) {
-
-
-
-    //TODO
     this.consultationService.getConsultationsByIdMedecin(idMedecin).subscribe(data => {
       data.forEach(consult => {
         if (consult.validationMedecin === false) {
           this.backrground = "#FF1F1F";
-          //TODO mettre le nom du patient  sur le titre. si la consultation n'a pas de patient, les consultation n'apparaissent pas et ça bug n//
-          this.title = consult.patient.nom + " " + consult.patient.prenom + " (Vous devez valider la consultation)"
+          //TODO mettre le nom du patient  sur le titre. si la consultation n'a pas de patient, les consultation n'apparaissent pas ne marche//
+          this.title = consult.medecin.nom + " - " + " (Vous devez valider la consultation)"
 
         } else {
           this.backrground = "#02A307";
@@ -133,16 +157,13 @@ export class AccueilMedecinComponent implements OnInit {
 
   valider() {
     this.consultation.validationMedecin = true;
-
     this.consultationService.update(this.consultation).subscribe(data => {
-
       location.reload()
       alert("la consultation a bien été validée")
-
     })
-
   }
-}// class
+
+}
 
 
 

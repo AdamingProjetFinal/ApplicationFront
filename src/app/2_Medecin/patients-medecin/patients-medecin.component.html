@@ -1,0 +1,37 @@
+<div class="animated fadeIn">
+  <div class="card">
+      <div class="card-header">
+          Mes Patients
+          <div class="card-header-actions" style="height: 21px;">
+            <button class="btn btn-info btn-sm" [routerLink]="['/medecin']"
+            routerLinkActive="router-link-active">Retour</button>
+          </div>
+      </div>
+      <div class="card-body">
+          <div class="chart-wrapper">
+                <table class="table tabler-bordered">
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>N°Securité Sociale</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr *ngFor="let item of patientsFiltre">
+                    <td>{{item.nom}}</td>
+                    <td>{{item.prenom}}</td>
+                    <td>{{item.numeroSecu}}</td>
+                    <td>{{item.telephone}}</td>
+                    <td>{{item.email}}</td>
+                    <td>
+                      <!-- Bouton télécharger fiche médicale TODO-->
+                      <button class="btn btn-warning" [routerLink]="['/medecin/fiches', {pId:item.id}]"
+                      routerLinkActive="router-link-active" >Info Médicale</button>
+                    </td>
+                  </tr>
+                </table>
+          </div>
+      </div>
+  </div>
+</div>

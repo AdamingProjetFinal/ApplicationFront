@@ -45,7 +45,7 @@ export class AraigneeComponent implements OnInit {
       this.initialiserData(this.testId)
     }
     this.initialiserMoyene()
-    this.questionnaireService.getQuestionnaire('1').subscribe((response :any) => {
+    this.questionnaireService.getQuestionnaire(1).subscribe((response :any) => {
       let questionnaire : Questionnaire = response.data
       console.log(questionnaire);
       
@@ -69,10 +69,10 @@ export class AraigneeComponent implements OnInit {
     this.reponseService.getReponses().subscribe((value: any[]) => {
       this.reponses = value
       this.radarChartData[0].data = [
-      this.reponses.reduce((acc, cur) => acc + Number(cur.reponse1), 0) / this.reponses.length,
-      this.reponses.reduce((acc, cur) => acc + Number(cur.reponse2), 0) / this.reponses.length,
-      this.reponses.reduce((acc, cur) => acc + Number(cur.reponse3), 0) / this.reponses.length,
-      this.reponses.reduce((acc, cur) => acc + Number(cur.reponse4), 0) / this.reponses.length
+      this.reponses.reduce((acc, cur) => acc + cur.reponse1, 0) / this.reponses.length,
+      this.reponses.reduce((acc, cur) => acc + cur.reponse2, 0) / this.reponses.length,
+      this.reponses.reduce((acc, cur) => acc + cur.reponse3, 0) / this.reponses.length,
+      this.reponses.reduce((acc, cur) => acc + cur.reponse4, 0) / this.reponses.length
       ]
       this.radarChartData[0].label = "Réponses moyennes"
     });
@@ -93,10 +93,10 @@ export class AraigneeComponent implements OnInit {
           listFiltreQuastionnaire = value.filter(a => this.listId.includes(a.idConsultation))
           // faire la compilation des données pour chaque question
           this.radarChartData[1].data = [
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + Number(cur.reponse1), 0) / listFiltreQuastionnaire.length,
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + Number(cur.reponse2), 0) / listFiltreQuastionnaire.length,
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + Number(cur.reponse3), 0) / listFiltreQuastionnaire.length,
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + Number(cur.reponse4), 0) / listFiltreQuastionnaire.length,
+            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse1, 0) / listFiltreQuastionnaire.length,
+            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse2, 0) / listFiltreQuastionnaire.length,
+            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse3, 0) / listFiltreQuastionnaire.length,
+            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse4, 0) / listFiltreQuastionnaire.length,
           ]
 
         }

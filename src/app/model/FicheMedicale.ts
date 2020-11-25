@@ -1,7 +1,7 @@
 import { Patient } from './Patient';
 export class FicheMedicale {
     id: number;
-    nom: string;
+    nom: String;
     date: Date;
     antecedents: String;
     observations: String;

@@ -1,4 +1,5 @@
 import { ConsulterMedecinComponent } from './consulter-medecin/consulter-medecin.component';
+import { FicheMedicalPatientComponent } from './ficheMedical-patient/ficheMedical-patient.component';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,7 +10,8 @@ const patientRoutes: Routes = [
   
   { path: '', component: AccueilPatientComponent },
   { path: 'update', component: UpdatePatientComponent },
-  {path: 'consulterMedecin', component:ConsulterMedecinComponent}
+  {path: 'consulterMedecin', component:ConsulterMedecinComponent},
+  { path: 'fiches', component: FicheMedicalPatientComponent }
 ];
 
 @NgModule({

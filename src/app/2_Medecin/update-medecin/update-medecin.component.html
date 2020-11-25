@@ -8,37 +8,31 @@
     <div class="card-body">
       <div class="form-group">
         <label for="Nom">Nom</label>
-        <input type="text" class="form-control" id="name" placeholder="{{patient.nom}}" [(ngModel)]="patient.nom">
+        <input type="text" class="form-control" id="name" placeholder="{{medecin.nom}}" [(ngModel)]="medecin.nom">
       </div>
 
       <div class="form-group">
         <label for="Prenom">Prenom</label>
-        <input type="text" class="form-control" id="firstname" placeholder="{{patient.prenom}}" [(ngModel)]="patient.prenom">
-      </div>
-
-      <div class="form-group">
-        <label for="numeroSecu">Numéro de sécurité Social</label>
-        <input type="text" class="form-control" id="numeroSecu" placeholder="{{patient.numeroSecu}}" [(ngModel)]="patient.numeroSecu">
+        <input type="text" class="form-control" id="firstname" placeholder="{{medecin.prenom}}" [(ngModel)]="medecin.prenom">
       </div>
 
       <div class="row">
         <div class="form-group col-sm-8">
           <label for="Email">Email</label>
-          <input type="text" class="form-control" id="email" placeholder="{{patient.email}}" [(ngModel)]="patient.email">
+          <input type="text" class="form-control" id="email" placeholder="{{medecin.email}}" [(ngModel)]="medecin.email">
         </div>
 
         <div class="form-group col-sm-4">
           <label for="Date-naissance">Date de naissance</label>
-          <input type="text" class="form-control" id="date-naissance" placeholder="{{patient.dateNaissance}}" [(ngModel)]="patient.dateNaissance">
+          <input type="text" class="form-control" id="date-naissance" placeholder="{{medecin.dateNaissance}}" [(ngModel)]="medecin.dateNaissance">
         </div>
-        
       </div><!--/.row-->
 
       <div class="form-group">
         <label for="Telephone">Telephone</label>
-        <input type="text" class="form-control" id="postal-code" placeholder="{{patient.telephone}}" [(ngModel)]="patient.telephone">
+        <input type="text" class="form-control" id="postal-code" placeholder="{{medecin.telephone}}" [(ngModel)]="medecin.telephone">
       </div>
-    
+      
       <!------ Changement de mot de passe----->
       <div class="form-group">
         <label for="OldPassword">Ancien mot de passe</label>
@@ -52,8 +46,7 @@
         <label for="PasswordCheck">Répétez le nouveau mot de passe</label>
         <input type="password" class="form-control" id="PasswordCheck" placeholder="Mot de passe" [(ngModel)]="newPassWordCheck">
       </div>
-      
-      <!------ Bouton de validation et autre----->
+
       <button type="button" class="btn btn-success" (click)=update()>Modifier mes changements</button>
       <button type="button" class="btn btn-danger" (click)=delete()>Supprimer mon compte</button>
       <button type="button" class="btn btn-info" (click)=annuler()>Annuler</button>

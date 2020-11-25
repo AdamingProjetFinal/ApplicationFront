@@ -117,7 +117,7 @@ FullCalendarModule.registerPlugins([
     NouvelleSpecialiteComponent,
     FormActeComponent,
     AlerteComponent,
-    PlanningComponent,
+    PlanningComponent
 
   ],
   providers: [{

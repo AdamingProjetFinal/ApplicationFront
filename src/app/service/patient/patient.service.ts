@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Patient } from './../../model/Patient';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PatientService {
   headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 
-  // Récupère un patient avec son id 
+  // Récupère un patient avec son id de type string
   getPatient(id:string){
     return this.http
     .get<Patient>(this.URL + '/' + id);

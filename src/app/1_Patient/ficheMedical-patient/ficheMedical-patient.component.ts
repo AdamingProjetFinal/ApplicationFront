@@ -31,11 +31,10 @@ export class FicheMedicalPatientComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.recupPatient();
     
     // Recuperer les fiches medicales du patient
     // TODO
-    this.ficheService.getFichesByIdPatient(this.patient.id).subscribe(
+    this.ficheService.getFichesByIdPatient(this.authService.getUserId()).subscribe(
       (data) => { this.fichesMedicales = data;
         console.log(this.fichesMedicales);
         if(this.fichesMedicales.length == 0) {
@@ -50,22 +49,4 @@ export class FicheMedicalPatientComponent implements OnInit {
       }
     )
   }
-
-  recupPatient() {
-    this.activatedRoute.params.subscribe((param: Params) => {
-      if (param['id'] == null) {
-        if (this.authService.isUserLoggedIn()) {
-          this.id = this.authService.getUserId() // "+" pour convertir un string en number
-        }else {
-          this.router.navigate([''])
-        }
-      } else {
-        this.id = param['id'];
-      }
-      this.patientService.getPatient(this.id).subscribe((value: any) => {
-        this.patient = value.data;
-       })
-    })
-  }
-
 }

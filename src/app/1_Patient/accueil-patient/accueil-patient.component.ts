@@ -1,10 +1,11 @@
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ConsultationService } from './../../service/consultation/consultation.service';
 import { FicheMedicaleService } from './../../service/ficheMedicale/ficheMedicale.service';
 import { FicheMedicale } from './../../model/FicheMedicale';
 import { Consultation } from './../../model/Consultation';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PatientService } from '../../service/patient/patient.service';
 import { Patient } from '../../model/Patient';
 
@@ -14,9 +15,14 @@ import { Patient } from '../../model/Patient';
   styleUrls: ['./accueil-patient.component.scss']
 })
 export class AccueilPatientComponent implements OnInit {
+  // Modal
+  @ViewChild('infoConsultation') public modalInfoConsultation: ModalDirective;
+
+
   // Declaration des attributs
-  id: string;
-  patient: Patient = new Patient();
+  // WIP plus besoin cf plus bas
+  // id: string;
+  patient: Patient;
 
   // Les fiches
   fichesMedicales: FicheMedicale[] = new Array();
@@ -37,17 +43,17 @@ export class AccueilPatientComponent implements OnInit {
     private patientService: PatientService,
     private ficheService: FicheMedicaleService,
     private consultationService: ConsultationService,
-    private authService: AuthentificationService, 
-    private router: Router, 
+    private authService: AuthentificationService,
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.recupPatient();
+    this.patient = this.authService.getUser();
 
     // Recuperer les fiches medicales du patient
-    // TODO
-    this.ficheService.getFichesByIdPatient(this.patient.id).subscribe(
+    // OK
+    this.ficheService.getFichesByIdPatient(this.authService.getUserId()).subscribe(
       (data) => {
         this.fichesMedicales = data;
         console.log(this.fichesMedicales);
@@ -70,48 +76,42 @@ export class AccueilPatientComponent implements OnInit {
       }
     )
 
-      // Recuperer les consultations du patient
-      // TODO -> Rajouter un limiteur de res
-      this.consultationService.getConsultationsByIdPatient(this.patient.id).subscribe(
-        (data) => {
-          this.consultations = data;
-          console.log(this.consultations);
-          
-          this.consultations.forEach(
-            s => {
-              this.numberDate = new Date(s.date).getTime();
-              if(s.validationMedecin == false) {
-                this.consultValide.push(s);
-              } else if(s.validationMedecin == true && this.numberDate > this.today){
-                this.consultVenir.push(s);
-              } else if(s.validationMedecin == true && this.numberDate < this.today){
-                this.consultPasse.push(s);
-              }
+    // Recuperer les consultations du patient
+    // TODO -> Rajouter un limiteur de res
+    this.consultationService.getConsultationsByIdPatient(this.authService.getUserId()).subscribe(
+      (data) => {
+        this.consultations = data;
+        console.log(this.consultations);
+
+        this.consultations.forEach(
+          s => {
+            this.numberDate = new Date(s.date).getTime();
+            if (s.validationMedecin == false) {
+              this.consultValide.push(s);
+            } else if (s.validationMedecin == true && this.numberDate > this.today) {
+              this.consultVenir.push(s);
+            } else if (s.validationMedecin == true && this.numberDate < this.today) {
+              this.consultPasse.push(s);
             }
-          )
-        }
-      )
-    }
-  
-    recupPatient() {
-      this.activatedRoute.params.subscribe((param: Params) => {
-        if (param['id'] == null) {
-          if (this.authService.isUserLoggedIn()) {
-            this.id = this.authService.getUserId() // "+" pour convertir un string en number
-           } else {
-          this.router.navigate([''])
-        }
-      } else {
-        this.id = param['id'];
+          }
+        )
       }
-      this.patientService.getPatient(this.id).subscribe((value: any) => {
-        this.patient = value.data;
-      })
-    })
+    )
   }
 
+  // delete rdv
+  deleteConsult(consult: Consultation) {
+    this.consultationService.delete(consult.id).subscribe(
+      (response) => {
+        if(response.status == 200) {
+          history.go(0)
+        }
+      },
+      (erreur) => {console.log(erreur);}
+    )
+  }
 
-
+  // MODAL -> INFO CONSULTATION
 
 
 

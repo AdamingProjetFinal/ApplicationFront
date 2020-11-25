@@ -17,6 +17,11 @@ getReponse(id:string) : Observable<Reponse>{
   return this.http
   .get<Reponse>(this.URL + '/' + id);
 }
+// Récupère une Reponse avec l'id de la consultation
+getReponseByIdConsultation(id:number) : Observable<Reponse>{
+  return this.http
+  .get<Reponse>(this.URL + '/idConsultation/' + id);
+}
 
 // Récupère la liste des Reponses  
 getReponses() : Observable<Reponse[]>{
