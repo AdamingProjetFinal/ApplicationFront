@@ -10,7 +10,8 @@ export class Consultation {
     dureeConsultation:number;
     medecin: Medecin;
     patient: Patient;
-    acts: Acte[];
+    prixTTC: number;
+
 
     // TODO Vérifier les champs
 }
