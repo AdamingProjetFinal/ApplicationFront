@@ -10,14 +10,15 @@
                     <full-calendar [options]="calendarOptions"></full-calendar>
                 </div>
 
-                <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-primary" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h3 class="modal-title">Ajouter une spécialité</h3>
                                 <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
 
 
@@ -28,7 +29,8 @@
                                 <p><b>Validation par le medecin : </b>{{infos.validationMedecin}} </p>
                             </div>
                             <div *ngIf="infos.validationMedecin==false" class="modal-footer">
-                                <button type="button" class="btn btn-primary" (click)="valider()">Validation de la consultation</button>
+                                <button type="button" class="btn btn-primary" (click)="valider()">Validation de la
+                                    consultation</button>
                             </div>
                         </div>
 
@@ -40,6 +42,7 @@
     </div>
 </div>
 
+<!-- Les Autres Cards -->
 <div class="animated fadeIn">
     <div class="card-columns cols-2">
 
@@ -48,12 +51,13 @@
             <div class="card-header">
                 Mon Profil
                 <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-warning btn-sm">Modifier</button>
+                    <button class="btn btn-warning btn-sm" [routerLink]="['/medecin/update']"
+                        routerLinkActive="router-link-active">Modifier</button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="chart-wrapper">
-                    <h1>Bonjour X</h1>
+                    <p>Bonjour Docteur {{medecin.nom}} {{medecin.prenom}}</p>
                 </div>
             </div>
         </div>
@@ -61,23 +65,24 @@
         <!-- Fiches Medicales -->
         <div class="card">
             <div class="card-header">
-                Mes Fiches Médicales
+                Mes Futurs Patients
                 <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-success btn-sm">Ajouter</button>
+                    <button class="btn btn-success btn-sm">Mes Patients</button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="chart-wrapper">
                     <table class="table tabler-bordered">
                         <tr>
-                            <th>Nom</th>
+                            <th>Patient</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
-                        <tr *ngFor="let item of listFiches">
-                            <td>{{item.nom}}</td>
+                        <tr *ngFor="let item of futurPatient">
+                            <td>{{item.patient.nom}} {{item.patient.prenom}}</td>
+                            <td>{{item.date | date:'short'}}</td>
                             <td>
-                                <button class="btn btn-warning">Download</button>
-                                <button class="btn btn-success">Aperçu</button>
+                                <button class="btn btn-info">Info Médicale</button>
                             </td>
                         </tr>
                     </table>

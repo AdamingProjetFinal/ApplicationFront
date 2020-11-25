@@ -1,3 +1,4 @@
+import { Medecin } from './../../model/Medecin';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { ConsultationService } from './../../service/consultation/consultation.service';
 import { Consultation } from './../../model/Consultation';
@@ -10,44 +11,66 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./accueil-medecin.component.scss']
 })
 export class AccueilMedecinComponent implements OnInit {
-
- @ViewChild('myModal') public myModal: ModalDirective;
+  @ViewChild('myModal') public myModal: ModalDirective;
   calendarOptions;
-  backrground:String;
-  title:String;
+  backrground: String;
+  title: String;
   consultations: any[] = []
-  consultation:Consultation;
+  consultation: Consultation;
   // @Input()  id :number
   infos = { note: null, deplacement: false, validationMedecin: false, dureeConsultation: 0 };
-  constructor(private consultationService: ConsultationService,
-    private auth: AuthentificationService
+  
+  // Declaration des attributs
+  medecin: Medecin;
+  consultsCar: Consultation[] = new Array(); 
+  futurPatient: Consultation[] = new Array();
+
+
+  constructor(
+    private consultationService: ConsultationService,
+    private authService: AuthentificationService
   ) { }
 
 
   ngOnInit(): void {
     this.buildEvent(1);
+    this.medecin = this.authService.getUser();
 
-    //TODO
+    this.consultationService.getConsultationsByIdMedecin(this.authService.getUserId()).subscribe(
+      (data) => {
+        this.consultsCar = data;
+        const sortByMapped = (map,compareFn) => (a,b) => compareFn(map(a),map(b));
+        const toDate = e => new Date(e.date).getTime();
+        const byValue = (a,b) => a - b;
+        const byDate = sortByMapped(toDate,byValue);
+        console.log(this.consultsCar.sort(byDate).reverse());
+        if(this.consultsCar.length <= 5) {
+          this.futurPatient = this.consultsCar;
+        } else {
+          for (let i = 0; i < 5; i++) {
+            this.futurPatient.push(this.consultsCar[i]);
+          }
+        }
+      }
+    )
   }
+
+
   buildEvent(idMedecin: number) {
-
-
-
-    //TODO
     this.consultationService.getConsultationsByIdMedecin(idMedecin).subscribe(data => {
       data.forEach(consult => {
         if (consult.validationMedecin === false) {
           this.backrground = "#FF1F1F";
           //TODO mettre le nom du patient  sur le titre. si la consultation n'a pas de patient, les consultation n'apparaissent pas ne marche//
-          this.title = consult.medecin.nom+" - "+" (Vous devez valider la consultation)"
-          
+          this.title = consult.medecin.nom + " - " + " (Vous devez valider la consultation)"
+
         } else {
           this.backrground = "#02A307";
           this.title = consult.medecin.nom
         }
         let duree = consult.dureeConsultation * 60 * 1000;
         let event = {
-          title:this.title,
+          title: this.title,
           start: consult.date,
           end: new Date(consult.date).setTime(new Date(consult.date).getTime() + duree),
           backgroundColor: this.backrground,
@@ -104,7 +127,7 @@ export class AccueilMedecinComponent implements OnInit {
   } // méthode buildCalendar()
 
   voirDetailsConsultation(inf) {
-  console.log("je suis dans voir Détails")
+    console.log("je suis dans voir Détails")
     this.consultationService.getConsultation(inf.event.extendedProps.idConsultation).subscribe(data => {
       this.consultation = data.data;
       console.log(this.consultation);
@@ -116,16 +139,13 @@ export class AccueilMedecinComponent implements OnInit {
 
   valider() {
     this.consultation.validationMedecin = true;
-
     this.consultationService.update(this.consultation).subscribe(data => {
-
       location.reload()
       alert("la consultation a bien été validée")
-
     })
-
   }
-}// class
+
+}
 
 
 
