@@ -3,6 +3,5 @@ export class Formule {
     id:number;
     date:Date;
     taxe:number;
-    idSpecialiteMedecin:number;
         // TODO vérifier les champs
 }

@@ -10,7 +10,7 @@ export class Medecin {
     nom:string;
     prenom:string;
     email:string;
-
+    prixConsultation:number
     dateNaissance:Date;
     telephone:string;
     codePublic: string;
