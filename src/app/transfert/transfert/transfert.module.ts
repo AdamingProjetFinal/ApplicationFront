@@ -1,3 +1,4 @@
+import { AppModule } from './../../app.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

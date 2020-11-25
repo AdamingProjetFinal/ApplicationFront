@@ -16,6 +16,11 @@
         <input type="text" class="form-control" id="firstname" placeholder="{{patient.prenom}}" [(ngModel)]="patient.prenom">
       </div>
 
+      <div class="form-group">
+        <label for="numeroSecu">Numéro de sécurité Social</label>
+        <input type="text" class="form-control" id="numeroSecu" placeholder="{{patient.numeroSecu}}" [(ngModel)]="patient.numeroSecu">
+      </div>
+
       <div class="row">
         <div class="form-group col-sm-8">
           <label for="Email">Email</label>
@@ -26,13 +31,29 @@
           <label for="Date-naissance">Date de naissance</label>
           <input type="text" class="form-control" id="date-naissance" placeholder="{{patient.dateNaissance}}" [(ngModel)]="patient.dateNaissance">
         </div>
+        
       </div><!--/.row-->
 
       <div class="form-group">
         <label for="Telephone">Telephone</label>
         <input type="text" class="form-control" id="postal-code" placeholder="{{patient.telephone}}" [(ngModel)]="patient.telephone">
       </div>
-
+    
+      <!------ Changement de mot de passe----->
+      <div class="form-group">
+        <label for="OldPassword">Ancien mot de passe</label>
+        <input type="password" class="form-control" id="OldPassword"  placeholder="Mot de passe" [(ngModel)]="oldPassWord">
+      </div>
+      <div class="form-group">
+        <label for="NewPassword">Nouveau Mot de passe</label>
+        <input type="password" class="form-control" id="NewPassword"  placeholder="Mot de passe" [(ngModel)]="newPassWord">
+      </div>
+      <div class="form-group">
+        <label for="PasswordCheck">Répétez le nouveau mot de passe</label>
+        <input type="password" class="form-control" id="PasswordCheck" placeholder="Mot de passe" [(ngModel)]="newPassWordCheck">
+      </div>
+      
+      <!------ Bouton de validation et autre----->
       <button type="button" class="btn btn-success" (click)=update()>Modifier mes changements</button>
       <button type="button" class="btn btn-danger" (click)=delete()>Supprimer mon compte</button>
       <button type="button" class="btn btn-info" (click)=annuler()>Annuler</button>

@@ -14,6 +14,9 @@ export class UpdatePatientComponent implements OnInit {
   // Declaration des attributs
   id: string;
   patient: Patient;
+  newPassWord : string
+  newPassWordCheck : string
+  oldPassWord : string
   
   constructor(
     private patientService: PatientService,
@@ -28,7 +31,18 @@ export class UpdatePatientComponent implements OnInit {
   }
 
   update() : void{
+    if (this.oldPassWord == this.patient.password) {
+      if (this.newPassWord == this.newPassWordCheck) {
+        this.patient.password = this.newPassWord
+      } else {
+        // TODO mot de passe différent
+      }
+      
+    } else {
+      // TODO afficehr message ancien mot de passe incorrect
+    }
     this.patientService.update(this.patient).subscribe(response => {
+      this.authService.updateCurrentUser(this.patient)
         this.router.navigate(['/patient']);
     });
   }

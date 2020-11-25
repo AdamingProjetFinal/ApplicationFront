@@ -1,3 +1,4 @@
+import { observable, Observable } from 'rxjs';
 import { Patient } from './../../model/Patient';
 import { PatientService } from './../patient/patient.service';
 import { Medecin } from './../../model/Medecin';
@@ -51,6 +52,11 @@ export class AuthentificationService {
     }
   }
 
+  // modifie les données de l'utilisateur courant
+  updateCurrentUser(user : any){
+    sessionStorage.setItem('user', JSON.stringify(user))
+  }
+
   // Vérifie si un utilisateur est connecté
   isUserLoggedIn() {
     return !(sessionStorage.getItem('user') == null);
@@ -59,8 +65,13 @@ export class AuthentificationService {
   // Récupère l'Id de l'utilisateur  //TODO à supprimer ?
   getUserId() {
     let user = JSON.parse(sessionStorage.getItem('user'))
-
-    return user.id
+    if (user != null) {
+       
+      return user.id
+    } else {
+      
+      return 1 // TODO voir ce qu'on fait si pas de user
+    }
   }
 
   // Méthode permettant de se déconnecter
