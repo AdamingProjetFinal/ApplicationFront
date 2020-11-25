@@ -1,3 +1,5 @@
+import { ConsulterMedecinComponent } from './1_Patient/consulter-medecin/consulter-medecin.component';
+import { Consultation } from './model/Consultation';
 import { PlanningComponent } from './views/Medecin/planning/planning.component';
 import { FormActeComponent } from './views/Acte/form-acte/form-acte.component';
 import { ListPatientComponent } from './views/Patient/list-patient/list-patient.component';

@@ -1,3 +1,4 @@
+import { ConsulterMedecinComponent } from './consulter-medecin/consulter-medecin.component';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,7 +8,8 @@ import { AccueilPatientComponent } from './accueil-patient/accueil-patient.compo
 const patientRoutes: Routes = [
   
   { path: '', component: AccueilPatientComponent },
-  { path: 'update', component: UpdatePatientComponent }
+  { path: 'update', component: UpdatePatientComponent },
+  {path: 'consulterMedecin', component:ConsulterMedecinComponent}
 ];
 
 @NgModule({

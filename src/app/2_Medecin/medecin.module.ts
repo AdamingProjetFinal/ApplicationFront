@@ -34,7 +34,6 @@ FullCalendarModule.registerPlugins([
     FormsModule,
     HttpClientModule,
     MedecinRoutingModule,
-    // FullCalendarModule,
     TransfertModule
   ]
 })
