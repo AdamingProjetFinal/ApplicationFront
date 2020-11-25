@@ -18,15 +18,16 @@
                     <th>Email</th>
                     <th>Action</th>
                   </tr>
-                  <tr *ngFor="let item of patientsCompo">
-                    <td>{{item.patient.nom}}</td>
-                    <td>{{item.patient.prenom}}</td>
-                    <td>{{item.patient.numeroSecu}}</td>
-                    <td>{{item.patient.telephone}}</td>
-                    <td>{{item.patient.email}}</td>
+                  <tr *ngFor="let item of patientsFiltre">
+                    <td>{{item.nom}}</td>
+                    <td>{{item.prenom}}</td>
+                    <td>{{item.numeroSecu}}</td>
+                    <td>{{item.telephone}}</td>
+                    <td>{{item.email}}</td>
                     <td>
                       <!-- Bouton télécharger fiche médicale TODO-->
-                      <button class="btn btn-warning">Info Médicale</button>
+                      <button class="btn btn-warning" [routerLink]="['/medecin/fiches', {pId:item.id}]"
+                      routerLinkActive="router-link-active" >Info Médicale</button>
                     </td>
                   </tr>
                 </table>

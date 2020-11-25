@@ -67,7 +67,8 @@
             <div class="card-header">
                 Mes Futurs Patients
                 <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-success btn-sm">Mes Patients</button>
+                    <button class="btn btn-success btn-sm" [routerLink]="['/medecin/patients']"
+                    routerLinkActive="router-link-active">Mes Patients</button>
                 </div>
             </div>
             <div class="card-body">
@@ -82,7 +83,8 @@
                             <td>{{item.patient.nom}} {{item.patient.prenom}}</td>
                             <td>{{item.date | date:'short'}}</td>
                             <td>
-                                <button class="btn btn-info">Info Médicale</button>
+                                <button class="btn btn-info" [routerLink]="['/medecin/fiches', {pId:item.patient.id}]"
+                                routerLinkActive="router-link-active">Info Médicale</button>
                             </td>
                         </tr>
                     </table>

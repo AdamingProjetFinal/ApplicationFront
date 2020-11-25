@@ -1,0 +1,35 @@
+<div class="animated fadeIn">
+  <div class="card">
+      <div class="card-header">
+          <p>Patient: {{patient.nom}} {{patient.prenom}}</p>
+          <div class="card-header-actions" style="height: 21px;">
+            <button class="btn btn-danger btn-sm" >Ajouter</button>
+          </div>
+      </div>
+      <div class="card-body">
+          <div class="chart-wrapper">
+                <table class="table tabler-bordered">
+                  <tr>
+                    <th>Nom</th>
+                    <th>Date</th>
+                    <th>Antecedents</th>
+                    <th>Observations</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr *ngFor="let item of fichesMedicales">
+                    <td>{{item.nom}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.antecedents}}</td>
+                    <td>{{item.observations}}</td>
+                    <td>
+                      <!-- Bouton télécharger fiche médicale TODO-->
+                      <button class="btn btn-warning">Download</button>
+                    </td>
+                  </tr>
+                </table>
+          </div>
+          <button class="btn btn-info btn-sm" [routerLink]="['/medecin/patients']"
+            routerLinkActive="router-link-active">Retour</button>
+      </div>
+  </div>
+</div>

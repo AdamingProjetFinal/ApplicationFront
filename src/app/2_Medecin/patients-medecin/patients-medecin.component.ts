@@ -1,3 +1,4 @@
+import { Patient } from './../../model/Patient';
 import { ConsultationService } from './../../service/consultation/consultation.service';
 import { AuthentificationService } from './../../service/authentification/authentification.service';
 import { MedecinService } from './../../service/medecin/medecin.service';
@@ -15,6 +16,9 @@ export class PatientsMedecinComponent implements OnInit {
   medecin: Medecin;
   consultations: Consultation[] = new Array();
   consultFiltre: Consultation[] = new Array();
+  patients: Patient[] = new Array();
+  patientsFiltre: Patient[] = new Array();
+  id: String;
 
   constructor(
     private medecinService: MedecinService,
@@ -25,40 +29,11 @@ export class PatientsMedecinComponent implements OnInit {
   ngOnInit() {
     this.medecin = this.authService.getUser();
 
-    this.consultationService.getConsultationsByIdMedecin(this.authService.getUserId()).subscribe(
+    this.medecinService.getAllPatients(this.authService.getUserId()).subscribe(
       (data) => {
-        this.consultations = data;
-
-        // Trier du plus récent
-        const sortByMapped = (map, compareFn) => (a, b) => compareFn(map(a), map(b));
-        const toDate = e => new Date(e.date).getTime();
-        const byValue = (a, b) => a - b;
-        const byDate = sortByMapped(toDate, byValue);
-        console.log(this.consultations.sort(byDate).reverse());
-
-        /*
-        this.consultFiltre = this.consultations.filter(
-          (value, index, array) => {
-            !array.filter((v, i) => isEqual(value, v) && i < index).length);
-      }
-    )
-
-
-*/
+        this.patients = data;
+        this.patientsFiltre = this.patients;
       }
     )
   }
-  /*
-  // Compare les objects
-  function isEqual(a, b) {
-    for (var i in a)
-      if (a[i] != b[i])
-        return false;
-    for (var i in b)
-      if (b[i] != a[i])
-        return false;
-    return true;
-  } 
-  */
-
 }

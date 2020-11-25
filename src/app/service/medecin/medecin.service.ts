@@ -1,3 +1,4 @@
+import { Patient } from './../../model/Patient';
 import { Specialite } from './../../model/Specialite';
 import { Medecin } from './../../model/Medecin';
 import { Injectable } from '@angular/core';
@@ -47,6 +48,11 @@ constructor(private http: HttpClient) { }
   // Suppression d'un medecin en base
   delete(id: any) {
     return this.http.delete(this.URL + '/' + id);
+  }
+
+  // Liste des patients
+  getAllPatients(id: any) {
+    return this.http.get<Patient[]>(this.URL + '/patients/' + id);
   }
 
   // TODO rajouter les autres appel au back 
