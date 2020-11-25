@@ -1,21 +1,53 @@
-<button class="btn btn-info" (click)="modalReponseQuestionnaire.show()">Avis</button>
+<button *ngIf=!avisDonne class="btn btn-info" (click)="modalReponseQuestionnaire.show()">Avis</button>
 
 
-<div bsModal #modalReponseQuestionnaire="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalReponseQuestionnaireLabel" aria-hidden="true">
-  <div class="modal-dialog modal-primary" role="document">
+<div bsModal #modalReponseQuestionnaire="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="modalReponseQuestionnaireLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-primary" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">Ajouter une spécialité</h3>
+        <h2 class="modal-title">Questionnaire de Statisfaction </h2>
         <button type="button" class="close" (click)="modalReponseQuestionnaire.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
+        <div *ngFor="let question of questions; let num = index" class="ml-5">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label">{{num + 1 }} - {{question}}</label>
+            <div class="col-md-12 col-form-label">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question{{num}}" value="0" [(ngModel)]="reponses[num]">
+                <label class="form-check-label">Totalement insatisfait</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question{{num}}" value="1" [(ngModel)]="reponses[num]">
+                <label class="form-check-label">Très insatisfait</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question{{num}}" value="2" [(ngModel)]="reponses[num]">
+                <label class="form-check-label">Peu insatisfait</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question{{num}}" value="3" [(ngModel)]="reponses[num]">
+                <label class="form-check-label">Peu satisfait</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question{{num}}" value="4" [(ngModel)]="reponses[num]">
+                <label class="form-check-label">Très satisfait</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question{{num}}" value="5" [(ngModel)]="reponses[num]">
+                <label class="form-check-label">Totalement satisfait</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="modalReponseQuestionnaire.hide()">Fermer</button>
-        <button type="button" class="btn btn-primary" (click)="validationModalReponseQuestionnaire()">Enregistrer</button>
+        <button type="button" class="btn btn-primary"
+          (click)="validationModalReponseQuestionnaire()">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
