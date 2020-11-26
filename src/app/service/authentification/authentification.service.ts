@@ -1,3 +1,5 @@
+import { Admin } from './../../model/Admin';
+import { AdminService } from './../admin/admin.service';
 import { observable, Observable } from 'rxjs';
 import { Patient } from './../../model/Patient';
 import { PatientService } from './../patient/patient.service';
@@ -14,9 +16,11 @@ import { AlerteService } from '../alerte/alerte.service';
 export class AuthentificationService {
   medecin: Medecin = new Medecin
   patient: Patient = new Patient
+  admin: Admin = new Admin
   constructor(private medecinService: MedecinService,
     private patientService: PatientService,
     private alerteService: AlerteService,
+    private adminService : AdminService,
     private router: Router) { }
 
   // Vérification du mot de passe
@@ -27,7 +31,7 @@ export class AuthentificationService {
         this.medecinService.getMedecinByEmail(email).subscribe((value: any) => { // TODO remplacer par la recherche par email
           this.medecin = value.data
           if (this.medecin.password === password) {
-            sessionStorage.setItem('type', "medecin");
+            sessionStorage.setItem('type', type);
             sessionStorage.setItem('user', JSON.stringify(this.medecin))
             this.router.navigate(['/'])
           } else {
@@ -41,7 +45,21 @@ export class AuthentificationService {
           this.patient = value.data
           if (this.patient.password === password) {
             sessionStorage.setItem('user', JSON.stringify(this.patient))
-            sessionStorage.setItem('type', "patient");
+            sessionStorage.setItem('type', type);
+            this.router.navigate(['/'])
+          } else {
+            this.alerteService.error("Echec de la connexion")
+          }
+        })
+        break
+      }
+      case "admin" :{
+        console.log("Connexion en tant qu'Admin");
+        this.adminService.getAdmin('1').subscribe((value: any) => {
+          this.admin = value.data
+          if (this.admin.pwd === password) {
+            sessionStorage.setItem('user', JSON.stringify(this.admin))
+            sessionStorage.setItem('type', type);
             this.router.navigate(['/'])
           } else {
             this.alerteService.error("Echec de la connexion")
