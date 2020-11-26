@@ -1,50 +1,98 @@
 <div class="col-md-12">
-  <div class="card">
+  <div class="card border-danger">
 
     <div class="card-header">
       <strong>Mettre à jour mes informations</strong>
     </div>
 
     <div class="card-body">
-      <div class="form-group">
-        <label for="Nom">Nom</label>
-        <input type="text" class="form-control" id="name" placeholder="{{medecin.nom}}" [(ngModel)]="medecin.nom">
-      </div>
-
-      <div class="form-group">
-        <label for="Prenom">Prenom</label>
-        <input type="text" class="form-control" id="firstname" placeholder="{{medecin.prenom}}" [(ngModel)]="medecin.prenom">
-      </div>
-
       <div class="row">
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="Nom">Nom</label>
+            <input type="text" class="form-control" id="name" placeholder="{{medecin.nom}}" [(ngModel)]="medecin.nom">
+          </div>
+          
+          <div class="form-group">
+          <label for="Prenom">Prenom</label>
+          <input type="text" class="form-control" id="firstname" placeholder="{{medecin.prenom}}"
+          [(ngModel)]="medecin.prenom">
+        </div>
+        
+        <div class="form-group">
+          <label for="Telephone">Telephone</label>
+          <input type="text" class="form-control" id="postal-code" placeholder="{{medecin.telephone}}"
+          [(ngModel)]="medecin.telephone">
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <label for="numero">N°</label>
+            <input type="text" class="form-control" id="numero" placeholder="{{medecin.adresse.numero}}"
+            [(ngModel)]="medecin.adresse.numero">
+          </div>
+          <div class="form-group col-sm-8">
+            <label for="rue">Rue</label>
+            <input type="text" class="form-control" id="rue" placeholder="{{medecin.adresse.rue}}"
+            [(ngModel)]="medecin.adresse.rue">
+          </div>
+        </div>
+        
+        <div class="form-group ">
+          <label for="Complement">Complément d'adresse</label>
+          <input type="text" class="form-control" id="complement" placeholder="{{medecin.adresse.complement}}"
+          [(ngModel)]="medecin.adresse.complement">
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <label for="CodePostal">Code Postal</label>
+            <input type="text" class="form-control" id="CodePostal" placeholder="{{medecin.adresse.cp}}"
+              [(ngModel)]="medecin.adresse.cp">
+            </div>
+            <div class="form-group col-sm-8">
+              <label for="ville">Ville</label>
+              <input type="text" class="form-control" id="ville" placeholder="{{medecin.adresse.ville}}"
+              [(ngModel)]="medecin.adresse.ville">
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        <div class="row">
         <div class="form-group col-sm-8">
           <label for="Email">Email</label>
-          <input type="text" class="form-control" id="email" placeholder="{{medecin.email}}" [(ngModel)]="medecin.email">
+          <input type="text" class="form-control" id="email" placeholder="{{medecin.email}}"
+            [(ngModel)]="medecin.email">
         </div>
 
         <div class="form-group col-sm-4">
           <label for="Date-naissance">Date de naissance</label>
-          <input type="text" class="form-control" id="date-naissance" placeholder="{{medecin.dateNaissance}}" [(ngModel)]="medecin.dateNaissance">
+          <input type="date" class="form-control" id="date-naissance" name="date-input" placeholder="{{medecin.dateNaissance}}"
+            [(ngModel)]="medecin.dateNaissance">
         </div>
-      </div><!--/.row-->
-
-      <div class="form-group">
-        <label for="Telephone">Telephone</label>
-        <input type="text" class="form-control" id="postal-code" placeholder="{{medecin.telephone}}" [(ngModel)]="medecin.telephone">
       </div>
-      
+      <!--/.row-->
+
+
       <!------ Changement de mot de passe----->
       <div class="form-group">
         <label for="OldPassword">Ancien mot de passe</label>
-        <input type="password" class="form-control" id="OldPassword"  placeholder="Mot de passe" [(ngModel)]="oldPassWord">
+        <input type="password" class="form-control" id="OldPassword" placeholder="Mot de passe"
+          [(ngModel)]="oldPassWord">
       </div>
       <div class="form-group">
         <label for="NewPassword">Nouveau Mot de passe</label>
-        <input type="password" class="form-control" id="NewPassword"  placeholder="Mot de passe" [(ngModel)]="newPassWord">
+        <input type="password" class="form-control" id="NewPassword" placeholder="Mot de passe"
+          [(ngModel)]="newPassWord">
       </div>
       <div class="form-group">
         <label for="PasswordCheck">Répétez le nouveau mot de passe</label>
-        <input type="password" class="form-control" id="PasswordCheck" placeholder="Mot de passe" [(ngModel)]="newPassWordCheck">
+        <input type="password" class="form-control" id="PasswordCheck" placeholder="Mot de passe"
+          [(ngModel)]="newPassWordCheck">
       </div>
 
       <button type="button" class="btn btn-success" (click)=update()>Modifier mes changements</button>
@@ -53,4 +101,5 @@
 
     </div>
   </div>
-</div><!--/.col-->
+</div>
+<!--/.col-->
