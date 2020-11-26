@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AppModule } from './../../app.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ import interactionPlugin, {Draggable} from '@fullcalendar/interaction';
 import { formatDate } from '@fullcalendar/angular';
 import timeGridPlugin from "@fullcalendar/timegrid";
 import list from "@fullcalendar/list";
+
 
 
 FullCalendarModule.registerPlugins([
@@ -25,9 +27,10 @@ FullCalendarModule.registerPlugins([
   imports: [
     CommonModule,
     ModalModule,
+    FormsModule
     
   ],
-  exports:[ModalModule,FullCalendarModule]
+  exports:[ModalModule,FullCalendarModule, FormsModule]
   
 })
 export class TransfertModule { }

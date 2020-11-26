@@ -16,6 +16,11 @@ save(consultation: Consultation): Observable<HttpResponse<Object>>{
   return this.http.post(this.URL, consultation, { headers: this.headers, observe: 'response' });
 }
 
+saveConsultationMedPat(consultation: Consultation ,idMedecin:number,idPatient:number): Observable<HttpResponse<Object>>{
+  return this.http.post(this.URL+"/saveConsultationMedPat/"+idMedecin+"/"+idPatient, consultation, { headers: this.headers, observe: 'response' });
+}
+
+// saveConsultationMedPat/{idMedecin}/{idPatient}
 getConsultation(id: number): Observable<any> {
   return this.http.get<any>(this.URL + "/" + id);
 }

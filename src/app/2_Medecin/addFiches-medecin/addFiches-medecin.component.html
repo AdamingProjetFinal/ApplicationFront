@@ -1,0 +1,43 @@
+<button class="btn btn-info btn-sm" (click)="modalAddFicheMedicale.show()">Ajouter</button>
+
+
+<div bsModal #modalAddFicheMedicale="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="modalReponseQuestionnaireLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-primary" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Ajouter une fiche médicale </h2>
+        <button type="button" class="close" (click)="modalAddFicheMedicale.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Nom">Nom :</label>
+          <input type="text" class="form-control" id="name" placeholder="Nom de la fiche médicale"
+            [(ngModel)]="ficheMedicale.nom">
+        </div>
+        <div class="form-group">
+          <label for="Prenom">Antécédents</label>
+          <input type="text" class="form-control" id="antecedents" placeholder="Antécédents du patient"
+            [(ngModel)]="ficheMedicale.antecedents">
+        </div>
+        <div class="form-group">
+          <label for="Prenom">Observations</label>
+          <input type="text" class="form-control" id="observations" placeholder="Observations"
+            [(ngModel)]="ficheMedicale.observations">
+        </div>
+        <div class="form-group">
+          <label for="Date-naissance">Date :</label>
+          <input type="date" class="form-control" id="date" name="date-input" placeholder="{{today}}"
+            [(ngModel)]="ficheMedicale.date">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalAddFicheMedicale.hide()">Fermer</button>
+        <button type="button" class="btn btn-primary" (click)="addFicheMedicale()">Enregistrer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
