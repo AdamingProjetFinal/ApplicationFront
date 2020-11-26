@@ -9,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private questionnaireService : QuestionnaireService
+    ) { }
 
   ngOnInit() {
 
   }
 
+  recupererQuestionnaire() {
+
+  }
 
 }

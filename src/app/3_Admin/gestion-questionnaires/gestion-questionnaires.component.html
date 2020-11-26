@@ -1,0 +1,77 @@
+<div class="col-md-12">
+  <div class="card border-danger">
+
+    <div class="card-header">
+      <strong *ngIf="modeEditQuestionnaire">Modifier le questionnaire de satisfaction</strong>
+      <strong *ngIf="!modeEditQuestionnaire">Créer un nouveau questionnaire de satisfaction</strong>
+    </div>
+
+    <div class="card-body">
+
+      <!-- question 1 -->
+      <div class="row">
+        <div class="form-group col-sm-9">
+          <label class="col-md-3 col-form-label" for="Q1">Question n°1</label>
+          <textarea id="Q1" name="Q1" rows="3" class="form-control" placeholder="{{questionnaire.question1}}"
+            [(ngModel)]="questionnaire.question1"></textarea>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="tagQ1">Tag Question n°1</label>
+          <input type="text" class="form-control" id="tagQ1" placeholder="{{questionnaire.tagQuestion1}}"
+            [(ngModel)]="questionnaire.tagQuestion1">
+        </div>
+      </div>
+
+      <!-- question 2 -->
+      <div class="row">
+        <div class="form-group col-sm-9">
+          <label class="col-md-3 col-form-label" for="Q2">Question n°2</label>
+          <textarea id="Q2" name="Q2" rows="3" class="form-control" placeholder="{{questionnaire.question2}}"
+            [(ngModel)]="questionnaire.question2"></textarea>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="tagQ2">Tag Question n°2</label>
+          <input type="text" class="form-control" id="tagQ2" placeholder="{{questionnaire.tagQuestion2}}"
+            [(ngModel)]="questionnaire.tagQuestion2">
+        </div>
+      </div>
+
+      <!-- question 3 -->
+      <div class="row">
+        <div class="form-group col-sm-9">
+          <label class="col-md-3 col-form-label" for="Q3">Question n°3</label>
+          <textarea id="Q3" name="Q3" rows="3" class="form-control" placeholder="{{questionnaire.question3}}"
+            [(ngModel)]="questionnaire.question3"></textarea>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="tagQ3">Tag Question n°3</label>
+          <input type="text" class="form-control" id="tagQ3" placeholder="{{questionnaire.tagQuestion3}}"
+            [(ngModel)]="questionnaire.tagQuestion3">
+        </div>
+      </div>
+
+      <!-- question 4 -->
+      <div class="row">
+        <div class="form-group col-sm-9">
+          <label class="col-md-3 col-form-label" for="Q4">Question n°4</label>
+          <textarea id="Q4" name="Q4" rows="3" class="form-control" placeholder="{{questionnaire.question4}}"
+            [(ngModel)]="questionnaire.question4"></textarea>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="tagQ4">Tag Question n°4</label>
+          <input type="text" class="form-control" id="tagQ4" placeholder="{{questionnaire.tagQuestion4}}"
+            [(ngModel)]="questionnaire.tagQuestion4">
+        </div>
+      </div>
+      <!--/.row-->
+
+
+      <button type="button" class="btn btn-success" (click)=sauvegarderQuestionnaire() *ngIf="modeEditQuestionnaire">Modifier mes changements</button>
+      <button type="button" class="btn btn-info" (click)=nouveauQuestionnaire() *ngIf="modeEditQuestionnaire">Nouveau questionnaire</button>
+      <button type="button" class="btn btn-success" (click)=sauvegarderQuestionnaire() *ngIf="!modeEditQuestionnaire">Sauvegarder le questionnaire</button>
+      <button type="button" class="btn btn-danger" (click)=annuler() >Annuler</button>
+
+    </div>
+  </div>
+</div>
+<!--/.col-->

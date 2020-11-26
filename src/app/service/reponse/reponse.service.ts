@@ -12,6 +12,7 @@ export class ReponseService {
   headers = new HttpHeaders({'Content-Type': 'application/json'})
   reponses: Reponse[];
 constructor(private http: HttpClient) { }
+
 // Récupère une Reponse avec son id 
 getReponse(id:string) : Observable<Reponse>{
   return this.http
@@ -21,6 +22,12 @@ getReponse(id:string) : Observable<Reponse>{
 getReponseByIdConsultation(id:number) : Observable<Reponse>{
   return this.http
   .get<Reponse>(this.URL + '/idConsultation/' + id);
+}
+
+// Récupère une Reponse avec l'id de la consultation
+getReponsesQuestionnaire(id:any) : Observable<any>{
+  return this.http
+  .get<any>(this.URL + '/idQuestionnaire/' + id);
 }
 
 // Récupère la liste des Reponses  
