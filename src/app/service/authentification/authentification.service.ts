@@ -33,7 +33,7 @@ export class AuthentificationService {
           if (this.medecin.password === password) {
             sessionStorage.setItem('type', type);
             sessionStorage.setItem('user', JSON.stringify(this.medecin))
-            this.router.navigate(['/'])
+            this.router.navigate(['/' + type])
           } else {
           }
         })
@@ -46,7 +46,7 @@ export class AuthentificationService {
           if (this.patient.password === password) {
             sessionStorage.setItem('user', JSON.stringify(this.patient))
             sessionStorage.setItem('type', type);
-            this.router.navigate(['/'])
+            this.router.navigate(['/' + type])
           } else {
             this.alerteService.error("Echec de la connexion")
           }
@@ -60,7 +60,7 @@ export class AuthentificationService {
           if (this.admin.pwd === password) {
             sessionStorage.setItem('user', JSON.stringify(this.admin))
             sessionStorage.setItem('type', type);
-            this.router.navigate(['/'])
+            this.router.navigate(['/' + type])
           } else {
             this.alerteService.error("Echec de la connexion")
           }
