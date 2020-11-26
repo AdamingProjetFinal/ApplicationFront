@@ -20,7 +20,7 @@
                   </tr>
                   <tr *ngFor="let item of fichesSort">
                     <td>{{item.nom}}</td>
-                    <td>{{item.date}}</td>
+                    <td>{{item.date | date:'short'}}</td>
                     <td>{{item.antecedents}}</td>
                     <td>{{item.observations}}</td>
                     <td>

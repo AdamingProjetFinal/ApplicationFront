@@ -1,0 +1,69 @@
+<div class="animated fadeIn">
+  <div class="card-columns cols-2">
+
+    <!-- MEDECIN -->
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          Liste des médecins
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <table class="table tabler-bordered">
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Spécialité</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of listMedecins">
+              <td>{{item.id}}</td>
+              <td>{{item.nom}}</td>
+              <td>{{item.prenom}}</td>
+              <td>{{item.specialite.nom}}</td>
+              <td>
+                <button class="btn btn-warning">Détails</button>
+                <button class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PATIENTS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          Liste des patients
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <table class="table tabler-bordered">
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Numéro Sécu</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of listPatients">
+              <td>{{item.id}}</td>
+              <td>{{item.nom}}</td>
+              <td>{{item.prenom}}</td>
+              <td>{{item.numeroSecu}}</td>
+              <td>
+                <button class="btn btn-warning">Détails</button>
+                <button class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
