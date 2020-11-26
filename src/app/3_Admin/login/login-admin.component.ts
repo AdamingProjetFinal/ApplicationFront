@@ -2,7 +2,7 @@ import { AuthentificationService } from '../../service/authentification/authenti
 import { Component } from '@angular/core';
 
 @Component({ 
-  selector: 'app-dashboard',
+  selector: 'app-loginAdmin',
   templateUrl: 'login-admin.component.html'
 })
 export class LoginAdminComponent { 

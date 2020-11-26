@@ -3,9 +3,10 @@
     <ul class="nav navbar-nav ml-auto">
                     <!-- TODO asupprimer -->
                     <li>
-                        <span *ngIf="medecin"> MEDECIN</span>
-                        <span *ngIf="patient"> PATIENT</span>
-                        <span *ngIf="anonyme"> ANONYME</span>
+                        <span *ngIf="userLogged[0]"> ANONYME</span>
+                        <span *ngIf="userLogged[1]"> PATIENT</span>
+                        <span *ngIf="userLogged[2]"> MEDECIN</span>
+                        <span *ngIf="userLogged[3]"> ADMIN</span>
                     </li>
                     <!-- FIN -->
         
@@ -25,6 +26,7 @@
                 <a class="dropdown-item" href="#/login" *ngIf="!isUserLoggedIn"><i class="fa fa-lock" ></i> Login</a>
                 <button class="dropdown-item" (click)=fackloginMedecin() *ngIf="!isUserLoggedIn"><i class="fa fa-lock" ></i> Auto Log In Medecin</button>
                 <button class="dropdown-item" (click)=fackloginPatient() *ngIf="!isUserLoggedIn"><i class="fa fa-lock" ></i> Auto Log In Patient</button>
+                <button class="dropdown-item" (click)=fackloginAdmin() *ngIf="!isUserLoggedIn"><i class="fa fa-lock" ></i> Auto Log In Admin</button>
             </div>
         </li>
     </ul>
