@@ -2,7 +2,7 @@
     <div class="card-columns cols-2">
 
         <!-- Medecin-->
-        <div class="card">
+        <div class="card border-primary">
 
             <div class="card-header">
                 Consulter un médecin
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Consultations -->
-        <div class="card">
+        <div class="card border-success">
             <div class="card-header">
                 Mes Consulations
             </div>
@@ -80,11 +80,12 @@
                         </tr>
                     </table>
                 </div>
+
             </div>
         </div>
 
         <!-- Profil OK -->
-        <div class="card">
+        <div class="card border-danger">
             <div class="card-header">
                 Mon Profil
                 <div class="card-header-actions" style="height: 21px;">
@@ -100,40 +101,12 @@
         </div>
 
         <!-- TODO Calendar-->
-        <div class="card">
+        <div class="card border-warning">
             <div class="card-header">
                 Calendar
             </div>
 
-            <!-- <div id="calendar">
-          <full-calendar [options]="calendarOptions"></full-calendar>
-        </div>
 
-        <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-primary" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3 class="modal-title">Ajouter une spécialité</h3>
-                <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-
-              <div id="infos">
-                <p><b>duree de la consultation : </b>{{infos.dureeConsultation}} </p>
-                <p><b>note : </b>{{infos.note}} </p>
-                <p><b>deplacement: </b>{{infos.deplacement}} </p>
-                <p><b>Validation par le medecin : </b>{{infos.validationMedecin}} </p>
-              </div>
-              <div *ngIf="infos.validationMedecin==false" class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="valider()">Validation de la consultation</button>
-              </div>
-            </div>
-
-          </div>
-        </div> -->
 
             <div class="card-body">
                 <div class="chart-wrapper">
@@ -143,7 +116,7 @@
         </div>
 
         <!-- Fiches Medicales -->
-        <div class="card">
+        <div class="card border-info">
             <div class="card-header">
                 Mes Fiches Médicales
                 <div class="card-header-actions" style="height: 21px;">

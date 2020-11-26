@@ -16,6 +16,7 @@ export class FichesMedecinComponent implements OnInit {
   // Declaration des attributs
   patient: Patient = new Patient();
   fichesMedicales: FicheMedicale[] = new Array();
+  patientId: number;
 
 
   constructor(
@@ -34,6 +35,7 @@ export class FichesMedecinComponent implements OnInit {
           this.patientService.getPatient(id).subscribe(
             (response: any) => {
               this.patient = response.data;
+              this.patientId = this.patient.id;
             }
           )
           this.ficheService.getFichesByIdPatient(id).subscribe(

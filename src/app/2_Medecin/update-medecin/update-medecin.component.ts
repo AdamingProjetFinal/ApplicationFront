@@ -4,6 +4,7 @@ import { MedecinService } from './../../service/medecin/medecin.service';
 import { MedecinComponent } from './../../views/Medecin/Medecin.component';
 import { Medecin } from './../../model/Medecin';
 import { Component, OnInit } from '@angular/core';
+import { Adresse } from '../../model/Adresse';
 
 @Component({
   selector: 'app-update-medecin',
@@ -12,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateMedecinComponent implements OnInit {
   // Declaration des Attributs
-  medecin: Medecin;
+  medecin: Medecin = new Medecin();
   id: String;
 
   constructor(
@@ -23,10 +24,22 @@ export class UpdateMedecinComponent implements OnInit {
 
   ngOnInit() {
     this.medecin = this.authService.getUser();
+    this.getAdresse()
+  }
+
+  // Vérifie si l'utilisateur a une adresse sinon en crée une nouvelle 
+  getAdresse() {
+    if (!this.authService.getUser().adresse) {
+      this.medecin.adresse = new Adresse()
+    }
   }
 
   update() : void{
+    console.log(this.medecin);
+    
     this.medecinService.update(this.medecin).subscribe(response => {
+      this.authService.updateCurrentUser(this.medecin)
+
         this.router.navigate(['/medecin']);
     });
   }

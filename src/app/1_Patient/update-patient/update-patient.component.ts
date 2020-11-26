@@ -1,3 +1,4 @@
+import { Adresse } from './../../model/Adresse';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Patient } from '../../model/Patient';
@@ -17,6 +18,8 @@ export class UpdatePatientComponent implements OnInit {
   newPassWord : string
   newPassWordCheck : string
   oldPassWord : string
+
+  date:any
   
   constructor(
     private patientService: PatientService,
@@ -28,9 +31,19 @@ export class UpdatePatientComponent implements OnInit {
 
   ngOnInit() {
     this.patient = this.authService.getUser();
+    this.getAdresse()
+  }
+
+  // Vérifie si l'utilisateur a une adresse sinon en crée une nouvelle 
+  getAdresse() {
+    if (!this.authService.getUser().adresse) {
+      this.patient.adresse = new Adresse()
+    }
   }
 
   update() : void{
+    console.log(this.date);
+    
     if (this.oldPassWord == this.patient.password) {
       if (this.newPassWord == this.newPassWordCheck) {
         this.patient.password = this.newPassWord
@@ -42,6 +55,8 @@ export class UpdatePatientComponent implements OnInit {
       // TODO afficehr message ancien mot de passe incorrect
     }
     this.patientService.update(this.patient).subscribe(response => {
+      console.log(this.patient);
+      
       this.authService.updateCurrentUser(this.patient)
         this.router.navigate(['/patient']);
     });

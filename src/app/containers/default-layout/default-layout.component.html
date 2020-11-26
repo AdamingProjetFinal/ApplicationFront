@@ -1,6 +1,14 @@
 <app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}" [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
     [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
     <ul class="nav navbar-nav ml-auto">
+                    <!-- TODO asupprimer -->
+                    <li>
+                        <span *ngIf="medecin"> MEDECIN</span>
+                        <span *ngIf="patient"> PATIENT</span>
+                        <span *ngIf="anonyme"> ANONYME</span>
+                    </li>
+                    <!-- FIN -->
+        
         <li class="nav-item dropdown" dropdown placement="bottom right">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
                 <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />

@@ -24,6 +24,9 @@ export class DefaultLayoutComponent {
   public profil: string
   alertsDismiss: any = [];
   public navItems= navItems;
+  anonyme = true // TODO a supprimer
+  patient = false // TODO a supprimer
+  medecin = false // TODO a supprimer
   constructor(private router: Router,
     private authentificationService: AuthentificationService,
     private alerteService: AlerteService,
@@ -33,7 +36,23 @@ export class DefaultLayoutComponent {
   ngOnInit() {
     this.getLoggedIn()
     this.getProfilUrl()
-
+    switch (this.authentificationService.getType()) {
+      case "patient":
+        this.anonyme = false // TODO a supprimer
+        this.patient = true // TODO a supprimer
+        this.medecin = false // TODO a supprimer
+        break;
+      case "medecin":
+        this.anonyme = false // TODO a supprimer
+        this.patient = false // TODO a supprimer
+        this.medecin = true // TODO a supprimer
+        break;
+      default:
+        this.anonyme = true // TODO a supprimer
+        this.patient = false // TODO a supprimer
+        this.medecin = false // TODO a supprimer
+        break;
+    }
   }
 
   toggleMinimize(e) {
@@ -55,6 +74,9 @@ export class DefaultLayoutComponent {
     this.medecinService.getMedecins().subscribe(medecins => {
       this.authentificationService.authentification(medecins[0].email, medecins[0].password, "medecin")
       this.getLoggedIn()
+      this.anonyme = false // TODO a supprimer
+      this.patient = false // TODO a supprimer
+      this.medecin = true // TODO a supprimer
     })    
   }
 
@@ -63,6 +85,9 @@ export class DefaultLayoutComponent {
     this.patientService.getPatients().subscribe(patients => {
       this.authentificationService.authentification(patients[0].email, patients[0].password, "patient")
       this.getLoggedIn()
+      this.anonyme = false // TODO a supprimer
+      this.patient = true // TODO a supprimer
+      this.medecin = false // TODO a supprimer
     })
   }
   // permet de se déconnecter depuis le service d'authentification
@@ -70,6 +95,9 @@ export class DefaultLayoutComponent {
     this.authentificationService.logOut()
     this.getLoggedIn()
     this.alerteService.error("Déconnexion")
+    this.anonyme = true // TODO a supprimer
+    this.patient = false // TODO a supprimer
+    this.medecin = false // TODO a supprimer
   }
 
 }
