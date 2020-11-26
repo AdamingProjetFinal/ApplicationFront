@@ -5,7 +5,7 @@ import { UpdatePatientComponent } from './update-patient/update-patient.componen
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Imports components
 import { PatientRoutingModule } from './patient-routing.module';
@@ -29,7 +29,9 @@ import { ReponseQuestionnaireComponent } from './reponseQuestionnaire/reponseQue
     FormsModule,
     HttpClientModule,
     PatientRoutingModule,
-    TransfertModule
+    TransfertModule,
+    ReactiveFormsModule,
+FormsModule
   ]
 })
 

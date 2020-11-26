@@ -17,9 +17,9 @@ export class MedecinService {
 constructor(private http: HttpClient) { }
 
   // Récupère un medecin avec son id 
-  getMedecin(id:string){
+  getMedecin(id:any){
     return this.http
-    .get<Medecin>(this.URL + '/' + id);
+    .get<any>(this.URL + '/' + id);
   }
 
   // Récupère un patient avec son email 
@@ -56,4 +56,5 @@ constructor(private http: HttpClient) { }
   }
 
   // TODO rajouter les autres appel au back 
+  
 }
