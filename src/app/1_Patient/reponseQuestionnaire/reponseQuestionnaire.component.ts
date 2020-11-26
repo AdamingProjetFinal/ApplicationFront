@@ -39,7 +39,7 @@ export class ReponseQuestionnaireComponent implements OnInit {
 
   // TODO methode pour recupere le dernière questionnaire créé
   recupereQuestionnaire() {
-    this.questionnaireService.getQuestionnaire(1).subscribe((response: any) => {
+    this.questionnaireService.getLastQuestionnaire().subscribe((response: any) => {
       this.questionnaire = response.data
       this.questions.push(this.questionnaire.question1)
       this.questions.push(this.questionnaire.question2)

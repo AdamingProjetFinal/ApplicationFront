@@ -10,13 +10,15 @@ import { ChartsModule } from 'ng2-charts';
 
 
 import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
+import { GestionQuestionnairesComponent } from './gestion-questionnaires/gestion-questionnaires.component';
 
 @NgModule({
   // Ajouter chaque composant de patient
   declarations: [
     AccueilAdminComponent,
     StatistiqueQuestionnaireComponent,
-    AraigneeComponent
+    AraigneeComponent,
+    GestionQuestionnairesComponent
   ],
 
   imports: [
