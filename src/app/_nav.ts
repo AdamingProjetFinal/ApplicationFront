@@ -8,12 +8,6 @@ export const navItems: INavData[] = [
   },
 
   {
-    name: 'Colors',
-    url: '/base/cards',
-    icon: 'icon-drop'
-  },
-
-  {
     name: 'Login',
     url: '/login',
     icon: 'icon-star'
@@ -23,23 +17,18 @@ export const navItems: INavData[] = [
     name: 'Medecin',
     url: '/medecin',
     icon: 'fa fa-user-md',
-  children: [
-    {
-      name: 'Mise à jour',
-      url: '/medecin/update/1',
-      icon: 'fa fa-user-md'
-    },
-    {
-      name: 'Liste des Médecins',
-      url: '/medecin/list',
-      icon: 'icon-list'
-    },
-    {
-      name: 'Planning',
-      url: '/medecin/planning',
-      icon: 'icon-list'
-    }
-  
+    children: [
+      {
+        name: 'Home',
+        url: '',
+        icon: 'fa fa-user-md'
+      },
+
+      {
+        name: 'Update',
+        url: '/update',
+        icon: 'icon-list'
+      },
   ]
   },
   
@@ -49,15 +38,16 @@ export const navItems: INavData[] = [
     icon: 'fa fa-user',
     children: [
       {
-        name: 'Mise à jour',
-        url: '/patient/update/1',
+        name: 'Home',
+        url: '',
         icon: 'fa fa-user'
       },
       
       {
-        name: 'Liste des Patients',
-        url: '/patient/list',
+        name: 'Update',
+        url: '/update',
         icon: 'icon-list'
-      }]
+      }
+    ]
   }
 ];

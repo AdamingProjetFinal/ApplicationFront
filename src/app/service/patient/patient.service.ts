@@ -15,7 +15,7 @@ export class PatientService {
 constructor(private http: HttpClient) { }
 
   // Récupère un patient avec son id de type string
-  getPatient(id:string){
+  getPatient(id: any){
     return this.http
     .get<Patient>(this.URL + '/' + id);
   }

@@ -1,3 +1,4 @@
+import { AddFichesMedecinComponent } from './addFiches-medecin/addFiches-medecin.component';
 import { FichesMedecinComponent } from './fiches-medecin/fiches-medecin.component';
 import { PatientsMedecinComponent } from './patients-medecin/patients-medecin.component';
 import { UpdateMedecinComponent } from './update-medecin/update-medecin.component';
@@ -31,7 +32,8 @@ FullCalendarModule.registerPlugins([
     AccueilMedecinComponent,
     UpdateMedecinComponent,
     PatientsMedecinComponent,
-    FichesMedecinComponent
+    FichesMedecinComponent,
+    AddFichesMedecinComponent
  
   ],
 
