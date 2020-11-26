@@ -1,4 +1,5 @@
 import { LoginAdminComponent } from './login/login-admin.component';
+import { UsersAdminComponent } from './users-admin/users-admin.component';
 import { StatistiqueQuestionnaireComponent } from './statistique-questionnaire/statistique-questionnaire.component';
 import { NgModule } from '@angular/core';
 import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
@@ -10,7 +11,8 @@ const adminRoutes: Routes = [
   { path: '', component: AccueilAdminComponent, data: { title: "Admin" } },
   { path: "statistique", component: StatistiqueQuestionnaireComponent, data: { title: "Statistiques détaillées" } },
   { path: "questionnaire", component: GestionQuestionnairesComponent, data: { title: "Gestion des questionnaires" } },
-  { path: "login", component: LoginAdminComponent, data: { title: "Login" } }
+  { path: "login", component: LoginAdminComponent, data: { title: "Login" } },
+  { path: 'users', component: UsersAdminComponent, data: { title: "Gestion des utilisateurs"} }
 
 
 ];

@@ -1,4 +1,5 @@
 import { LoginAdminComponent } from './login/login-admin.component';
+import { UsersAdminComponent } from './users-admin/users-admin.component';
 import { TransfertModule } from './../transfert/transfert/transfert.module';
 import { AraigneeComponent } from './../views/Araignee/Araignee.component';
 import { StatistiqueQuestionnaireComponent } from './statistique-questionnaire/statistique-questionnaire.component';
@@ -20,7 +21,8 @@ import { GestionQuestionnairesComponent } from './gestion-questionnaires/gestion
     StatistiqueQuestionnaireComponent,
     AraigneeComponent,
     GestionQuestionnairesComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    UsersAdminComponent
   ],
 
   imports: [

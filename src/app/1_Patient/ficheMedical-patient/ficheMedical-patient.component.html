@@ -1,35 +1,60 @@
 <div class="animated fadeIn">
-  <div class="card border-info">
-      <div class="card-header">
-          Mes Fiches Médicales
-          <div class="card-header-actions" style="height: 21px;">
-            <button class="btn btn-info btn-sm" [routerLink]="['/patient']"
-            routerLinkActive="router-link-active">Retour</button>
-          </div>
-      </div>
-      <div class="card-body">
-          <div class="chart-wrapper">
+    <div class="card border-info">
+        <div class="card-header">
+            Mes Fiches Médicales
+            <div class="card-header-actions" style="height: 21px;">
+                <button class="btn btn-info btn-sm" [routerLink]="['/patient']" routerLinkActive="router-link-active">Retour</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="chart-wrapper">
                 <p *ngIf="indiceFiche1">Aucunes fiches médicales présentes</p>
                 <table class="table tabler-bordered" *ngIf="indiceFiche2">
-                  <tr>
-                    <th>Nom</th>
-                    <th>Date</th>
-                    <th>Antecedents</th>
-                    <th>Observations</th>
-                    <th>Action</th>
-                  </tr>
-                  <tr *ngFor="let item of fichesSort">
-                    <td>{{item.nom}}</td>
-                    <td>{{item.date}}</td>
-                    <td>{{item.antecedents}}</td>
-                    <td>{{item.observations}}</td>
-                    <td>
-                      <!-- Bouton télécharger fiche médicale TODO-->
-                      <button class="btn btn-warning">Download</button>
-                    </td>
-                  </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Date</th>
+                        <th>Antecedents</th>
+                        <th>Observations</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr *ngFor="let item of fichesSort">
+                        <td>{{item.nom}}</td>
+                        <td>{{item.date| date :short}}</td>
+                        <td>{{item.antecedents}}</td>
+                        <td>{{item.observations}}</td>
+                        <td>
+                            <!-- Bouton télécharger fiche médicale TODO-->
+                            <button class="btn btn-warning" (click)="selectFiche(item)">détails de la fiche</button>
+                        </td>
+                    </tr>
                 </table>
-          </div>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="select" id="details">
+        <div id="ficheMedicale">
+            <div class="card">
+                <div class="card-header">
+                    Fiche médicale
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom</h5>
+                    <p class="card-text"> {{ficheMedicale.nom}}</p>
+                    <h5 class="card-title">Date</h5>
+                    <p class="card-text"> {{ficheMedicale.date|date :short}}</p>
+                    <h5 class="card-title">Antécédents</h5>
+                    <p class="card-text"> {{ficheMedicale.antecedents}}</p>
+                    <h5 class="card-title">Observations</h5>
+                    <p class="card-text"> {{ficheMedicale.observations}}</p>
+                </div>
+            </div>
+
+        </div>
+        <button class="btn btn-warning" (click)="download()" style="display: block;">Télécharger</button>
+
+
+
+    </div>
+
 </div>

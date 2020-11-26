@@ -1,0 +1,237 @@
+<div class="animated fadeIn">
+  <div class="card-columns cols-2">
+
+    <!-- MEDECIN -->
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          Liste des médecins
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <table class="table tabler-bordered">
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Spécialité</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of listMedecins">
+              <td>{{item.id}}</td>
+              <td>{{item.nom}}</td>
+              <td>{{item.prenom}}</td>
+              <td>{{item.specialite.nom}}</td>
+              <td>
+                <button class="btn btn-warning" (click)="showModalUpdateMedecin(item.id)">Détails</button>
+                <button class="btn btn-danger" (click)="showModalDeleteMedecin(item.id)">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PATIENTS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          Liste des patients
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <table class="table tabler-bordered">
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Numéro Sécu</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of listPatients">
+              <td>{{item.id}}</td>
+              <td>{{item.nom}}</td>
+              <td>{{item.prenom}}</td>
+              <td>{{item.numeroSecu}}</td>
+              <td>
+                <button class="btn btn-warning" (click)="showModalUpdatePatient(item.id)">Détails</button>
+                <button class="btn btn-danger" (click)="showModalDeletePatient(item.id)">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Delete Medecin -->
+<div bsModal #deleteMedecinModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="deleteMedecinLabel" aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Suppression du compte</h1>
+        <button type="button" class="close" (click)="deleteMedecinModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de bien vouloir supprimer votre compte ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="deleteMedecinModal.hide()">Non, annuler</button>
+        <button type="button" class="btn btn-danger" (click)="deleteMedecin()">Oui, supprimer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Delete Patient -->
+<div bsModal #deletePatientModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="deletePatientLabel" aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Suppression du compte</h1>
+        <button type="button" class="close" (click)="deletePatientModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de bien vouloir supprimer votre compte ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="deletePatientModal.hide()">Non, annuler</button>
+        <button type="button" class="btn btn-danger" (click)="deletePatient()">Oui, supprimer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Mod Patient -->
+<div bsModal #updatePatientModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="updatePatientLabel" aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Détails du Patient: {{patient.nom}} {{patient.prenom}}</h1>
+        <button type="button" class="close" (click)="updatePatientModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Pseudo">Pseudo</label>
+          <input type="text" class="form-control" id="company" placeholder="{{patient.username}}"
+          [(ngModel)]="patient.username">
+        </div>
+
+        <div class="form-group">
+          <label for="Nom">Nom</label>
+          <input type="text" class="form-control" id="name" placeholder="{{patient.nom}}"
+          [(ngModel)]="patient.nom">
+        </div>
+
+        <div class="form-group">
+          <label for="Prenom">Prenom</label>
+          <input type="text" class="form-control" id="firstname" placeholder="{{patient.prenom}}"
+          [(ngModel)]="patient.prenom">
+        </div>
+
+        <div class="form-group">
+            <label for=" Email">Email</label>
+          <input type="text" class="form-control" id="email" placeholder="{{patient.email}}"
+            [(ngModel)]="patient.email">
+        </div>
+
+        <div class="form-group">
+          <label for="Date-naissance">Date de naissance</label>
+          <input type="text" class="form-control" id="date-naissance" placeholder="{{patient.dateNaissance}}"
+            [(ngModel)]="patient.dateNaissance">
+        </div>
+
+        <div class="form-group">
+          <label for="Telephone">Telephone</label>
+          <input type="text" class="form-control" id="postal-code" placeholder="{{patient.telephone}}"
+            [(ngModel)]="patient.telephone">
+        </div>
+
+        <div class="form-group">
+          <label for="NumeroSecu">N°Secu</label>
+          <input type="number" class="form-control" id="numeroSecu" placeholder="{{patient.numeroSecu}}"
+            [(ngModel)]="patient.numeroSecu">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="updatePatientModal.hide()">Retour</button>
+        <button type="button" class="btn btn-danger" (click)="updatePatient()">Modifier le profil</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Mod Medecin -->
+<div bsModal #updateMedecinModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="updateMedecinLabel" aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Détails du Médecin: {{medecin.nom}} {{medecin.prenom}}</h1>
+        <button type="button" class="close" (click)="updateMedecinModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Pseudo">Pseudo</label>
+          <input type="text" class="form-control" id="company" placeholder="{{medecin.username}}"
+          [(ngModel)]="medecin.username">
+        </div>
+
+        <div class="form-group">
+          <label for="Nom">Nom</label>
+          <input type="text" class="form-control" id="name" placeholder="{{medecin.nom}}"
+          [(ngModel)]="medecin.nom">
+        </div>
+
+        <div class="form-group">
+          <label for="Prenom">Prenom</label>
+          <input type="text" class="form-control" id="firstname" placeholder="{{medecin.prenom}}"
+          [(ngModel)]="medecin.prenom">
+        </div>
+
+        <div class="form-group">
+            <label for=" Email">Email</label>
+          <input type="text" class="form-control" id="email" placeholder="{{medecin.email}}"
+            [(ngModel)]="medecin.email">
+        </div>
+
+        <div class="form-group">
+          <label for="Date-naissance">Date de naissance</label>
+          <input type="text" class="form-control" id="date-naissance" placeholder="{{medecin.dateNaissance}}"
+            [(ngModel)]="medecin.dateNaissance">
+        </div>
+
+        <div class="form-group">
+          <label for="Telephone">Telephone</label>
+          <input type="text" class="form-control" id="postal-code" placeholder="{{medecin.telephone}}"
+            [(ngModel)]="medecin.telephone">
+        </div>
+
+        <div class="form-group">
+          <label for="PrixConsultation">Prix de la consultation</label>
+          <input type="number" class="form-control" id="prixConsultation" placeholder="{{medecin.prixConsultation}}"
+            [(ngModel)]="medecin.prixConsultation">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="updateMedecinModal.hide()">Retour</button>
+        <button type="button" class="btn btn-danger" (click)="updateMedecin()">Modifier l'utilisateur</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
