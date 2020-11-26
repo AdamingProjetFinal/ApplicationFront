@@ -2,7 +2,7 @@
   <div class="card-columns cols-2">
 
     <!-- Profil -->
-    <div class="card">
+    <div class="card border-info">
       <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
           Mot de passe
@@ -17,13 +17,13 @@
       </div>
     </div>
 
-    <!-- Questionnaire -->
-    <div class="card">
+    <!-- Resultat Questionnaire -->
+    <div class="card border-primary">
       <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
           Questionnaire de satisfaction
           <div class="card-header-actions">
-            <a href="#/admin/statistique" class="btn btn-info">Consulter</a>
+            <a href="#/admin/statistique" class="btn btn-info">Voir les détails</a>
           </div>
         </div>
       </div>
@@ -33,22 +33,41 @@
     </div>
 
     <!-- Editer un questionnaire -->
-    <div class="card">
+    <div class="card border-danger">
       <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
           Editer questionnaire de satisfaction
           <div class="card-header-actions">
-            <a href="#/admin/questionnaire" class="btn btn-info">Consulter</a>
+            <a href="#/admin/questionnaire" class="btn btn-info">Editer</a>
           </div>
         </div>
       </div>
 
       <div class="card-body">
+        <div>
+          <h3> <u class="mr-3"> Question 1 : </u> <b>{{questionnaire.tagQuestion1}}</b></h3>
+          {{questionnaire.question1}}
+        </div>
+        <hr>
+        <div>
+          <h3> <u class="mr-3"> Question 2 : </u> <b>{{questionnaire.tagQuestion2}}</b></h3>
+          {{questionnaire.question2}}
+        </div>
+        <hr>
+        <div>
+          <h3> <u class="mr-3"> Question 3 : </u> <b>{{questionnaire.tagQuestion1}}</b></h3>
+          {{questionnaire.question3}}
+        </div>
+        <hr>
+        <div>
+          <h3> <u class="mr-3"> Question 4 : </u> <b>{{questionnaire.tagQuestion1}}</b></h3>
+          {{questionnaire.question4}}
+        </div>
       </div>
     </div>
 
     <!-- Gérer utilisateurs -->
-    <div class="card">
+    <div class="card border-warning">
       <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
           Gérer les utilisateurs

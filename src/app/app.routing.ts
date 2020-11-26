@@ -37,16 +37,15 @@ export const routes: Routes = [
 
   
   { 
-    path: '', component: DefaultLayoutComponent, data: { title: 'Home' },
+    path: '', component: DefaultLayoutComponent,
     children: [
       { path: 'patient', loadChildren: () => import('./1_Patient/patient.module').then(m => m.PatientModule),
-        data: { title: "Patient-Home"}, canActivate: [ PatientGuardService] },
+        canActivate: [ PatientGuardService] },
 
       { path: 'medecin', loadChildren: () => import('./2_Medecin/medecin.module').then(m => m.MedecinModule),
-        data: {title: "Medecin-Home"}, canActivate: [ MedecinGuardService] },
+        canActivate: [ MedecinGuardService] },
 
-      { path: 'admin', loadChildren: () => import('./3_Admin/admin.module').then(m => m.AdminModule),
-        data: {title: "Admin-Home"}, canActivate: [ AdminGuardService] }
+      { path: 'admin', loadChildren: () => import('./3_Admin/admin.module').then(m => m.AdminModule) }
     ]
   },
   

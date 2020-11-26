@@ -8,17 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accueil-admin.component.scss']
 })
 export class AccueilAdminComponent implements OnInit {
-
+  questionnaire : Questionnaire = new Questionnaire
   constructor(
     private questionnaireService : QuestionnaireService
     ) { }
 
   ngOnInit() {
-
+    this.recupererQuestionnaire()
   }
 
   recupererQuestionnaire() {
-
+    this.questionnaireService.getLastQuestionnaire().subscribe((response: any) => {
+      this.questionnaire = response.data
+    })
   }
 
 }

@@ -8,10 +8,13 @@ import { AccueilPatientComponent } from './accueil-patient/accueil-patient.compo
 
 const patientRoutes: Routes = [
   
-  { path: '', component: AccueilPatientComponent },
-  { path: 'update', component: UpdatePatientComponent },
-  {path: 'consulterMedecin', component:ConsulterMedecinComponent},
-  { path: 'fiches', component: FicheMedicalPatientComponent }
+  {
+    path: '', data: { title: "Accueil" }, children: [
+      { path: '', component: AccueilPatientComponent },
+      { path: 'update', data: { title: "mise à jour" } ,component: UpdatePatientComponent },
+      { path: 'consulterMedecin', data: { title: "Consultations" } ,component: ConsulterMedecinComponent },
+      { path: 'fiches', data: { title: "Fiches Médicales" } ,component: FicheMedicalPatientComponent }]
+  }
 ];
 
 @NgModule({
