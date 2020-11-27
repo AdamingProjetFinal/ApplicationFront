@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class MedecinService {
-  URL = 'http://localhost:5050/gestion-rdv-microservice/medecin'; // TODO mettre la bonne url
+  URL = 'http://localhost:5050/gestion-rdv-microservice/medecin';
 
   medecins : Medecin[] = []
   
@@ -54,7 +54,4 @@ constructor(private http: HttpClient) { }
   getAllPatients(id: any) {
     return this.http.get<Patient[]>(this.URL + '/patients/' + id);
   }
-
-  // TODO rajouter les autres appel au back 
-  
 }

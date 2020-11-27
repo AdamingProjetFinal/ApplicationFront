@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PatientService {
-  URL = 'http://localhost:5050/gestion-rdv-microservice/patient'; // TODO mettre la bonne url
+  URL = 'http://localhost:5050/gestion-rdv-microservice/patient';
   patients :Patient[] = []
   patient :Patient = new Patient
   headers = new HttpHeaders({'Content-Type': 'application/json'})

@@ -11,7 +11,4 @@ export class Consultation {
     medecin: Medecin;
     patient: Patient;
     prixTTC: number;
-
-
-    // TODO Vérifier les champs
 }

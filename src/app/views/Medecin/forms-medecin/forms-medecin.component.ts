@@ -62,12 +62,7 @@ export class FormsMedecinComponent implements OnInit {
         this.specialiteId = (this.medecin.specialite ?  this.medecin.specialite.idSpecialite : -1) 
       })
     })
-  }
-  // TODO unsbcribe
-  // ngOndestroy (){
-
-  // }
- 
+  } 
 
   update() : void{
     // Permet d'associer un objet Specialite à medecin.specialité (impossible de renvoyer un objet spécialité depuis le formulaire)

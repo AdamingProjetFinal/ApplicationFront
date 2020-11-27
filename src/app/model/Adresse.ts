@@ -5,8 +5,4 @@ export class Adresse {
     cp:string;
     ville:string;
     complement:string;
-
-
-
-    // TODO vérifier les champs
 }

@@ -9,5 +9,4 @@ export class Questionnaire {
     tagQuestion3:string;
     question4:string;
     tagQuestion4:string;
-    // TODO vérifier les champs
 }

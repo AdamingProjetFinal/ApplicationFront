@@ -8,5 +8,4 @@ export class Reponse {
     reponse2:number;
     reponse3:number;
     reponse4:number;
-    // TODO vérifier les champs
 }

@@ -8,7 +8,7 @@
         <input type="text" class="form-control" [formControl]="filter" placeholder="Rechercher un médecin">
       </div>
       <div class="form-group col-sm-4">
-        <select class="form-control" placeholder="Specialite" [formControl]="filterSpe"><!-- TODO remplacer les champs placeholder et ngmodel -->
+        <select class="form-control" placeholder="Specialite" [formControl]="filterSpe">
           <option value=""></option>
           <option *ngFor="let specialite of listSpecialites$ | async" value="{{specialite.nom}}">{{specialite.nom}}</option>
         </select>

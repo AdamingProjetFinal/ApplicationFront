@@ -28,7 +28,7 @@ export class AuthentificationService {
     switch (type) {
       case "medecin": {
         console.log("Connexion en tant que medecin");
-        this.medecinService.getMedecinByEmail(email).subscribe((value: any) => { // TODO remplacer par la recherche par email
+        this.medecinService.getMedecinByEmail(email).subscribe((value: any) => { 
           this.medecin = value.data
           if (this.medecin.password === password) {
             sessionStorage.setItem('type', type);
@@ -80,7 +80,7 @@ export class AuthentificationService {
     return !(sessionStorage.getItem('user') == null);
   }
 
-  // Récupère l'Id de l'utilisateur  //TODO à supprimer ?
+  // Récupère l'Id de l'utilisateur  
   getUserId() {
     let user = JSON.parse(sessionStorage.getItem('user'))
     if (user != null) {

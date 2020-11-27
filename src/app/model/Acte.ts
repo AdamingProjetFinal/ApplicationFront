@@ -3,7 +3,4 @@ export class Acte {
     id:number;
     nom:string;
     prix:number;
-
-
-    // TODO vérifier les champs
 }
