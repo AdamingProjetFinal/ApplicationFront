@@ -7,14 +7,18 @@ import { AccueilMedecinComponent } from './accueil-medecin/accueil-medecin.compo
 
 const medecinRoutes: Routes = [
 
-  { path: '', component: AccueilMedecinComponent  },
-  { path: 'update', component: UpdateMedecinComponent },
-  { path: 'patients', component: PatientsMedecinComponent },
-  { path: 'fiches', component: FichesMedecinComponent }
+  {
+    path: '', data: { title: "Accueil" }, children: [
+      { path: '', component: AccueilMedecinComponent },
+      { path: 'update', data: { title: "mise à jour" }, component: UpdateMedecinComponent },
+      { path: 'patients', data: { title: "Patients" }, component: PatientsMedecinComponent },
+      { path: 'fiches', data: { title: "Fiches Médicales" }, component: FichesMedecinComponent }
+    ]
+  }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(medecinRoutes)],
+  imports: [RouterModule.forChild(medecinRoutes)],
 
   exports: [RouterModule]
 })

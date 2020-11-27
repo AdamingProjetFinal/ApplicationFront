@@ -1,3 +1,4 @@
+import { AdminService } from './../../service/admin/admin.service';
 
 import { Subscription } from 'rxjs';
 import { PatientService } from './../../service/patient/patient.service';
@@ -24,6 +25,8 @@ export class DefaultLayoutComponent {
   public profil: string
   alertsDismiss: any = [];
   public navItems= navItems;
+  //                        anonnyme  Patient   Medecin   Admin
+  userLogged : boolean[] = [true,     false,    false,    false]
   anonyme = true // TODO a supprimer
   patient = false // TODO a supprimer
   medecin = false // TODO a supprimer
@@ -31,6 +34,7 @@ export class DefaultLayoutComponent {
     private authentificationService: AuthentificationService,
     private alerteService: AlerteService,
     private medecinService: MedecinService,
+    private adminService: AdminService,
     private patientService: PatientService) { }
 
   ngOnInit() {
@@ -38,19 +42,20 @@ export class DefaultLayoutComponent {
     this.getProfilUrl()
     switch (this.authentificationService.getType()) {
       case "patient":
-        this.anonyme = false // TODO a supprimer
-        this.patient = true // TODO a supprimer
-        this.medecin = false // TODO a supprimer
+        //                anonnyme  Patient   Medecin   Admin
+        this.userLogged= [false,    true,     false,    false]
         break;
       case "medecin":
-        this.anonyme = false // TODO a supprimer
-        this.patient = false // TODO a supprimer
-        this.medecin = true // TODO a supprimer
+        //                anonnyme  Patient   Medecin   Admin
+        this.userLogged= [false,    false,    true,    false]
         break;
+      case "admin":
+        //                anonnyme  Patient   Medecin   Admin
+        this.userLogged= [false,    false,    false,    true]
+      break;
       default:
-        this.anonyme = true // TODO a supprimer
-        this.patient = false // TODO a supprimer
-        this.medecin = false // TODO a supprimer
+        //                anonnyme  Patient   Medecin   Admin
+        this.userLogged= [true,     false,    false,    false]
         break;
     }
   }
@@ -74,9 +79,8 @@ export class DefaultLayoutComponent {
     this.medecinService.getMedecins().subscribe(medecins => {
       this.authentificationService.authentification(medecins[0].email, medecins[0].password, "medecin")
       this.getLoggedIn()
-      this.anonyme = false // TODO a supprimer
-      this.patient = false // TODO a supprimer
-      this.medecin = true // TODO a supprimer
+      //                anonnyme  Patient   Medecin   Admin
+      this.userLogged= [false,    false,    true,    false]
     })    
   }
 
@@ -85,9 +89,17 @@ export class DefaultLayoutComponent {
     this.patientService.getPatients().subscribe(patients => {
       this.authentificationService.authentification(patients[0].email, patients[0].password, "patient")
       this.getLoggedIn()
-      this.anonyme = false // TODO a supprimer
-      this.patient = true // TODO a supprimer
-      this.medecin = false // TODO a supprimer
+      //                anonnyme  Patient   Medecin   Admin
+      this.userLogged= [false,    true,     false,    false]
+    })
+  }
+  // TODO a supprimer permet de se connecter en un clic
+  fackloginAdmin() {
+    this.adminService.getAdmin('1').subscribe((reponse :any) => {
+      this.authentificationService.authentification(reponse.data.login, reponse.data.pwd, "admin")
+      this.getLoggedIn()
+      //                anonnyme  Patient   Medecin   Admin
+      this.userLogged= [false,    false,    false,    true]
     })
   }
   // permet de se déconnecter depuis le service d'authentification
@@ -95,9 +107,8 @@ export class DefaultLayoutComponent {
     this.authentificationService.logOut()
     this.getLoggedIn()
     this.alerteService.error("Déconnexion")
-    this.anonyme = true // TODO a supprimer
-    this.patient = false // TODO a supprimer
-    this.medecin = false // TODO a supprimer
+    //                anonnyme  Patient   Medecin   Admin
+    this.userLogged= [true,     false,    false,    false]
   }
 
 }

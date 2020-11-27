@@ -65,23 +65,22 @@ export class AraigneeComponent implements OnInit {
     })
   }
   initialiserMoyene() {
-    
+
     this.questionnaire$.subscribe((response: any) => {
-      console.log(response.data.id);
       this.reponseService.getReponsesQuestionnaire(response.data.id)
-      .subscribe((value: any[]) => {
-        this.reponses = value
-        this.radarChartData[0].data = [
-          this.reponses.reduce((acc, cur) => acc + cur.reponse1, 0) / this.reponses.length,
-          this.reponses.reduce((acc, cur) => acc + cur.reponse2, 0) / this.reponses.length,
-          this.reponses.reduce((acc, cur) => acc + cur.reponse3, 0) / this.reponses.length,
-          this.reponses.reduce((acc, cur) => acc + cur.reponse4, 0) / this.reponses.length
-        ]
-        this.radarChartData[0].label = "Réponses moyennes"
-      });
+        .subscribe((value: any[]) => {
+          this.reponses = value
+          this.radarChartData[0].data = [
+            this.reponses.reduce((acc, cur) => acc + cur.reponse1, 0) / this.reponses.length,
+            this.reponses.reduce((acc, cur) => acc + cur.reponse2, 0) / this.reponses.length,
+            this.reponses.reduce((acc, cur) => acc + cur.reponse3, 0) / this.reponses.length,
+            this.reponses.reduce((acc, cur) => acc + cur.reponse4, 0) / this.reponses.length
+          ]
+          this.radarChartData[0].label = "Réponses moyennes"
+        });
     })
 
-    
+
   }
 
 
@@ -90,24 +89,26 @@ export class AraigneeComponent implements OnInit {
     this.consultationService.getConsultationsByIdMedecin(idMed).subscribe(listConsult => {
       this.listId = listConsult.map(consult => consult.id)
       // récupérer les reponse en base
-      this.reponseService.getReponses().subscribe((value: any[]) => {
-        // filtrer pour ne garder que les reponses concernant le médecin choisi
-        let listFiltreQuastionnaire: any[] = []
-        this.medecinService.getMedecin(idMed.toString()).subscribe((reponse: any) => {
-          this.radarChartData[1].label = "Réponse pour le medecin : " + reponse.data.nom
+      this.questionnaire$.subscribe((response: any) => {
+        this.reponseService.getReponsesQuestionnaire(response.data.id).subscribe((value: any[]) => {
+          // filtrer pour ne garder que les reponses concernant le médecin choisi
+          let listFiltreQuastionnaire: any[] = []
+          this.medecinService.getMedecin(idMed.toString()).subscribe((reponse: any) => {
+            this.radarChartData[1].label = "Réponse pour le medecin : " + reponse.data.nom
 
-          listFiltreQuastionnaire = value.filter(a => this.listId.includes(a.idConsultation))
-          // faire la compilation des données pour chaque question
-          this.radarChartData[1].data = [
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse1, 0) / listFiltreQuastionnaire.length,
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse2, 0) / listFiltreQuastionnaire.length,
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse3, 0) / listFiltreQuastionnaire.length,
-            listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse4, 0) / listFiltreQuastionnaire.length,
-          ]
+            listFiltreQuastionnaire = value.filter(a => this.listId.includes(a.idConsultation))
+            // faire la compilation des données pour chaque question
+            this.radarChartData[1].data = [
+              listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse1, 0) / listFiltreQuastionnaire.length,
+              listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse2, 0) / listFiltreQuastionnaire.length,
+              listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse3, 0) / listFiltreQuastionnaire.length,
+              listFiltreQuastionnaire.reduce((acc, cur) => acc + cur.reponse4, 0) / listFiltreQuastionnaire.length,
+            ]
 
-        }
-        )
-      });
+          }
+          )
+        });
+      })
     })
   }
 

@@ -22,7 +22,6 @@ export class GestionQuestionnairesComponent implements OnInit {
     this.recuperationQuestionnaire()
   }
 
-  // TODO recuperer le dernier questionnaire
   recuperationQuestionnaire(){
     this.questionnaireService.getLastQuestionnaire().subscribe((reponse : any) => {
       this.questionnaire = reponse.data

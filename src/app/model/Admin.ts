@@ -3,5 +3,4 @@ export class Admin {
     id:number;
     login:string;
     pwd:string;
-    // TODO vérifier les champs
 }

@@ -31,6 +31,4 @@ constructor(private http: HttpClient) { }
   delete(id: any) {
     return this.http.delete(this.URL + '/' + id);
   }
-
-  // TODO rajouter les autres appel au back 
 }

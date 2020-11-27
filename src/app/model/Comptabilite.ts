@@ -5,6 +5,4 @@ export class Comptabilite {
     frais:number; // Taxe x prixCons
     gain:number; //  prixCons*Taxe/(1+Taxe)
     date:Date
-
-        // TODO vérifier les champs
 }

@@ -1,3 +1,5 @@
+import { MedecinGuardService } from './service/guard/medecin-guard.service';
+import { PatientGuardService } from './service/guard/patient-guard.service';
 import { ConsulterMedecinComponent } from './1_Patient/consulter-medecin/consulter-medecin.component';
 import { Consultation } from './model/Consultation';
 import { PlanningComponent } from './views/Medecin/planning/planning.component';
@@ -19,6 +21,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { AdminGuardService } from './service/guard/admin-guard.service';
 
 export const routes: Routes = [
   
@@ -34,16 +37,15 @@ export const routes: Routes = [
 
   
   { 
-    path: '', component: DefaultLayoutComponent, data: { title: 'Home' },
+    path: '', component: DefaultLayoutComponent,
     children: [
       { path: 'patient', loadChildren: () => import('./1_Patient/patient.module').then(m => m.PatientModule),
-        data: { title: "Patient-Home"} },
+        canActivate: [ PatientGuardService] },
 
       { path: 'medecin', loadChildren: () => import('./2_Medecin/medecin.module').then(m => m.MedecinModule),
-        data: {title: "Medecin-Home"} },
+        canActivate: [ MedecinGuardService] },
 
-      { path: 'admin', loadChildren: () => import('./3_Admin/admin.module').then(m => m.AdminModule),
-        data: {title: "Admin-Home"} }
+      { path: 'admin', loadChildren: () => import('./3_Admin/admin.module').then(m => m.AdminModule) }
     ]
   },
   

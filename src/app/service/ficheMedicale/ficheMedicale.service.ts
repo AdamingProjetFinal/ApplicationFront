@@ -8,7 +8,7 @@ import { FicheMedicale } from '../../model/FicheMedicale';
 })
 export class FicheMedicaleService {
 
-  URL = 'http://localhost:5050/gestion-rdv-microservice/ficheMedicale'; // TODO mettre la bonne url
+  URL = 'http://localhost:5050/gestion-rdv-microservice/ficheMedicale';
   headers = new HttpHeaders({'Content-Type': 'application/json'})
 constructor(private http: HttpClient) { }
 

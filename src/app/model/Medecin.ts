@@ -14,12 +14,8 @@ export class Medecin {
     dateNaissance:Date;
     telephone:string;
     codePublic: string;
-    adresse:Adresse;// TODO creer un model adresse 
+    adresse:Adresse;
     specialite: Specialite;
     consultations: Consultation[];
     patients: Patient[];
-
-
-
-    // TODO finir les champs
 }

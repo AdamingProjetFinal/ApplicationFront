@@ -17,8 +17,5 @@ export class Patient {
     numeroSecu: string;
     medecin: Medecin;
     listFiches: FicheMedicale[];
-
-
-    // TODO vérifier les champs
 }
 
