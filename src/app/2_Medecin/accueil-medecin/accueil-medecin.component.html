@@ -59,9 +59,11 @@
         <!-- Profil -->
         <div class="card border-danger">
             <div class="card-header">
-                Mon Profil
-                <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-warning btn-sm" [routerLink]="['/medecin/update']" routerLinkActive="router-link-active">Modifier</button>
+                <div class="d-flex align-items-center justify-content-between">
+                    Mon Profil
+                    <div class="card-header-actions">
+                        <a href="#/medecin/update" class="btn btn-warning">Modifier</a>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -74,9 +76,11 @@
         <!-- Fiches Medicales -->
         <div class="card border-info">
             <div class="card-header">
-                Mes Futurs Patients
-                <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-success btn-sm" [routerLink]="['/medecin/patients']" routerLinkActive="router-link-active">Mes Patients</button>
+                <div class="d-flex align-items-center justify-content-between">
+                    Mes Futurs Patients
+                    <div class="card-header-actions">
+                        <a href="#/medecin/patients" class="btn btn-success">Mes Patients</a>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -148,9 +152,11 @@
         <!-- Rapports Satisfactions -->
         <div class="card border-warning">
             <div class="card-header">
-                Rapports de Satisfactions
-                <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-info btn-sm">Accéder</button>
+                <div class="d-flex align-items-center justify-content-between">
+                    Rapports de Satisfactions
+                    <div class="card-header-actions">
+                        <a href="#/medecin/patients" class="btn btn-info">Accéder</a>
+                    </div>
                 </div>
             </div>
             <div class="card-body">

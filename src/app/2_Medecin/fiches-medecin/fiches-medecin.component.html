@@ -1,12 +1,15 @@
 <div class="animated fadeIn">
     <div class="card border-info">
+ 
         <div class="card-header">
-            <p>Patient: {{patient.nom}} {{patient.prenom}}</p>
-            <div class="card-header-actions" style="height: 21px;">
-
-                <app-addFiches-medecin></app-addFiches-medecin>
+            <div class="d-flex align-items-center justify-content-between">
+                <p>Patient: {{patient.nom}} {{patient.prenom}}</p>
+                <div class="card-header-actions">
+                    <app-addFiches-medecin></app-addFiches-medecin>
+                </div>
             </div>
         </div>
+
         <div class="card-body">
             <div class="chart-wrapper">
 
