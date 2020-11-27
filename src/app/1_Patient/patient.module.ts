@@ -1,3 +1,4 @@
+import { CalendrierMedecinComponent } from './calendrier-medecin/calendrier-medecin.component';
 import { InfoConsultationPatientComponent } from './infoConsultation-patient/infoConsultation-patient.component';
 import { FicheMedicalPatientComponent } from './ficheMedical-patient/ficheMedical-patient.component';
 import { TransfertModule } from './../transfert/transfert/transfert.module';
@@ -21,7 +22,8 @@ import { ReponseQuestionnaireComponent } from './reponseQuestionnaire/reponseQue
     ConsulterMedecinComponent,
     ReponseQuestionnaireComponent,
     FicheMedicalPatientComponent,
-    InfoConsultationPatientComponent
+    InfoConsultationPatientComponent,
+    CalendrierMedecinComponent
   ],
 
   imports: [
