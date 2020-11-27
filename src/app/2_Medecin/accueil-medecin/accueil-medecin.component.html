@@ -10,8 +10,7 @@
                     <full-calendar [options]="calendarOptions"></full-calendar>
                 </div>
 
-                <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-                    aria-labelledby="myModalLabel" aria-hidden="true">
+                <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-primary" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -23,10 +22,20 @@
 
 
                             <div id="infos">
-                                <p><b>duree de la consultation : </b>{{infos.dureeConsultation}} </p>
-                                <p><b>note : </b>{{infos.note}} </p>
-                                <p><b>deplacement: </b>{{infos.deplacement}} </p>
-                                <p><b>Validation par le medecin : </b>{{infos.validationMedecin}} </p>
+                                <p><b>duree de la consultation : </b>{{infos.dureeConsultation}} minutes </p>
+                                <!-- <p><b>note : </b>{{infos.note}} </p> -->
+                                <div *ngIf=infos.deplacement>
+                                    <p><b>deplacement: </b>Oui</p>
+                                </div>
+                                <div *ngIf=!infos.deplacement>
+                                    <p><b>deplacement: </b>Non</p>
+                                </div>
+                                <div *ngIf=infos.validationMedecin>
+                                    <p><b>Validation par le medecin : </b>Oui</p>
+                                </div>
+                                <div *ngIf=!infos.validationMedecin>
+                                    <p><b>Validation par le medecin : </b>Non</p>
+                                </div>
                             </div>
                             <div *ngIf="infos.validationMedecin==false" class="modal-footer">
                                 <button type="button" class="btn btn-primary" (click)="valider()">Validation de la
@@ -51,8 +60,7 @@
             <div class="card-header">
                 Mon Profil
                 <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-warning btn-sm" [routerLink]="['/medecin/update']"
-                        routerLinkActive="router-link-active">Modifier</button>
+                    <button class="btn btn-warning btn-sm" [routerLink]="['/medecin/update']" routerLinkActive="router-link-active">Modifier</button>
                 </div>
             </div>
             <div class="card-body">
@@ -67,8 +75,7 @@
             <div class="card-header">
                 Mes Futurs Patients
                 <div class="card-header-actions" style="height: 21px;">
-                    <button class="btn btn-success btn-sm" [routerLink]="['/medecin/patients']"
-                    routerLinkActive="router-link-active">Mes Patients</button>
+                    <button class="btn btn-success btn-sm" [routerLink]="['/medecin/patients']" routerLinkActive="router-link-active">Mes Patients</button>
                 </div>
             </div>
             <div class="card-body">
@@ -83,8 +90,7 @@
                             <td>{{item.patient.nom}} {{item.patient.prenom}}</td>
                             <td>{{item.date | date:'short'}}</td>
                             <td>
-                                <button class="btn btn-info" [routerLink]="['/medecin/fiches', {pId:item.patient.id}]"
-                                routerLinkActive="router-link-active">Info Médicale</button>
+                                <button class="btn btn-info" [routerLink]="['/medecin/fiches', {pId:item.patient.id}]" routerLinkActive="router-link-active">Info Médicale</button>
                             </td>
                         </tr>
                     </table>
