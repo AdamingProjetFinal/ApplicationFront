@@ -1,3 +1,4 @@
+import { UpdateAdminComponent } from './update-admin/update-admin.component';
 import { AdminGuardService } from './../service/guard/admin-guard.service';
 import { LoginAdminComponent } from './login/login-admin.component';
 import { UsersAdminComponent } from './users-admin/users-admin.component';
@@ -16,7 +17,8 @@ const adminRoutes: Routes = [
   { path: '', component: AccueilAdminComponent },
   { path: "statistique", component: StatistiqueQuestionnaireComponent, data: { title: "Statistiques détaillées" } },
   { path: "questionnaire", component: GestionQuestionnairesComponent, data: { title: "Gestion des questionnaires" } },
-  { path: 'users', component: UsersAdminComponent, data: { title: "Gestion des utilisateurs"} }
+  { path: 'users', component: UsersAdminComponent, data: { title: "Gestion des utilisateurs"} },
+  { path: 'editer', component: UpdateAdminComponent, data: { title: "Modifier le mot de passe administrateur"} }
   
   ]},
 { path: "login", component: LoginAdminComponent, data: { title: "Connexion en tant qu'administrateur" } }

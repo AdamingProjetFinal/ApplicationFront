@@ -1,3 +1,4 @@
+import { UpdateAdminComponent } from './update-admin/update-admin.component';
 import { LoginAdminComponent } from './login/login-admin.component';
 import { UsersAdminComponent } from './users-admin/users-admin.component';
 import { TransfertModule } from './../transfert/transfert/transfert.module';
@@ -22,7 +23,8 @@ import { GestionQuestionnairesComponent } from './gestion-questionnaires/gestion
     AraigneeComponent,
     GestionQuestionnairesComponent,
     LoginAdminComponent,
-    UsersAdminComponent
+    UsersAdminComponent,
+    UpdateAdminComponent
   ],
 
   imports: [
