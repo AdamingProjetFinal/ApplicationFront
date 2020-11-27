@@ -58,7 +58,7 @@ export class FichesMedecinComponent implements OnInit {
   }
 
   download() {
-    var element = document.getElementById("details")
+    var element = document.getElementById("ficheMedicale")
     html2canvas(element).then((canvas) => {
       var imgData =canvas.toDataURL("image/png")
       var doc =new jspdf()
