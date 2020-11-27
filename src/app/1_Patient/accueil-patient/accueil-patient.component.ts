@@ -56,7 +56,6 @@ export class AccueilPatientComponent implements OnInit {
     this.ficheService.getFichesByIdPatient(this.authService.getUserId()).subscribe(
       (data) => {
         this.fichesMedicales = data;
-        console.log(this.fichesMedicales);
         if (this.fichesMedicales.length == 0) {
           // Message pour abscence de fiche
           this.indiceFiche1 = true;
@@ -81,7 +80,6 @@ export class AccueilPatientComponent implements OnInit {
     this.consultationService.getConsultationsByIdPatient(this.authService.getUserId()).subscribe(
       (data) => {
         this.consultations = data;
-        console.log(this.consultations);
 
         this.consultations.forEach(
           s => {

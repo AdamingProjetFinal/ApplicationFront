@@ -60,7 +60,6 @@ export class FichesMedecinComponent implements OnInit {
   download() {
     var element = document.getElementById("details")
     html2canvas(element).then((canvas) => {
-      console.log(canvas)
       var imgData =canvas.toDataURL("image/png")
       var doc =new jspdf()
       var imgHeight =(canvas.height)*208/ canvas.width;

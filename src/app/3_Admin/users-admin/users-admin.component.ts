@@ -64,7 +64,6 @@ export class UsersAdminComponent implements OnInit {
   showModalDeletePatient(id: number) {
     this.id = id;
     this.deletePatientModal.show();
-    console.log(this.id);
   }
 
   // Delete Medecin

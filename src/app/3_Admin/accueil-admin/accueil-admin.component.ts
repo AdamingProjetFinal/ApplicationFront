@@ -34,7 +34,7 @@ export class AccueilAdminComponent implements OnInit {
 
   recupererFormule() {
     this.formuleService.getLast().subscribe((response: any) => {
-      console.log(this.formule = response.data)
+      this.formule = response.data
     })
   }
 

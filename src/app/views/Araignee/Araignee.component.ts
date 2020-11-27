@@ -55,7 +55,6 @@ export class AraigneeComponent implements OnInit {
     this.questionnaire$ = this.questionnaireService.getLastQuestionnaire()
     this.questionnaire$.subscribe((response: any) => {
       let questionnaire: Questionnaire = response.data
-      console.log(questionnaire);
 
       this.radarChartLabels[0] = (questionnaire.tagQuestion1)
       this.radarChartLabels[1] = (questionnaire.tagQuestion2)
@@ -119,7 +118,6 @@ export class AraigneeComponent implements OnInit {
   }
 
   public chartHovered(e: any): void {
-    // console.log(e); // si on passe sur le graphique
   }
 
 }

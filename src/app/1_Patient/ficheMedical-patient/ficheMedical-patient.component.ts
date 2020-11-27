@@ -40,9 +40,7 @@ export class FicheMedicalPatientComponent implements OnInit {
     // TODO
     this.ficheService.getFichesByIdPatient(this.authService.getUserId()).subscribe(
       (data) => {
-        console.log(data)
         this.fichesMedicales = data;
-        console.log(this.fichesMedicales);
         if (this.fichesMedicales.length == 0) {
           // Message pour abscence de fiche
           this.indiceFiche1 = true;
@@ -63,7 +61,6 @@ export class FicheMedicalPatientComponent implements OnInit {
   download() {
     var element = document.getElementById("ficheMedicale")
     html2canvas(element).then((canvas) => {
-      console.log(canvas)
       var imgData =canvas.toDataURL("image/png")
       var doc =new jspdf()
       var imgHeight =(canvas.height)*208/ canvas.width;

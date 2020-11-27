@@ -16,14 +16,12 @@ ngOnInit(){}
 
 // Se connecter en cherchant l'association email/password dans la table Medecin
 loginMedecin(){
-  let resp = this.authentificationService.authentification(this.email, this.password, "medecin")
-  console.log("connexion : " + resp);
+  this.authentificationService.authentification(this.email, this.password, "medecin")
     }
     
 // Se connecter en cherchant l'association email/password dans la table Patient
 loginPatient(){
-  let resp = this.authentificationService.authentification(this.email, this.password, "patient")
-  console.log("connexion : " + resp);
+  this.authentificationService.authentification(this.email, this.password, "patient")
 }
 
 }

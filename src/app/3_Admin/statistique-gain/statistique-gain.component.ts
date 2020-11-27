@@ -58,7 +58,6 @@ export class StatistiqueGainComponent implements OnInit {
       var now = Date.now();
       comptas.forEach(compta => {
         var dateCompta = new Date(compta.date)
-        console.log(dateCompta);
         var difference_In_Days = Math.round((now - dateCompta.getTime()) / (1000 * 3600 * 24));
         
         if (this.gainSemaine[Math.trunc(difference_In_Days / 7)]) {

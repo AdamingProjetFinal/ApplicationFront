@@ -138,17 +138,14 @@ export class AccueilMedecinComponent implements OnInit {
         endTime: '18:00',
       },
       eventClick: (inf) => {
-        console.log("je suis là")
         this.voirDetailsConsultation(inf);
       },
     }
   } // méthode buildCalendar()
 
   voirDetailsConsultation(inf) {
-    console.log("je suis dans voir Détails")
     this.consultationService.getConsultation(inf.event.extendedProps.idConsultation).subscribe(data => {
       this.consultation = data.data;
-      console.log(this.consultation);
       this.infos = inf.event.extendedProps
       this.myModal.show()
     })
