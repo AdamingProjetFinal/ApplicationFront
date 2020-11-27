@@ -140,12 +140,9 @@ export class CalendrierMedecinComponent implements OnInit {
     if (confirm("Etes-vous sûr de vouloir réserver créneau de " + moment(date).format("HH") + " h?")) {
 
       this.consultation.date = new Date(date)
-
-      //TODO LAISSER LE CHOIX POUR LE DEPLACEMENT OU NON
       this.consultation.deplacement = confirm("Voulez-vous un déplacement à domicile?"),
         this.consultation.note = prompt("Ajoutez une précision à faire parvenir au médecin"),
         this.consultation.dureeConsultation = 60,
-        //TODO LAISSER LE CHOIX POUR La NOTE
         this.consultation.validationMedecin = false;
       this.consultationService.saveConsultationMedPat(this.consultation, this.IdMedecein, this.auth.getUserId()).subscribe(data => {
 
