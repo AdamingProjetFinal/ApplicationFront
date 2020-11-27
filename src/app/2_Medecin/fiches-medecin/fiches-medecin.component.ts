@@ -6,6 +6,8 @@ import { PatientService } from './../../service/patient/patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../../model/Patient';
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas'
 
 @Component({
   selector: 'app-fiches-medecin',
@@ -17,6 +19,8 @@ export class FichesMedecinComponent implements OnInit {
   patient: Patient = new Patient();
   fichesMedicales: FicheMedicale[] = new Array();
   patientId: number;
+  ficheMedicale: FicheMedicale = new FicheMedicale();
+  select =false;
 
 
   constructor(
@@ -46,6 +50,24 @@ export class FichesMedecinComponent implements OnInit {
         }
       }
     )
+  }
+
+  selectFiche(item: FicheMedicale) {
+    this.select = !this.select
+    this.ficheMedicale = item;
+  }
+
+  download() {
+    var element = document.getElementById("details")
+    html2canvas(element).then((canvas) => {
+      console.log(canvas)
+      var imgData =canvas.toDataURL("image/png")
+      var doc =new jspdf()
+      var imgHeight =(canvas.height)*208/ canvas.width;
+      doc.addImage(imgData,0,0,208,imgHeight)
+      doc.save("image.pdf")
+
+    })
   }
 
 }

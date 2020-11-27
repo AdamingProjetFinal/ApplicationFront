@@ -14,14 +14,13 @@
                         <th>Nom</th>
                         <th>Date</th>
                         <th>Antecedents</th>
-                        <th>Observations</th>
+
                         <th>Action</th>
                     </tr>
                     <tr *ngFor="let item of fichesSort">
                         <td>{{item.nom}}</td>
                         <td>{{item.date| date :short}}</td>
                         <td>{{item.antecedents}}</td>
-                        <td>{{item.observations}}</td>
                         <td>
                             <!-- Bouton télécharger fiche médicale TODO-->
                             <button class="btn btn-warning" (click)="selectFiche(item)">détails de la fiche</button>
@@ -38,6 +37,7 @@
                 <div class="card-header">
                     Fiche médicale
                 </div>
+
                 <div class="card-body">
                     <h5 class="card-title">Nom</h5>
                     <p class="card-text"> {{ficheMedicale.nom}}</p>
