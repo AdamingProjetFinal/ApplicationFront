@@ -120,9 +120,10 @@ export class CalendrierMedecinComponent implements OnInit {
       },
 
       slotDuration: "01:00:00",
-      snapDuration: "01:30:00",
-      slotMinTime: "06:00:00",
+      snapDuration: "01:00:00",
+      slotMinTime: "08:00:00",
       slotMaxTime: "20:00:00",
+      hiddenDays: [ 0],
       businessHours: {
 
         daysOfWeek: [1, 2, 3, 4, 5],

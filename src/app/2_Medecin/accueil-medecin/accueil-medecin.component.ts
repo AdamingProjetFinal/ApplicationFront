@@ -34,8 +34,8 @@ export class AccueilMedecinComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.buildEvent(1);
     this.medecin = this.authService.getUser();
+    this.buildEvent(this.medecin.id);
 
     this.consultationService.getConsultationsByIdMedecin(this.authService.getUserId()).subscribe(
       (data) => {
@@ -93,7 +93,10 @@ export class AccueilMedecinComponent implements OnInit {
       height:1100,
       eventColor: "#24343c",
       events: this.consultations,
-    
+      slotMinTime: "08:00:00",
+      slotMaxTime: "20:00:00",
+      hiddenDays: [ 0 ],
+
       locale: "fr",
       headerToolbar: {
         start: 'prev,next today',
