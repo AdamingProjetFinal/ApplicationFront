@@ -24,6 +24,8 @@ export class DefaultLayoutComponent {
   public isUserLoggedIn: boolean;
   public profil: string
   alertsDismiss: any = [];
+  routeUpdate : string
+  routeAccueil : string
   public navItems= navItems;
   //                        anonnyme  Patient   Medecin   Admin
   userLogged : boolean[] = [true,     false,    false,    false]
@@ -44,18 +46,25 @@ export class DefaultLayoutComponent {
       case "patient":
         //                anonnyme  Patient   Medecin   Admin
         this.userLogged= [false,    true,     false,    false]
+        this.routeUpdate = "/patient/update"
+        this.routeAccueil = "/patient"
         break;
       case "medecin":
         //                anonnyme  Patient   Medecin   Admin
         this.userLogged= [false,    false,    true,    false]
+        this.routeUpdate = "/medecin/update"
+        this.routeAccueil = "/medecin"
         break;
       case "admin":
         //                anonnyme  Patient   Medecin   Admin
         this.userLogged= [false,    false,    false,    true]
+        this.routeUpdate = "/admin/editer"
+        this.routeAccueil = "/admin"
       break;
       default:
         //                anonnyme  Patient   Medecin   Admin
         this.userLogged= [true,     false,    false,    false]
+        this.routeAccueil = "/"
         break;
     }
   }
