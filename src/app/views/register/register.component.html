@@ -7,107 +7,205 @@
             <div class="">
               <div class="card-body">
               </div>
-              
+
               <tabset>
                 <tab>
-                  <ng-template tabHeading ><h3><i class="fa fa-user-md fa-lg mt-4"></i> Médecin</h3></ng-template>
-                  
-                    <h1>Créer un compte</h1>
-                    <div class="card-body">
+                  <ng-template tabHeading>
+                    <h3><i class="fa fa-user-md fa-lg mt-4"></i> Médecin</h3>
+                  </ng-template>
+
+                  <div class="row">
+
+                    <div class="col-sm-6">
                       <div class="form-group">
-                        <label for="Pseudo">Pseudo</label>
-                        <input type="text" class="form-control" id="company" placeholder="{{medecin.username}}" [(ngModel)]="medecin.username">
+                        <label for="NomMed">Nom</label>
+                        <input type="text" class="form-control" id="NomMed" placeholder="{{medecin.nom}}"
+                          [(ngModel)]="medecin.nom">
                       </div>
+
                       <div class="form-group">
-                        <label for="Nom">Nom</label>
-                        <input type="text" class="form-control" id="name" placeholder="{{medecin.nom}}" [(ngModel)]="medecin.nom">
+                        <label for="PrenomMed">Prenom</label>
+                        <input type="text" class="form-control" id="PrenomMed" placeholder="{{medecin.prenom}}"
+                          [(ngModel)]="medecin.prenom">
                       </div>
+
                       <div class="form-group">
-                        <label for="Prenom">Prenom</label>
-                        <input type="text" class="form-control" id="firstname" placeholder="{{medecin.prenom}}" [(ngModel)]="medecin.prenom">
+                        <label for="TelephoneMed">Telephone</label>
+                        <input type="text" class="form-control" id="TelephoneMed" placeholder="{{medecin.telephone}}"
+                          [(ngModel)]="medecin.telephone">
                       </div>
-                      <div class="row">
-                        <div class="form-group col-sm-8">
-                          <label for="specialite">Spécialité</label>
-                          <select class="form-control" id="specialite" [(ngModel)]="specialiteId">
-                            <option *ngFor="let specialite of listSpecialites" value="{{specialite.idSpecialite}}">{{specialite.nom}}</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-sm-4">
-                          <label for="specialite">Il manque votre spécialité ?</label>
-                          <button type="button" class="btn btn-primary mr-1" data-toggle="modal" (click)="myModal.show()">
-                            Ajouter une spécialité
-                          </button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-sm-8">
-                          <label for="Email">Email</label>
-                          <input type="text" class="form-control" id="email" placeholder="{{medecin.email}}" [(ngModel)]="medecin.email">
-                        </div>
-                        <div class="form-group col-sm-4">
-                          <label for="Date-naissance">Date de naissance</label>
-                          <input type="text" class="form-control" id="date-naissance" placeholder="{{medecin.dateNaissance}}" [(ngModel)]="medecin.dateNaissance">
-                        </div>
-                      </div><!--/.row-->
-                      <div class="form-group">
-                        <label for="Telephone">Telephone</label>
-                        <input type="text" class="form-control" id="postal-code" placeholder="{{medecin.telephone}}" [(ngModel)]="medecin.telephone">
-                      </div>
-                      <div class="form-group">
-                        <label for="Password">Mot de passe</label>
-                        <app-Alerte></app-Alerte>
-                        <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="medecin.password">
-                      </div>
-                      <div class="form-group">
-                        <label for="PasswordCheck">Répétez le mot de passe</label>
-                        <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="checkPassword">
-                      </div>
-                      <button type="button" class="btn btn-success" (click)=saveMedecin()>Enregistrer</button>
                     </div>
+
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="numeroMed">N°</label>
+                          <input type="text" class="form-control" id="numeroMed" placeholder="{{medecin.adresse.numero}}"
+                            [(ngModel)]="medecin.adresse.numero">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="rueMed">Rue</label>
+                          <input type="text" class="form-control" id="rueMed" placeholder="{{medecin.adresse.rue}}"
+                            [(ngModel)]="medecin.adresse.rue">
+                        </div>
+                      </div>
+
+                      <div class="form-group ">
+                        <label for="ComplementMed">Complément d'adresse</label>
+                        <input type="text" class="form-control" id="ComplementMed"
+                          placeholder="{{medecin.adresse.complement}}" [(ngModel)]="medecin.adresse.complement">
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="CodePostalMed">Code Postal</label>
+                          <input type="text" class="form-control" id="CodePostalMed" placeholder="{{medecin.adresse.cp}}"
+                            [(ngModel)]="medecin.adresse.cp">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="villeMed">Ville</label>
+                          <input type="text" class="form-control" id="villeMed" placeholder="{{medecin.adresse.ville}}"
+                            [(ngModel)]="medecin.adresse.ville">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-8">
+                      <label for="specialiteMed">Spécialité</label>
+                      <select class="form-control" id="specialiteMed" [(ngModel)]="specialiteId">
+                        <option *ngFor="let specialite of listSpecialites" value="{{specialite.idSpecialite}}">
+                          {{specialite.nom}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="specialiteajout">Il manque votre spécialité ?</label>
+                      <button type="button" class="btn btn-primary mr-1" data-toggle="modal" (click)="myModal.show()">
+                        Ajouter une spécialité
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-8">
+                      <label for="EmailMed">Email</label>
+                      <input type="text" class="form-control" id="EmailMed" placeholder="{{medecin.email}}"
+                        [(ngModel)]="medecin.email">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="Date-naissanceMed">Date de naissance</label>
+                      <input type="date" class="form-control" id="Date-naissanceMed" name="date-input"
+                        placeholder="{{medecin.dateNaissance}}" [(ngModel)]="medecin.dateNaissance">
+                    </div>
+                  </div>
+                  <!--/.row-->
+                  <div class="form-group">
+                    <label for="Password">Mot de passe</label>
+                    <app-Alerte></app-Alerte>
+                    <input type="password" class="form-control" placeholder="Mot de passe"
+                      [(ngModel)]="medecin.password">
+                  </div>
+                  <div class="form-group">
+                    <label for="PasswordCheck">Répétez le mot de passe</label>
+                    <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="checkPassword">
+                  </div>
+                  <button type="button" class="btn btn-success" (click)=saveMedecin()>Enregistrer</button>
+
                 </tab>
 
                 <tab>
-                  <ng-template tabHeading class="bg-red"><h3><i class="fa fa-user fa-lg mt-4"></i> Patient</h3></ng-template>
-                  
-                    <h1>Créer un compte</h1>
-                    <div class="form-group">
-                      <label for="Pseudo">Pseudo</label>
-                      <input type="text" class="form-control"  placeholder="{{patient.username}}" [(ngModel)]="patient.username">
-                    </div>
-                    <div class="form-group">
-                      <label for="Nom">Nom</label>
-                      <input type="text" class="form-control"  placeholder="{{patient.nom}}" [(ngModel)]="patient.nom">
-                    </div>
-                    <div class="form-group">
-                      <label for="Prenom">Prenom</label>
-                      <input type="text" class="form-control"  placeholder="{{patient.prenom}}" [(ngModel)]="patient.prenom">
-                    </div>
-                    <div class="row">
-                      <div class="form-group col-sm-8">
-                        <label for="Email">Email</label>
-                        <input type="text" class="form-control"  placeholder="{{patient.email}}" [(ngModel)]="patient.email">
+                  <ng-template tabHeading class="bg-red">
+                    <h3><i class="fa fa-user fa-lg mt-4"></i> Patient</h3>
+                  </ng-template>
+
+                  <h1>Créer un compte</h1>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="Nom">Nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="{{patient.nom}}"
+                          [(ngModel)]="patient.nom">
                       </div>
-                      <div class="form-group col-sm-4">
-                        <label for="Date-naissance">Date de naissance</label>
-                        <input type="text" class="form-control"  placeholder="{{patient.dateNaissance}}" [(ngModel)]="patient.dateNaissance">
+
+                      <div class="form-group">
+                        <label for="Prenom">Prenom</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="{{patient.prenom}}"
+                          [(ngModel)]="patient.prenom">
                       </div>
-                    </div><!--/.row-->
-                    <div class="form-group">
-                      <label for="Telephone">Telephone</label>
-                      <input type="text" class="form-control"  placeholder="{{patient.telephone}}" [(ngModel)]="patient.telephone">
+
+                      <div class="form-group">
+                        <label for="numeroSecu">Numéro de sécurité Social</label>
+                        <input type="text" class="form-control" id="numeroSecu" placeholder="{{patient.numeroSecu}}"
+                          [(ngModel)]="patient.numeroSecu">
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="Password">Mot de passe</label>
-                      <app-Alerte></app-Alerte>
-                      <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="patient.password">
+
+                    <!---- block adresse ---->
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="numero">N°</label>
+                          <input type="text" class="form-control" id="numero" placeholder="{{patient.adresse.numero}}"
+                            [(ngModel)]="patient.adresse.numero">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="rue">Rue</label>
+                          <input type="text" class="form-control" id="rue" placeholder="{{patient.adresse.rue}}"
+                            [(ngModel)]="patient.adresse.rue">
+                        </div>
+                      </div>
+
+                      <div class="form-group ">
+                        <label for="Complement">Complément d'adresse</label>
+                        <input type="text" class="form-control" id="complement"
+                          placeholder="{{patient.adresse.complement}}" [(ngModel)]="patient.adresse.complement">
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="CodePostal">Code Postal</label>
+                          <input type="text" class="form-control" id="CodePostal" placeholder="{{patient.adresse.cp}}"
+                            [(ngModel)]="patient.adresse.cp">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="ville">Ville</label>
+                          <input type="text" class="form-control" id="ville" placeholder="{{patient.adresse.ville}}"
+                            [(ngModel)]="patient.adresse.ville">
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="PasswordCheck">Répétez le mot de passe</label>
-                      <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="checkPassword">
+
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-8">
+                      <label for="Email">Email</label>
+                      <input type="text" class="form-control" placeholder="{{patient.email}}"
+                        [(ngModel)]="patient.email">
                     </div>
-                    <button type="button" class="btn btn-block btn-success" (click)=savePatient()>Créer</button>
-                  
+                    <div class="form-group col-sm-4">
+                      <label for="Date-naissance">Date de naissance</label>
+                      <input type="date" class="form-control" id="date-naissance" name="date-input"
+                        placeholder="{{patient.dateNaissance}}" [(ngModel)]="patient.dateNaissance">
+                    </div>
+                  </div>
+                  <!--/.row-->
+                  <div class="form-group">
+                    <label for="Telephone">Telephone</label>
+                    <input type="text" class="form-control" placeholder="{{patient.telephone}}"
+                      [(ngModel)]="patient.telephone">
+                  </div>
+                  <div class="form-group">
+                    <label for="Password">Mot de passe</label>
+                    <app-Alerte></app-Alerte>
+                    <input type="password" class="form-control" placeholder="Mot de passe"
+                      [(ngModel)]="patient.password">
+                  </div>
+                  <div class="form-group">
+                    <label for="PasswordCheck">Répétez le mot de passe</label>
+                    <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="checkPassword">
+                  </div>
+                  <button type="button" class="btn btn-block btn-success" (click)=savePatient()>Créer</button>
+
                 </tab>
               </tabset>
             </div>
@@ -119,7 +217,8 @@
 </div>
 
 <!-- modal ajout specialité -->
-<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-primary" role="document">
     <div class="modal-content">
       <div class="modal-header">
