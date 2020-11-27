@@ -36,7 +36,6 @@ export class AddFichesMedecinComponent implements OnInit {
           this.patientService.getPatient(id).subscribe(
             (response: any) => {
               this.patient = response.data;
-              console.log(this.patient);
             }
           )
         }

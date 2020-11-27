@@ -77,7 +77,6 @@ export class ListMedecinComponent implements OnInit {
       let patient: Patient
       patient = this.authentificationService.getUser()
       patient.medecin = medecin
-      console.log(patient);
 
       this.patientService.update(patient).subscribe(response => {
         if (response.status == 200) {

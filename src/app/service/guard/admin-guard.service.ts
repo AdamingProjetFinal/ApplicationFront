@@ -14,9 +14,7 @@ constructor(
   private router :Router) { }
 
 canActivate(route: ActivatedRouteSnapshot) {
-  console.log("hello from guard");
   
-  console.log(route.data);
   if (this.authentificationService.getType() == "admin") {
     return true;
   }

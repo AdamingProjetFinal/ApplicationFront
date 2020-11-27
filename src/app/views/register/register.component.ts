@@ -60,7 +60,6 @@ export class RegisterComponent implements OnInit{
     if (this.medecin.password == this.checkPassword) {
       // this.medecin.password = Md5.init(this.medecin.password); // TODO décommenter pour chiffrer les mots de passes en base
       this.medecin.specialite = this.listSpecialites.find(specialite => specialite.idSpecialite == this.specialiteId)
-      console.log(this.medecin);
       
       this.medecinService.save(this.medecin).subscribe(response => response.body);
       this.authentificationService.authentification(this.medecin.email,this.medecin.password,'medecin')
@@ -71,7 +70,6 @@ export class RegisterComponent implements OnInit{
 
   // sauvegarde d'un patient
   savePatient() : void{
-    console.log(this.patient);
     if (this.patient.password == this.checkPassword) {
       this.patientService.save(this.patient).subscribe(response => response.body);
       this.authentificationService.authentification(this.patient.email,this.patient.password,'patient')

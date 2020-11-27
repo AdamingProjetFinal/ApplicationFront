@@ -42,7 +42,6 @@ export class UpdatePatientComponent implements OnInit {
   }
 
   update() : void{
-    console.log(this.date);
     
     if (this.oldPassWord == this.patient.password) {
       if (this.newPassWord == this.newPassWordCheck) {
@@ -55,7 +54,6 @@ export class UpdatePatientComponent implements OnInit {
       // TODO afficehr message ancien mot de passe incorrect
     }
     this.patientService.update(this.patient).subscribe(response => {
-      console.log(this.patient);
       
       this.authService.updateCurrentUser(this.patient)
         this.router.navigate(['/patient']);

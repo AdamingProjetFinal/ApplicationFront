@@ -98,7 +98,6 @@ export class PlanningComponent implements OnInit {
         endTime: '18:00', // an end time (6pm in this example)
       },
       eventClick: (inf) => {
-        console.log("je suis là")
         this.voirDetailsConsultation(inf);
       },
     }
@@ -109,7 +108,6 @@ export class PlanningComponent implements OnInit {
     this.consultationService.getConsultation(inf.event.extendedProps.idConsultation).subscribe(data => {
    
       this.consultation = data.data;
-      console.log(this.consultation);
       this.infos = inf.event.extendedProps
       this.myModal.show()
     })

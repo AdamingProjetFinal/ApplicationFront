@@ -135,7 +135,6 @@ export class CalendrierMedecinComponent implements OnInit {
 
   consulter(infos) {
     this.consultation.date = new Date(infos.start)
-    console.log(infos.start)
     let date = new Date(infos.start).toLocaleString('en-Fr', { timeZone: 'UTC' })
     if (confirm("Etes-vous sûr de vouloir réserver créneau de " + moment(date).format("HH") + " h?")) {
 

@@ -50,7 +50,6 @@ export class ReponseQuestionnaireComponent implements OnInit {
   // bouton valider de la modal de reponse au questionnaire
   validationModalReponseQuestionnaire() {
     this.modalReponseQuestionnaire.hide()
-    console.log(this.reponses);
     let reponse: Reponse = new Reponse
     reponse.idConsultation = this.idConsultationPourQuestionnaire
     reponse.questionnaire = this.questionnaire
@@ -58,7 +57,6 @@ export class ReponseQuestionnaireComponent implements OnInit {
     reponse.reponse2 = this.reponses[1]
     reponse.reponse3 = this.reponses[2]
     reponse.reponse4 = this.reponses[3]
-    console.log(reponse);
     this.reponseService.save(reponse).subscribe((response: any) => {
       if (response.status == 200) {
         this.avisDonne = true

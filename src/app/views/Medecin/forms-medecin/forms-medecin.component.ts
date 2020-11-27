@@ -56,7 +56,6 @@ export class FormsMedecinComponent implements OnInit {
       
       this.medecinService.getMedecin(this.id).subscribe((value: any) => {
         this.medecin = value.data;
-        console.log(this.medecin);
         
         // Permet de récupérer l'id de la spécialite pour initialiser le formulaire avec la bonne spécialité
         this.specialiteId = (this.medecin.specialite ?  this.medecin.specialite.idSpecialite : -1) 

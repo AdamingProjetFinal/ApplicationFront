@@ -35,7 +35,6 @@ export class UpdateMedecinComponent implements OnInit {
   }
 
   update() : void{
-    console.log(this.medecin);
     
     this.medecinService.update(this.medecin).subscribe(response => {
       this.authService.updateCurrentUser(this.medecin)
