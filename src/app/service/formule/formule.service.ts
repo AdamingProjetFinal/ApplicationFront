@@ -18,6 +18,12 @@ constructor(private http: HttpClient) { }
     return this.http
     .get<Formule>(this.URL + '/' + id);
   }
+
+  // Récupère une Questionnaire avec son id 
+  getLast(): Observable<any> {
+    return this.http
+      .get<any>(this.URL+ '/last');
+  }
   
   // Récupère la liste des Formules  
   getFormules() : Observable<Formule[]>{
