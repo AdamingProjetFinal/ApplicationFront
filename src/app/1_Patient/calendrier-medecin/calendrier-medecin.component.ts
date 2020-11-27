@@ -7,6 +7,7 @@ import { PatientService } from './../../service/patient/patient.service';
 import { ConsultationService } from './../../service/consultation/consultation.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CalendarApi, FullCalendarComponent } from '@fullcalendar/angular';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-calendrier-medecin',
@@ -48,7 +49,7 @@ export class CalendrierMedecinComponent implements OnInit {
       data.forEach(consult => {
         let duree = consult.dureeConsultation * 60 * 1000;
         let event = {
-          title: "Réservé : Docteur" + consult.medecin.nom,
+          title: "Réservé : Docteur " + consult.medecin.nom,
           start: consult.date,
           end: new Date(consult.date).setTime(new Date(consult.date).getTime() + duree),
           backgroundColor: "#02A307",
@@ -135,12 +136,14 @@ export class CalendrierMedecinComponent implements OnInit {
   consulter(infos) {
     this.consultation.date = new Date(infos.start)
     console.log(infos.start)
-    if (confirm("Etes-vous sûr de vouloir réserver créneau ? (" + infos.start + " - " + infos.end + ")")) {
-      let date = new Date(infos.start).toLocaleString('en-Fr', { timeZone: 'UTC' })
+    let date = new Date(infos.start).toLocaleString('en-Fr', { timeZone: 'UTC' })
+    if (confirm("Etes-vous sûr de vouloir réserver créneau de " + moment(date).format("HH") + " h?")) {
+
       this.consultation.date = new Date(date)
-        ;
+
       //TODO LAISSER LE CHOIX POUR LE DEPLACEMENT OU NON
-      this.consultation.deplacement = false,
+      this.consultation.deplacement = confirm("Voulez-vous un déplacement à domicile?"),
+        this.consultation.note = prompt("Ajoutez une précision à faire parvenir au médecin"),
         this.consultation.dureeConsultation = 60,
         //TODO LAISSER LE CHOIX POUR La NOTE
         this.consultation.validationMedecin = false;

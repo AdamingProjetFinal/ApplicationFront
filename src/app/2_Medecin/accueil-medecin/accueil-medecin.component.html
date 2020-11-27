@@ -34,8 +34,9 @@
                                     <p><b>Validation par le medecin : </b>Oui</p>
                                 </div>
                                 <div *ngIf=!infos.validationMedecin>
-                                    <p><b>Validation par le medecin : </b>Non</p>
+                                    <p><b>Validation par le medecin (il est temps de le valider mon coco) :</b>Non</p>
                                 </div>
+                                <p><b>note du patient : </b>{{infos.note}} minutes </p>
                             </div>
                             <div *ngIf="infos.validationMedecin==false" class="modal-footer">
                                 <button type="button" class="btn btn-primary" (click)="valider()">Validation de la
