@@ -1,3 +1,5 @@
+import { UpdatePrelevementComponent } from './update-prelevement/update-prelevement.component';
+import { StatistiqueGainComponent } from './statistique-gain/statistique-gain.component';
 import { UpdateAdminComponent } from './update-admin/update-admin.component';
 import { LoginAdminComponent } from './login/login-admin.component';
 import { UsersAdminComponent } from './users-admin/users-admin.component';
@@ -24,7 +26,9 @@ import { GestionQuestionnairesComponent } from './gestion-questionnaires/gestion
     GestionQuestionnairesComponent,
     LoginAdminComponent,
     UsersAdminComponent,
-    UpdateAdminComponent
+    UpdateAdminComponent,
+    StatistiqueGainComponent,
+    UpdatePrelevementComponent
   ],
 
   imports: [

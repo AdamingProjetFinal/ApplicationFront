@@ -1,3 +1,4 @@
+import { Adresse } from './../../model/Adresse';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlerteService } from './../../service/alerte/alerte.service';
@@ -26,6 +27,8 @@ export class RegisterComponent implements OnInit{
   @ViewChild('myModal') public myModal: ModalDirective
   medecin : Medecin = new Medecin
   patient : Patient = new Patient
+  adresseP : Adresse = new Adresse()
+  adresseM : Adresse = new Adresse()
   checkPassword : string
   alertHtmlMedecin: any = [];
   alertHtmlPatient: any = [];
@@ -40,6 +43,8 @@ export class RegisterComponent implements OnInit{
 
   ngOnInit() {
     this.getSepcialites()
+    this.medecin.adresse = this.adresseM
+    this.patient.adresse = this.adresseP
   }
 
   // Permet de recuperer la liste des spécialités pour le menu déroulant 
