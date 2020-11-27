@@ -38,7 +38,7 @@
                             <td>{{item.medecin.nom}} {{item.medecin.prenom}}</td>
                             <td>{{item.date | date:'short'}}</td>
                             <td>
-                                <app-infoConsultation-patient infoId="item"></app-infoConsultation-patient>
+                                <app-infoConsultation-patient infoId={{item.id}}></app-infoConsultation-patient>
                             </td>
                         </tr>
                     </table>
