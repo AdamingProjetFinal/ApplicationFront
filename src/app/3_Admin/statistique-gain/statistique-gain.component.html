@@ -1,0 +1,19 @@
+
+ <div class="card border-success">
+  <div class="card-header">
+    Statistique des gains par semaine ou par mois 
+    <div class="card-header-actions">
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="chart-wrapper">
+      <canvas baseChart class="chart"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColours"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"></canvas>
+    </div>
+  </div>
+</div>

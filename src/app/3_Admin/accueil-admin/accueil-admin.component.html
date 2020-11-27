@@ -32,6 +32,24 @@
       </div>
     </div>
 
+    <!-- Gain -->
+    <div class="card border-danger">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          Modifier le pourcentage de prélévement 
+          <div class="card-header-actions">
+            <a href="#/admin/taxe" class="btn btn-info">Modifier</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <b> Pourcentage actuel :</b>  {{formule.taxe}} % <br>
+          <b> En vigueur depuis :</b>  {{formule.date | date:'d/M/yyyy, HH:mm' }}
+        </div>
+      </div>
+    </div>
+
     <!-- Editer un questionnaire -->
     <div class="card border-danger">
       <div class="card-header">
@@ -78,6 +96,23 @@
       </div>
 
       <div class="card-body">
+      </div>
+    </div>
+
+    <!-- Gain -->
+    <div class="card border-success">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          Statistique des gains
+          <div class="card-header-actions">
+            <a href="#/admin/gain" class="btn btn-info">Voir les détails</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <b> Gain total de l'application :</b>  {{gainTotal}} €
+        </div>
       </div>
     </div>
 
