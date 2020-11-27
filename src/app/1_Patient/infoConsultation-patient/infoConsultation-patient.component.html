@@ -1,4 +1,4 @@
-<button class="btn btn-success" (click)="infoConsultation.show(item)">Info</button>
+<button class="btn btn-success" (click)="showModalInfoConsultation(infoId)">Info</button>
 
 
 <div bsModal #infoConsultation="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalReponseQuestionnaireLabel" aria-hidden="true">
@@ -11,17 +11,18 @@
         </button>
       </div>
       <div class="modal-body">
-        
-        Nom & Prénom Médecin : 
-        <br>Adresse :
-        <br>Spécialité :
-        <br>Téléphone :
-        <br>Email :
+        <h2> - Informations du Médecin - </h2>
+        <h3>Médecin : <small>{{medecin.nom}} {{medecin.prenom}}</small></h3> 
+        <h3>Adresse : <small>{{medecin.adresse.numero}} {{medecin.adresse.rue}} {{medecin.adresse.ville}}</small></h3>
+        <h3>Spécialité : <small>{{medecin.specialite.nom}}</small></h3>
+        <h3>Téléphone : <small>{{medecin.telephone}}</small></h3>
+        <h3>Email : <small>{{medecin.email}}</small></h3>
         <br>
-        <br>Date :
-        <br>Heure :
-        <br>Durée :
-
+        <h2> - Informations de la Consultation - </h2>
+        <h3>Date : <small>{{consultation.date | date: 'fullDate'}}</small></h3>
+        <h3>Heure : <small>{{consultation.date | date: 'shortTime'}}</small></h3>
+        <h3>Durée : <small>{{consultation.dureeConsultation}}</small></h3>
+        <h3>Prix : <small>{{consultation.prixTTC}} $</small></h3>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
